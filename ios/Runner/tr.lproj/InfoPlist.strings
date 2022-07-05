@@ -1,0 +1,11 @@
+"NSAppleMusicUsageDescription" = "Bu icazə proqram tərəfindən tələb olunmur, lakin əsas API tərəfindən tələb olunur. Bu dialoqu görürsünüzsə, bizimlə əlaqə saxlayın";
+"NSCameraUsageDescription" = "İstifadəçi profili şəklini dəyişmək üçün istifadə olunur";
+"NSHealthShareUsageDescription" = "Sizə fitness statistikasını göstərmək üçün məlumatlarınızı Apple Health proqramı ilə sinxronlaşdırırıq";
+"NSHealthUpdateUsageDescription" = "Sizə fitness statistikasını göstərmək üçün məlumatlarınızı Apple Health proqramı ilə sinxronlaşdırırıq";
+"NSLocalizedDescription" = "Sağlamlıq haqqında məlumat vermək üçün icazə tələb olunur";
+"NSLocationWhenInUseUsageDescription" = "Lifestep marşrut əsaslı sınaqlar zamanı sizi naviqasiya etmək üçün məkanınıza ehtiyac var";
+"NSMotionUsageDescription" = "Bu proqram addımlarınızı izləyir";
+"NSPhotoLibraryUsageDescription" = "İstifadəçi profili şəklini dəyişmək üçün istifadə olunur";
+"NSUserTrackingUsageDescription" = "Bu ID sizə fərdiləşdirilmiş reklamları göstərmək üçün istifadə olunacaq";
+"NSFaceIDUsageDescription" = "Doğrulama üçün Face ID istifadə edirik";
+"NSMicrophoneUsageDescription" = "Mikrofon onsuz da istifadə olunmur";

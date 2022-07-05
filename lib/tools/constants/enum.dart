@@ -1,0 +1,11 @@
+enum ConnectionType { wifi, mobile }
+enum GENDER_TYPE { MAN, WOMAN }
+
+enum USER_ORDER_STEP_TYPE {
+  DONATION_WEEK,
+  DONATION_MONTH,
+  DONATION_ALL,
+  STEP_WEEK,
+  STEP_MONTH,
+  STEP_ALL,
+}

@@ -1,0 +1,17 @@
+./gradlew signingReport
+
+
+
+
+keytool -genkey -v -keystore /Users/macbookpro/Desktop/projects/flutter/new/lifestep/configuration/release/android/LifeStep.jks -keyalg RSA -keysize 2048 -validity 10000 -alias LifeStep
+
+LifeStepdkeyr4kdla05nsi5wlshfs9spas
+
+keytool -list -v -keystore "/Users/macbookpro/Desktop/projects/flutter/new/lifestep/configuration/release/android/LifeStep.jks" -alias LifeStep
+
+keytool -exportcert -alias LifeStep -keystore /Users/macbookpro/Desktop/projects/flutter/new/lifestep/configuration/release/android/LifeStep.jks | openssl sha1 -binary | openssl base64
+
+LifeStepdkeyr4kdla05nsi5wlshfs9spas
+
+
+flutter run --dart-define=pk.eyJ1IjoiZGlnaXRhbGtzMjIiLCJhIjoiY2t6cGF5cXd2MDZnNDJ1cXMyejdzdXp6dCJ9.DXh1ziXOWPL3VlPjSj7DIw

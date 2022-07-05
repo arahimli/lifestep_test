@@ -1,0 +1,26 @@
+sudo arch -x86_64 gem install ffi
+# go to ios folder then run
+arch -x86_64 pod install
+
+https://github.com/mapbox/mapbox-gl-native/issues/16581
+
+https://docs.mapbox.com/ios/maps/guides/install/
+/Users/macbookpro/Development/flutter210/bin/flutter run --dart-define=sk.eyJ1IjoiZGlnaXRhbGtzMjIiLCJhIjoiY2t6cGo3eTExMGM2aDJ2bGd2dzdrM3dkeiJ9.LnViU04qGkPGbphKPRrZEA
+/Users/macbookpro/Development/flutter210/bin/flutter run release
+/Users/macbookpro/Development/flutter210/bin/flutter pub run flutter_launcher_icons:main
+
+
+p12 certificates key
+LifeStepdkeyr4kdla05nsi5wlshfs9spas
+
+Name:Push notification key Lifestep
+Key ID:AUA3BV6G9P
+
+rm Podfile.lock
+rm Podfile
+arch -x86_64 pod deintegrate; arch -x86_64 pod install
+
+
+
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to location when in the background.</string>

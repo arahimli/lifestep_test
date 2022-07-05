@@ -1,0 +1,11 @@
+"NSAppleMusicUsageDescription" = "This permission is not needed by the app, but it is required by an underlying API. If you see this dialog, contact us.";
+"NSCameraUsageDescription" = "Used to change the profile image of a user";
+"NSHealthShareUsageDescription" = "We will sync your data with the Apple Health app to give you better insights";
+"NSHealthUpdateUsageDescription" = "We will sync your data with the Apple Health app to give you better insights";
+"NSLocalizedDescription" = "Permisson is needed to provide health insights";
+"NSLocationWhenInUseUsageDescription" = "Lifestep needs your location to navigate you during route based challenges";
+"NSMotionUsageDescription" = "This application tracks your steps";
+"NSPhotoLibraryUsageDescription" = "Used to change the profile image of a user";
+"NSUserTrackingUsageDescription" = "This identifier will be used to deliver personalized ads to you.";
+"NSFaceIDUsageDescription" = "We use face id for authentication";
+"NSMicrophoneUsageDescription" = "Microphone doesn't used  anyway";

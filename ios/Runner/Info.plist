@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Lifestep</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>az</string>
+		<string>ru</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>lifestep</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.377953823136-nd6vsoadsn4308rhq4rlsn5bk17udjra</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb633520017928581</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+	<string>633520017928581</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<false/>
+	<key>FacebookClientToken</key>
+	<string>fdcb830e71878f97bb1d00e2a3496d83</string>
+	<key>FacebookDisplayName</key>
+	<string>Lifestep</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>FirebaseScreenReportingEnabled</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+		<string>comgooglemaps</string>
+		<string>baidumap</string>
+		<string>iosamap</string>
+		<string>waze</string>
+		<string>yandexmaps</string>
+		<string>yandexnavi</string>
+		<string>citymapper</string>
+		<string>mapswithme</string>
+		<string>osmandmaps</string>
+		<string>dgis</string>
+		<string>qqmap</string>
+		<string>here-location</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>MBXAccessToken</key>
+	<string>pk.eyJ1IjoiZGlnaXRhbGtzMjIiLCJhIjoiY2t6cGF5cXd2MDZnNDJ1cXMyejdzdXp6dCJ9.DXh1ziXOWPL3VlPjSj7DIw</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Bu icazə proqram tərəfindən tələb olunmur, lakin əsas API tərəfindən tələb olunur. Bu dialoqu görürsünüzsə, bizimlə əlaqə saxlayın</string>
+	<key>NSCameraUsageDescription</key>
+	<string>İstifadəçi profili şəklini dəyişmək üçün istifadə olunur</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Doğrulama üçün Face ID istifadə edirik</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Sizə fitness statistikasını göstərmək üçün məlumatlarınızı Apple Health proqramı ilə sinxronlaşdırırıq</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Sizə fitness statistikasını göstərmək üçün məlumatlarınızı Apple Health proqramı ilə sinxronlaşdırırıq</string>
+	<key>NSLocalizedDescription</key>
+	<string>Sağlamlıq haqqında məlumat vermək üçün icazə tələb olunur</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Lifestep marşrut əsaslı sınaqlar zamanı sizi naviqasiya etmək üçün məkanınıza ehtiyac var</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Bu proqram addımlarınızı izləyir</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>İstifadəçi profili şəklini dəyişmək üçün istifadə olunur</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Bu ID sizə fərdiləşdirilmiş reklamları göstərmək üçün istifadə olunacaq</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Mikrofon onsuz da istifadə olunmur</string>
+
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>com.apple.developer.healthkit</key>
+	<true/>
+</dict>
+</plist>

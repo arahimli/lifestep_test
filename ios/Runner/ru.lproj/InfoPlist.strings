@@ -1,0 +1,11 @@
+"NSAppleMusicUsageDescription" = "Это разрешение не требуется приложению, но оно требуется для базового API. Если вы видите это диалоговое окно, свяжитесь с нами";
+"NSCameraUsageDescription" = "Используется для изменения фото профиля пользователя";
+"NSHealthShareUsageDescription" = "Мы синхронизируем ваши данные с приложением Apple Health, чтобы показывать вам фитнес статистику";
+"NSHealthUpdateUsageDescription" = "Мы синхронизируем ваши данные с приложением Apple Health, чтобы показывать вам фитнес статистику";
+"NSLocalizedDescription" = "Разрешение необходимо для предоставления информации о состоянии здоровья";
+"NSLocationWhenInUseUsageDescription" = "Lifestep нуждается в вашем местоположении, чтобы направлять во время испытаний на основе маршрута";
+"NSMotionUsageDescription" = "Это приложение отслеживает ваши шаги";
+"NSPhotoLibraryUsageDescription" = "Используется для изменения фото профиля пользователя";
+"NSUserTrackingUsageDescription" = "Этот идентификатор будет использоваться для показа вам персонализированной рекламы";
+"NSFaceIDUsageDescription" = "Мы используем Face ID для аутентификации";
+"NSMicrophoneUsageDescription" = "Микрофон все равно не используется;

@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "377953823136",
+    "project_id": "lifestep-9b4bf",
+    "storage_bucket": "lifestep-9b4bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377953823136:android:be87cff3ebc30994fb9cc5",
+        "android_client_info": {
+          "package_name": "taz.lifestep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377953823136-57qbpdu1ta8ki1shgapsbas631hf7ac3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "taz.lifestep",
+            "certificate_hash": "165514814942e7f92d18445ae0690776dec5b88f"
+          }
+        },
+        {
+          "client_id": "377953823136-d9me32otgck5phuvka1tikt8nsve2mff.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "taz.lifestep",
+            "certificate_hash": "913a0f0f7af51a372566be661d004dc7c7e5c71d"
+          }
+        },
+        {
+          "client_id": "377953823136-dnav0aflqoskcl9ib3m5h2h6doc0jvh6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "taz.lifestep",
+            "certificate_hash": "7f61e7ea5bc470c66e2de68af62e3fa5651d4c91"
+          }
+        },
+        {
+          "client_id": "377953823136-2n3tf11f4488fmliagjrcdmgnq6hl0af.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWQWPAH6peyhn2hVycUkkJmSn2gAG5AEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377953823136-2n3tf11f4488fmliagjrcdmgnq6hl0af.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "377953823136-hjl02uqri6kvthfhev4h9ubk90r9bjfp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "lifestep.az",
+                "app_store_id": "1592110743"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

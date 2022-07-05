@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>377953823136-nd6vsoadsn4308rhq4rlsn5bk17udjra.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.377953823136-nd6vsoadsn4308rhq4rlsn5bk17udjra</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>377953823136-oqr6d3tr3231fh51dhp9q0gcnhbetm5a.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA9zsGRBqHX1KZhGU59Eg4jB25l_B4itHI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>377953823136</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>lifestep.az</string>
+	<key>PROJECT_ID</key>
+	<string>lifestep-9b4bf</string>
+	<key>STORAGE_BUCKET</key>
+	<string>lifestep-9b4bf.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:377953823136:ios:7c19198ddc46f126fb9cc5</string>
+</dict>
+</plist>
