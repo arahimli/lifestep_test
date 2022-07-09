@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/common/input-data.dart';
 import 'package:lifestep/tools/common/input-format.dart';
 import 'package:lifestep/tools/common/utlis.dart';
@@ -68,7 +69,7 @@ class InformationWidgetState extends State<InformationWidget> {
                       builder: (context, state) {
                         return state.currentUser != null ? Text(
                           (state.currentUser!.targetSteps ?? 0).toString() ,
-                          // Utils.humanizeInteger(state.currentUser!.targetSteps ?? 0) ,
+                          // Utils.humanizeInteger(context, state.currentUser!.targetSteps ?? 0) ,
                           style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 40, color: MainColors.darkPink500),
                           textAlign: TextAlign.left,
                           maxLines: 1,
@@ -88,7 +89,7 @@ class InformationWidgetState extends State<InformationWidget> {
                           backgroundColor: Colors.transparent,
                           builder: (context) => BlocProvider<GoalStepCubit>(create: (context) => GoalStepCubit(
                             sessionCubit: BlocProvider.of<SessionCubit>(context),
-                            authRepo: UserRepository()
+                            authRepo: GetIt.instance<UserRepository>()
                           ),
                               child: _GoalStepModal()
                           ),

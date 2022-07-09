@@ -14,10 +14,10 @@ class MainConfig {
   /// AppVersion
   /// For your app, you need to change according based on your app version
   ///
-  static const String app_version = '1.0.34';
+  static const String app_version = '1.0.36';
 
-  static const int app_version_android = 34;
-  static const int app_version_ios = 34;
+  static const int app_version_android = 36;
+  static const int app_version_ios = 36;
 
   static const String app_playsotre_url = 'https://play.google.com/store/apps/details?id=az.lifestep';
   static const String app_appsotre_url = 'https://apps.apple.com/az/app/lifestep-steps-to-charity/id1613896644';

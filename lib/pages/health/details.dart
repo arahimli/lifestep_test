@@ -77,8 +77,6 @@ class _HealthDetailViewState extends State<HealthDetailView> with TickerProvider
             SizedBox(height: 4,),
             GeneralBalanceOverView(),
             SizedBox(height: 4,),
-            GeneralBalanceBlockedView(),
-            SizedBox(height: 4,),
             TabBar(
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
               indicatorWeight: 4,

@@ -18,10 +18,14 @@ class NavigationBloc {
   // will be notified about it.
   void changeNavigationIndex(final Navigation option) => _navigationController.sink.add(option);
   Future<bool> changeNavigationIndexBool(final Navigation option) async{
-    _navigationController.sink.add(option);
-    return true;
+    if(_navigationController.hasValue && _navigationController.value != option) {
+      _navigationController.sink.add(option);
+      return true;
+    }
+    return false;
   }
 
   void dispose() => _navigationController.close();
 }
+
 final NavigationBloc navigationBloc = NavigationBloc();

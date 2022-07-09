@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/page-messages/list-message.dart';
 import 'package:lifestep/tools/components/shimmers/donations/personal.dart';
@@ -142,11 +143,11 @@ class _PersonalWidget extends StatelessWidget {
               providers: [
                 BlocProvider<CharityDetailsBloc>(create: (context) => CharityDetailsBloc(
                     charityModel: dataItem,
-                    donationRepository: DonationRepository()
+                    donationRepository: GetIt.instance<DonationRepository>()
                 )),
                 BlocProvider<DonorListCubit>(create: (context) => DonorListCubit(
                     charityModel: dataItem,
-                    donationRepository: DonationRepository()
+                    donationRepository: GetIt.instance<DonationRepository>()
                 )),
               ],
               child: DonationPersonalDetailView()))).then((value){

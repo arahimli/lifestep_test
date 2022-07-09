@@ -65,6 +65,7 @@ class BannerResponseData {
 class BannerModel {
   int? id;
   String? image;
+  String? imageLocalization;
   int? order;
   int? type;
   String? header;
@@ -75,11 +76,12 @@ class BannerModel {
 
 
   BannerModel(
-      {this.id, this.image, this.order, this.type, this.header, this.text, this.typeValue, this.value,});
+      {this.id, this.image, this.imageLocalization, this.order, this.type, this.header, this.text, this.typeValue, this.value,});
 
   BannerModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'] != null ? sprintf( IMAGE_URL , [json['image']]) : null;
+    imageLocalization = json['image_localization'] != null ? sprintf( IMAGE_URL , [json['image_localization']]) : null;
     order = json['order'];
     type = json['type'];
     header = json['header'];
@@ -113,6 +115,7 @@ class BannerModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['image'] = this.image;
+    data['image_localization'] = this.imageLocalization;
     data['order'] = this.order;
     data['type'] = this.type;
     data['header'] = this.header;

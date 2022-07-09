@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:confetti/confetti.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_apps/device_apps.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -25,6 +26,7 @@ import 'package:meta/meta.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sprintf/sprintf.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -46,6 +48,24 @@ class Utils {
     } else {
       return '';
     }
+  }
+
+  static Future<String> getPlayerId() async{
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String playerId = '';
+    if(!pref.containsKey('player_id')){
+      try {
+        String? fcm_token = await FirebaseMessaging.instance.getToken();
+        pref.setString('player_id', fcm_token!);
+        playerId = fcm_token;
+        // print("playerId = 2 ${playerId}");
+      }catch(e){
+        //////// print(e);
+      }
+    }else{
+      playerId = pref.getString('player_id') ?? '';
+    }
+    return playerId;
   }
 
   static dynamic getListMapDisplay(String value, List<Map<String, dynamic>> dataMap, {String key = "keyword", String valueKey = "display"}) {
@@ -114,11 +134,11 @@ class Utils {
     }
   }
 
-  static String humanizeDouble(double value) {
+  static String humanizeDouble(BuildContext context, double value) {
     try{
       double new_value = Utils.roundNumber(value);
       if(new_value.toString().length > 5){
-        return "${humanizeInt(value.round()).toLowerCase()}${new_value.toString().split('.')[0].length < 4 ? "."+new_value.toString().split('.')[1] : ''}";
+        return "${humanizeInt(context, value.round()).toLowerCase()}${new_value.toString().split('.')[0].length < 4 ? "."+new_value.toString().split('.')[1] : ''}";
       }else{
         return new_value.toString();
       }
@@ -127,17 +147,17 @@ class Utils {
     }
   }
 
-  static String humanizeInteger(int value) {
+  static String humanizeInteger(BuildContext context, int value) {
     try{
-        return humanizeInt(value).toLowerCase();
+        return humanizeInt(context, value).toLowerCase();
     }catch(_){
       return '0';
     }
   }
 
-  static String montToString(int value) {
+  static String montToString(BuildContext context, int value) {
     try{
-        return humanizeInt(value);
+        return humanizeInt(context, value);
     }catch(_){
       return '0';
     }
@@ -888,6 +908,114 @@ class Utils {
   }
 
 
+  static dynamic showBalanceBlockedModal(BuildContext context, Size size, {String? title, String? text, String? image, String? buttonText, Function()? onTap}) {
+
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Stack(
+          children: [
+            Dialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius:
+                    BorderRadius.all(Radius.circular(12.0))),
+                child: Container(
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    // border: Border.all(color: Colors.blueAccent,width: 2),
+                      borderRadius:
+                      BorderRadius.all(Radius.circular(10.0))),
+                  child: Stack(
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                            child: image != null ? CachedNetworkImage(
+                              placeholder: (context, key){
+                                return Container(
+                                  width: size.width * 3.6 / 6,
+                                  height: size.width * 3.6 / 6,
+                                  child: Shimmer.fromColors(
+                                      highlightColor: MainColors.middleGrey150!.withOpacity(0.2),
+                                      baseColor: MainColors.middleGrey150!,
+                                      child: Image.asset("assets/images/general/step-blocked.png", color: MainColors.middleGrey150, fit: BoxFit.contain)
+                                  ),
+                                );
+                              },
+                              // key: Key("${"vvvvv"}${1}"),
+                              // key: Key("${MainWidgetKey.PRODUCT__IMAGE}${item.id}"),
+                              fit: BoxFit.contain,
+                              imageUrl: image,
+                              width: size.width * 3.6 / 6,
+                              height: size.width * 3.6 / 6,
+                            ):Container(
+                                width: size.width * 3.6 / 6,
+                                height: size.width * 3.6 / 6,
+                                child: SvgPicture.asset("assets/svgs/dialog/step-blocked.svg")
+                            ),
+                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16),
+                              child: Text(
+                                Utils.getString(context, "general_balance_blocked_modal_title").toUpperCase(),
+                                style: MainStyles.extraBoldTextStyle.copyWith(fontSize: 24, color: MainColors.generalSubtitleColor),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Text(
+                                text ?? Utils.getString(context, "general_balance_blocked_modal_text"),
+                                style: MainStyles.mediumTextStyle.copyWith(fontSize: 18),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                              child: SizedBox(height: 12,),
+                            ),
+                          // Divider(color: MainColors.middleGrey200,height: 0,),
+                          BigUnBorderedButton(
+                            horizontal: 20,
+                            vertical: 16,
+                            text: buttonText ?? Utils.getString(context, "general_balance_blocked_modal_button_text"),
+                            // buttonColor: MainColors.middleGrey100,
+                            textColor: MainColors.white,
+                            // borderRadius: 0,
+                            onTap: (){
+                              if(onTap != null){
+                                onTap();
+                              }
+                              else
+                                Navigator.pop(context);
+                            } ,
+                          )
+                        ],
+                      ),
+
+                      Positioned(
+                          top: 12,
+                          right: 12,
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            child: SvgPicture.asset("assets/svgs/dialog/close.svg")
+                          )
+                      )
+
+                    ],
+                  ),
+                )),
+          ],
+        );
+      },
+    );
+  }
+
+
   static dynamic showChallengeResultModal(BuildContext context, Size size, {String? title, String? description, String? image, required int step, required int bonusStep, required double calStep, required int calMinute, String? buttonText, Function? onTap}) {
 
     return showDialog(
@@ -948,7 +1076,7 @@ class Utils {
                                     ),
                                   ],
                                 ),
-                                child: Center(child: Text("${calStep > 10 ? Utils.humanizeDouble(Utils.roundNumber(calStep, toPoint: 1)) : Utils.roundNumber(calStep, toPoint: 2)} ${Utils.getString(context, "challenges_details_view___distance_measure")}", style: MainStyles.boldTextStyle.copyWith(fontSize: 14), overflow: TextOverflow.ellipsis))
+                                child: Center(child: Text("${calStep > 10 ? Utils.humanizeDouble(context, Utils.roundNumber(calStep, toPoint: 1)) : Utils.roundNumber(calStep, toPoint: 2)} ${Utils.getString(context, "challenges_details_view___distance_measure")}", style: MainStyles.boldTextStyle.copyWith(fontSize: 14), overflow: TextOverflow.ellipsis))
                             ),
                             Expanded(
                               child: Container(

@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lifestep/pages/index/index/navigation_bloc.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/config/main_colors.dart';
 import 'package:lifestep/config/styles.dart';
@@ -46,8 +47,11 @@ class _GeneralBalanceBlockedViewState extends State<GeneralBalanceBlockedView> {
                 ),
                 children: [
                   _InformationItemWidget(
+                    onTap: (){
+                      navigationBloc.changeNavigationIndex(Navigation.DONATIONS);
+                    },
                     backgroundColor: MainColors.darkPink500!,
-                    steps: 2000,
+                    steps: "${sessionState.currentUser!.balanceSteps.toString().length > 6 ? Utils.humanizeInteger(context, sessionState.currentUser!.balanceSteps ?? 0) : sessionState.currentUser!.balanceSteps ?? 0}  ${Utils.getString(context, "general__steps__count")}",
                   ),
                 ],
               ),
@@ -65,8 +69,9 @@ class _GeneralBalanceBlockedViewState extends State<GeneralBalanceBlockedView> {
 
 class _InformationItemWidget extends StatelessWidget {
   final Color backgroundColor;
-  final int steps;
-  const _InformationItemWidget({Key? key, required this.backgroundColor,  required this.steps}) : super(key: key);
+  final String steps;
+  final Function? onTap;
+  const _InformationItemWidget({Key? key, required this.backgroundColor,  required this.steps, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +82,8 @@ class _InformationItemWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: () async{
           FocusScope.of(context).requestFocus(FocusNode());
-//          focusNode.unfocus();
+          if(onTap != null)
+            onTap!();
         },
         child: Container(
           clipBehavior: Clip.antiAlias,
@@ -99,21 +105,22 @@ class _InformationItemWidget extends StatelessWidget {
                 SizedBox(width: 12,),
                 Expanded(
                   child: Container(
+                    // color: Colors.green,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: EdgeInsets.only(bottom: 8.0),
-                          child: Text("Balansınız dondurulub. Davam etmək üçün ianə edin.", style: MainStyles.boldTextStyle.copyWith(fontSize: 15 ,color: MainColors.white),),
+                          child: Text(Utils.getString(context, "general_balance_blocked"), style: MainStyles.boldTextStyle.copyWith(fontSize: 14 ,color: MainColors.white, height: 1.2), maxLines: 2,),
                         ),
-                        Text("20 230 addım", style: MainStyles.semiBoldTextStyle.copyWith(fontSize: 15 ,color: MainColors.white!.withOpacity(0.7)))
+                        Text("${steps}", style: MainStyles.semiBoldTextStyle.copyWith(fontSize: 14 ,color: MainColors.white!.withOpacity(0.7)))
                       ],
                     ),
                   ),
                 ),
                 SizedBox(width: 12,),
-                SvgPicture.asset("assets/svgs/health/blocked-balance-next.svg"),
+                GestureDetector(child: SvgPicture.asset("assets/svgs/health/blocked-balance-next.svg")),
               ],
             ),
           ),

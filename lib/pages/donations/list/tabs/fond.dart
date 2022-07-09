@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/page-messages/list-message.dart';
 import 'package:lifestep/tools/components/shimmers/donations/fond.dart';
@@ -143,11 +144,11 @@ class _FondWidget extends StatelessWidget {
               providers: [
                 BlocProvider<FondDetailsBloc>(create: (context) => FondDetailsBloc(
                     fondModel: dataItem,
-                    donationRepository: DonationRepository()
+                    donationRepository: GetIt.instance<DonationRepository>()
                 )),
                 BlocProvider<FondDonorListCubit>(create: (context) => FondDonorListCubit(
                     fondModel: dataItem,
-                    donationRepository: DonationRepository()
+                    donationRepository: GetIt.instance<DonationRepository>()
                 )),
               ],
               child: DonationFondDetailView()))).then((value){
@@ -239,7 +240,7 @@ class _FondWidget extends StatelessWidget {
                               color: MainColors.middleBlue300,
                               borderRadius: BorderRadius.circular(100),
                             ),
-                            child: Center(child: Text("${dataItem.totalSteps != null ? dataItem.totalSteps!.toString().length > 4 ? Utils.humanizeInteger(dataItem.totalSteps!) : dataItem.totalSteps! : 0} ${Utils.getString(context, "general__steps__count")}", style: MainStyles.boldTextStyle.copyWith(color: MainColors.white, fontSize: 13),)),
+                            child: Center(child: Text("${dataItem.totalSteps != null ? dataItem.totalSteps!.toString().length > 4 ? Utils.humanizeInteger(context, dataItem.totalSteps!) : dataItem.totalSteps! : 0} ${Utils.getString(context, "general__steps__count")}", style: MainStyles.boldTextStyle.copyWith(color: MainColors.white, fontSize: 13),)),
                           ),
                         ],
                       )

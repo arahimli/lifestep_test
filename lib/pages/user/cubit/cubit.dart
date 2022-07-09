@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/config/endpoints.dart';
 import 'package:lifestep/model/auth/social_login.dart';
 import 'package:lifestep/pages/user/repositories/auth.dart';
@@ -87,7 +88,7 @@ class AuthCubit extends Cubit<AuthState> {
   void showSignUp() => emit(AuthState.signUp);
 
   Future<List> socialLogin({required Map<String, dynamic> data}) async{
-    UserRepository userRepository = UserRepository();
+    UserRepository userRepository = GetIt.instance<UserRepository>();
     final listData = await userRepository.socialLogin(data: data, token: _dioToken);
     userStatusCode = listData[0];
     // if(userStatusCode == 211 || userStatusCode == 210){

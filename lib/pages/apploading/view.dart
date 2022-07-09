@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/components/error/internet_error.dart';
 import 'package:lifestep/tools/components/error/maintenance.dart';
 import 'package:lifestep/tools/components/error/server_error.dart';
@@ -73,31 +74,31 @@ class _AppLoadingViewState extends State<AppLoadingView> {
                           BlocProvider<HomeDailyStepCubit>(
                               create: (BuildContext context) =>
                                   HomeDailyStepCubit(
-                                      authRepo: UserRepository(),
+                                      authRepo: GetIt.instance<UserRepository>(),
                                       sessionCubit: BlocProvider.of<
                                           SessionCubit>(context))),
-                          BlocProvider<HomeCharityListCubit>(create: (BuildContext context) => HomeCharityListCubit(donationRepository: DonationRepository())),
+                          BlocProvider<HomeCharityListCubit>(create: (BuildContext context) => HomeCharityListCubit(donationRepository: GetIt.instance<DonationRepository>())),
                           BlocProvider<IndexCubit>(
                               create: (BuildContext context) =>
                                   IndexCubit(
-                                      homeRepository: HomeRepository())),
+                                      homeRepository: GetIt.instance<HomeRepository>())),
                           BlocProvider<LeaderBoardHomeCubit>(
                               create: (BuildContext context) =>
                                   LeaderBoardHomeCubit()),
                           BlocProvider<HomeLeaderBoardDonationCubit>(
                               create: (BuildContext context) =>
                                   HomeLeaderBoardDonationCubit(
-                                      stepRepository: StepRepository())),
+                                      stepRepository: GetIt.instance<StepRepository>())),
                           BlocProvider<HomeLeaderBoardStepCubit>(
                               create: (BuildContext context) =>
                                   HomeLeaderBoardStepCubit(
-                                      stepRepository: StepRepository())),
+                                      stepRepository: GetIt.instance<StepRepository>())),
                         ],
                         child: IndexView()
                     );
                   } else if (apploadingState.result.pref.containsKey('onboard')) {
                     return RepositoryProvider(
-                      create: (context) => UserRepository(),
+                      create: (context) => GetIt.instance<UserRepository>(),
                       child: BlocProvider(
                         create: (context) =>
                             AuthCubit(),

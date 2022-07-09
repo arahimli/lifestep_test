@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/tools/components/dialog/loading.dart';
@@ -34,6 +35,7 @@ import 'package:lifestep/pages/donations/details/fond/logic/donors/cubit.dart';
 import 'package:lifestep/pages/donations/details/fond/logic/donors/state.dart';
 import 'package:lifestep/repositories/donation.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
+import 'package:lifestep/tools/packages/read_more/text_overflow_decector.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -191,10 +193,12 @@ class _DonationFondDetailViewState extends State<DonationFondDetailView> {
                                                 SizedBox(
                                                   height: 20,
                                                 ),
-                                                AutoSizeText(
-                                                  state.fondModel.description ?? '-',
-                                                  style: MainStyles.semiBoldTextStyle.copyWith(height: 1.5, ),
-                                                  textAlign: TextAlign.center,
+
+                                                CustomReadMoreLess(
+                                                  textStyle: MainStyles.semiBoldTextStyle.copyWith(height: 1.4, fontSize: 14 ),
+                                                  maxHeight: 96,
+                                                  text: state.fondModel.description ?? '-',
+                                                  textAlign: TextAlign.start,
                                                 ),
                                                 SizedBox(
                                                   height: 20,
@@ -211,7 +215,7 @@ class _DonationFondDetailViewState extends State<DonationFondDetailView> {
                                                     children: [
 
                                                       Text(
-                                                        "${state.fondModel.totalSteps != null ? state.fondModel.totalSteps.toString().length < 6 ? state.fondModel.totalSteps : Utils.humanizeInteger(state.fondModel.totalSteps!) : 0}",
+                                                        "${state.fondModel.totalSteps != null ? state.fondModel.totalSteps.toString().length < 6 ? state.fondModel.totalSteps : Utils.humanizeInteger(context, state.fondModel.totalSteps!) : 0}",
                                                         style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 40, color: MainColors.darkPink500),
                                                         textAlign: TextAlign.left,
                                                         maxLines: 1,
@@ -245,7 +249,7 @@ class _DonationFondDetailViewState extends State<DonationFondDetailView> {
                                                         BlocBuilder<FondDonorListCubit, FondDonorListState>(
                                                             builder: (context, stateDonor) {
                                                               return stateDonor is FondDonorListSuccess ?
-                                                              AutoSizeText("${Utils.humanizeInteger(stateDonor.dataCount)} ${Utils.getString(context, "general__person__count")}", style: MainStyles.boldTextStyle.copyWith(fontSize: 16, color: MainColors.generalSubtitleColor),)
+                                                              AutoSizeText("${Utils.humanizeInteger(context, stateDonor.dataCount)} ${Utils.getString(context, "general__person__count")}", style: MainStyles.boldTextStyle.copyWith(fontSize: 16, color: MainColors.generalSubtitleColor),)
                                                                   : Container(child: Text(" "),);
                                                             }
                                                         ),
@@ -290,7 +294,7 @@ class _DonationFondDetailViewState extends State<DonationFondDetailView> {
                                                       backgroundColor: Colors.transparent,
 
                                                       builder: (_) => BlocProvider<FondDonateCubit>(create: (_) => FondDonateCubit(
-                                                        donationRepository: DonationRepository(),
+                                                        donationRepository: GetIt.instance<DonationRepository>(),
                                                         fondModel: state.fondModel,
                                                       ),
                                                           child: _DonationModal(
@@ -418,44 +422,44 @@ class _DonorWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Container(
-                  clipBehavior: Clip.antiAlias,
-                  padding: EdgeInsets.symmetric(
-                    // vertical: 12,
-                    // horizontal: 12,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(500),
-                  ),
-                  child: Image.asset(donorModel.genderType == GENDER_TYPE.MAN ? MainConfig.defaultMan : MainConfig.defaultWoman,
-                    width: size.width * 0.6 / 6,
-                    height: size.width * 0.6 / 6,
-                  )
-                  // CachedNetworkImage(
-                  //   placeholder: (context, key){
-                  //     return Container(
-                  //       width: size.width * 0.6 / 6,
-                  //       height: size.width * 0.6 / 6,
-                  //       decoration: BoxDecoration(
-                  //         // color: Colors.blue,
-                  //         image: DecorationImage(
-                  //           image: AssetImage("assets/images/general/gray-shimmer.gif", ),
-                  //           fit: BoxFit.fill,
-                  //         ),
-                  //         borderRadius:
-                  //         BorderRadius.all(
-                  //           Radius.circular(500.0),
-                  //         ),
-                  //       ),
-                  //     );
-                  //   },
-                  //   // key: Key("${"vvvvv"}${1}"),
-                  //   // key: Key("${MainWidgetKey.PRODUCT__IMAGE}${item.id}"),
-                  //   imageUrl: MainConfig.defaultImage,
-                  //   width: size.width * 0.6 / 6,
-                  //   height: size.width * 0.6 / 6,
-                  // )
-              ),
+              // Container(
+              //     clipBehavior: Clip.antiAlias,
+              //     padding: EdgeInsets.symmetric(
+              //       // vertical: 12,
+              //       // horizontal: 12,
+              //     ),
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(500),
+              //     ),
+              //     child: Image.asset(donorModel.genderType == GENDER_TYPE.MAN ? MainConfig.defaultMan : MainConfig.defaultWoman,
+              //       width: size.width * 0.6 / 6,
+              //       height: size.width * 0.6 / 6,
+              //     )
+              //     // CachedNetworkImage(
+              //     //   placeholder: (context, key){
+              //     //     return Container(
+              //     //       width: size.width * 0.6 / 6,
+              //     //       height: size.width * 0.6 / 6,
+              //     //       decoration: BoxDecoration(
+              //     //         // color: Colors.blue,
+              //     //         image: DecorationImage(
+              //     //           image: AssetImage("assets/images/general/gray-shimmer.gif", ),
+              //     //           fit: BoxFit.fill,
+              //     //         ),
+              //     //         borderRadius:
+              //     //         BorderRadius.all(
+              //     //           Radius.circular(500.0),
+              //     //         ),
+              //     //       ),
+              //     //     );
+              //     //   },
+              //     //   // key: Key("${"vvvvv"}${1}"),
+              //     //   // key: Key("${MainWidgetKey.PRODUCT__IMAGE}${item.id}"),
+              //     //   imageUrl: MainConfig.defaultImage,
+              //     //   width: size.width * 0.6 / 6,
+              //     //   height: size.width * 0.6 / 6,
+              //     // )
+              // ),
 
               Expanded(
                 child: Container(
@@ -477,8 +481,8 @@ class _DonorWidget extends StatelessWidget {
                       ),
                       SizedBox(height: 8),
                       AutoSizeText(
-                        "${donorModel.steps != null ? donorModel.steps.toString().length > 6 ? Utils.humanizeInteger(donorModel.steps!) : donorModel.steps : 0}  ${Utils.getString(context, "general__steps__count")}",
-                        // "${Utils.humanizeInteger(donorModel.steps ?? 0)} ${Utils.getString(context, "general__steps__count")}",
+                        "${donorModel.steps != null ? donorModel.steps.toString().length > 6 ? Utils.humanizeInteger(context, donorModel.steps!) : donorModel.steps : 0}  ${Utils.getString(context, "general__steps__count")}",
+                        // "${Utils.humanizeInteger(context, donorModel.steps ?? 0)} ${Utils.getString(context, "general__steps__count")}",
                         style: MainStyles.semiBoldTextStyle.copyWith(color: MainColors.darkPink500, fontSize: 14, height: 1.1),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -590,7 +594,7 @@ class _DonationModal extends StatelessWidget {
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      "${state.isValidAmount ? Utils.humanizeDouble(Utils.stringToDouble(value: state.amount) * (settingsState.settingsModel!.step)) : 0 }",
+                                                      "${state.isValidAmount ? Utils.humanizeDouble(context, Utils.stringToDouble(value: state.amount) * (settingsState.settingsModel!.step)) : 0 }",
                                                       style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24, color: MainColors.darkPink500),
                                                       textAlign: TextAlign.left,
                                                       maxLines: 1,
@@ -617,25 +621,34 @@ class _DonationModal extends StatelessWidget {
                                             ),
                                           )),
                                       Expanded(
-                                          child: Column(
-                                            children: [
+                                          child: InkWell(
+                                            onTap: (){
+                                              BlocProvider.of<FondDonateCubit>(context).inputChanged(
+                                                  (BlocProvider.of<SessionCubit>(context).currentUser!.balanceSteps ?? 0).toString()
+                                              );
+                                              BlocProvider.of<FondDonateCubit>(context).inputController.text = (BlocProvider.of<SessionCubit>(context).currentUser!.balanceSteps ?? 0).toString();
+                                            },
+                                            child: Column(
+                                              children: [
 
-                                              Text(
-                                                "${Utils.humanizeInteger(BlocProvider.of<SessionCubit>(context).currentUser!.balanceSteps ?? 0)}",
-                                                style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24),
-                                                textAlign: TextAlign.left,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                              SizedBox(height: 8,),
-                                              AutoSizeText(
-                                                Utils.getString(context, "general__donation_modal__available_steps"),
-                                                style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.middleGrey400),
-                                                textAlign: TextAlign.center,
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ],
+                                                Text(
+                                                  "${BlocProvider.of<SessionCubit>(context).currentUser!.balanceSteps ?? 0}",
+                                                  // "${Utils.humanizeInteger(context, BlocProvider.of<SessionCubit>(context).currentUser!.balanceSteps ?? 0)}",
+                                                  style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24),
+                                                  textAlign: TextAlign.left,
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                                SizedBox(height: 8,),
+                                                AutoSizeText(
+                                                  Utils.getString(context, "general__donation_modal__available_steps"),
+                                                  style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.middleGrey400),
+                                                  textAlign: TextAlign.center,
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ],
+                                            ),
                                           )),
                                     ],
                                   ),

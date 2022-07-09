@@ -1,6 +1,7 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/config/main_colors.dart';
@@ -108,7 +109,7 @@ class _OnboardPageViewState extends State<OnboardPageView> {
                                 SharedPreferences pref = await SharedPreferences.getInstance();
                                 await pref.setBool('onboard', true);
                                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RepositoryProvider(
-                                  create: (context) => UserRepository(),
+                                  create: (context) => GetIt.instance<UserRepository>(),
                                   child: BlocProvider(
                                     create: (context) =>
                                         AuthCubit(),

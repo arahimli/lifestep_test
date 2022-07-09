@@ -28,9 +28,11 @@ class UserRepository {
   Future<List> logoutUser() => userProvider.logoutUser();
 
   Future<List> loginWithCredential({required String phone}) => userProvider.loginWithCredential(phone);
-  Future<List> registerUser({required Map<String, dynamic> data, required Map<String, dynamic> header}) => userProvider.registerUser(data, header);
+  Future<List> registerUser({required Map<String, dynamic> data, required Map<String, dynamic> header, String? extraUrl}) => userProvider.registerUser(data, header, extraUrl: extraUrl);
   Future<List> editUser({required Map<String, dynamic> data, Map<String, dynamic>? header}) => userProvider.editUser(data, header);
   Future<List> loginOtp({required Map<String, dynamic> data, required Map<String, dynamic> header}) => userProvider.checkOtp(data, header);
+  Future<List> deleteOtp({required Map<String, dynamic> data}) => userProvider.deleteOtp(data);
+  Future<List> deleteUser({required Map<String, dynamic> data}) => userProvider.deleteUser(data);
 
   Future<List> getUser({String? extraUrl}) => userProvider.getUser(extraUrl: extraUrl);
   Future<List> getAchievements({required CancelToken token}) => userProvider.getAchievements(token);
@@ -74,7 +76,7 @@ class UserProvider {
 
   Future<List> getUser({String? extraUrl}) async {
     String requestUrl = GET_USER_URL + (extraUrl ?? '');
-    print(requestUrl);
+    // print(requestUrl);
     List data = await WebService.getCall(url: requestUrl, headers: {
       'Authorization': "Bearer $TOKEN",
       'Accept-Language': LANGUAGE,
@@ -118,11 +120,12 @@ class UserProvider {
       'phone': phone
     }
   );
+    print(data);
     return data;
   }
 
-  Future<List> registerUser(Map<String, dynamic> requestData, Map<String, dynamic> header) async {
-    String requestUrl = REGISTRATION_URL;
+  Future<List> registerUser(Map<String, dynamic> requestData, Map<String, dynamic> header, {String? extraUrl}) async {
+    String requestUrl = REGISTRATION_URL + (extraUrl ?? '');
     List data = await WebService.postCall(url: requestUrl, headers: header,
     data: requestData
   );
@@ -144,6 +147,33 @@ class UserProvider {
     List data = await WebService.postCall(url: requestUrl, headers: header,
     data: mainData
   );
+    print(data);
+    return data;
+  }
+
+  Future<List> deleteOtp(Map<String, dynamic> requestData) async {
+    String requestUrl = DELETE_CONFIRM_OTP_URL;
+    List data = await WebService.deleteCall(url: requestUrl,
+        headers: {
+          'Authorization': "Bearer $TOKEN",
+          'Accept-Language': LANGUAGE,
+          'Accept': 'application/json'
+        },
+        data: requestData
+    );
+    return data;
+  }
+
+  Future<List> deleteUser(Map<String, dynamic> requestData) async {
+    String requestUrl = DELETE_USER_URL;
+    List data = await WebService.postCall(url: requestUrl,
+        headers: {
+          'Authorization': "Bearer $TOKEN",
+          'Accept-Language': LANGUAGE,
+          'Accept': 'application/json'
+        },
+        data: requestData
+    );
     return data;
   }
 

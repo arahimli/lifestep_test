@@ -1,6 +1,8 @@
 enum ConnectionType { wifi, mobile }
 enum GENDER_TYPE { MAN, WOMAN }
 
+enum IMAGE_TYPE { SVG, IMAGE }
+
 enum USER_ORDER_STEP_TYPE {
   DONATION_WEEK,
   DONATION_MONTH,

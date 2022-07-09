@@ -24,19 +24,22 @@ class SettingsResponse {
 
 class SettingsModel {
   double step = 0;
+  int balanceLimit = 0;
   int maintenance = 0;
 
-  SettingsModel({required this.step});
+  SettingsModel({required this.step, required this.balanceLimit, required this.maintenance});
 
   SettingsModel.fromJson(Map<String, dynamic> json) {
     step = json['step'] != null ? double.parse(json['step'].toString()) : 0;
     maintenance = json['maintenance'] != null ? json['maintenance'] : 0;
+    balanceLimit = json['balance_limit'] != null ? json['balance_limit'] : 0;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['step'] = this.step;
     data['maintenance'] = this.maintenance;
+    data['balance_limit'] = this.balanceLimit;
     return data;
   }
 }

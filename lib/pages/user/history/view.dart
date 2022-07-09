@@ -260,7 +260,7 @@ class _DataItemWidget extends StatelessWidget {
                           Flexible(
                             flex: 2,
                             child: Text(
-                              "${Utils.humanizeInteger(dataItem.steps ?? 0)} ${Utils.getString(context, "general__steps__count")}",
+                              "${Utils.humanizeInteger(context, dataItem.steps ?? 0)} ${Utils.getString(context, "general__steps__count")}",
                               style: MainStyles.semiBoldTextStyle.copyWith(color: MainColors.darkPink500, fontSize: 14, height: 1.1),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,

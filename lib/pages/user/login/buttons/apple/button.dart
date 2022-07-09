@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/dialog/loading.dart';
 import 'package:lifestep/model/auth/login.dart';
@@ -23,7 +24,7 @@ class _AppleLoginButtonState extends State<AppleLoginButton> {
     final size = MediaQuery.of(context).size;
     return Platform.isIOS ? InkWell(
       onTap: ()async{
-        UserRepository userRepository = UserRepository();
+        // UserRepository userRepository = GetIt.instance<UserRepository>();
         AuthorizationCredentialAppleID result = await SignInWithApple.getAppleIDCredential(
         scopes: [
         AppleIDAuthorizationScopes.email,

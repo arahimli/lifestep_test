@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/common/language.dart';
+import 'package:lifestep/tools/common/modal-utlis.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/buttons/big_borderd_button.dart';
 import 'package:lifestep/tools/components/buttons/big_unborderd_button.dart';
@@ -124,7 +126,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MultiBlocProvider(
                     providers: [
                       BlocProvider<DonationHistoryListBloc>(create: (BuildContext context) => DonationHistoryListBloc(
-                        donationRepository: DonationRepository(),
+                        donationRepository: GetIt.instance<DonationRepository>(),
                       )),
                     ],
                     child: DonationHistoryView()
@@ -151,7 +153,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MultiBlocProvider(
                     providers: [
                       BlocProvider<NotificationListCubit>(create: (BuildContext context) => NotificationListCubit(
-                        userRepository: UserRepository(),
+                        userRepository: GetIt.instance<UserRepository>(),
                       )),
                     ],
                     child: NotificationListView()))),
@@ -320,6 +322,66 @@ class SettingsWidgetState extends State<SettingsWidget> {
                   ),
                   child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__logout"),
                     style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkBlue500),
+                    textAlign: TextAlign.left,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,)
+                  ),
+                ),
+              ),
+              SizedBox(height: 16,),
+              GestureDetector(
+                onTap: ()async{
+                  ModalUtils.removeUserBottomModal(context, size, onTap: (context){
+
+                    showYesNoDialog(context, Utils.getString(context, "profile_view___tab_settings__delete_user__yes_no_modal_title"),() async{
+                      //////// print("dsds");
+                      Navigator.of(context).pop();
+                      showLoading(context, Utils.getString(context, "general__loading_text"));
+                      List data = await BlocProvider.of<SessionCubit>(context).deleteUser();
+                      closeLoading(context);
+                      switch (data[2]) {
+                        case WEB_SERVICE_ENUM.SUCCESS:
+                          {
+                            // BlocProvider.of<SessionCubit>(context).setUser(null);
+                            Navigator.pushNamed(context, "/otp-remove");
+                          }
+                          break;
+                        case WEB_SERVICE_ENUM.UN_AUTH:
+                          {
+                            BlocProvider.of<SessionCubit>(context).setUser(null);
+                            Navigator.pushReplacementNamed(context, "/apploading");
+                          }
+                          break;
+                        case WEB_SERVICE_ENUM.INTERNET_ERROR:
+                          {
+                            Utils.showErrorModal(context, size,
+                                errorCode: data[2],
+                                title: Utils.getString(
+                                    context, data[1] ?? "internet_connection_error"));
+                          }
+                          break;
+                        default:
+                          {
+                            Utils.showErrorModal(context, size,
+                                errorCode: data[2],
+                                title: Utils.getString(
+                                    context, data[1] ?? "error_went_wrong"));
+                            //////// print("internet error");
+                          }
+                          break;
+                      }
+                    }, () {
+                      // shouldClose = false;
+                      Navigator.of(context).pop();
+                    });
+                  });
+                  // bool shouldClose = true;
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                  ),
+                  child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__delete_user"),
+                    style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkPink500),
                     textAlign: TextAlign.left,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,)

@@ -10,8 +10,12 @@ class AchievementListItemShimmerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
+      decoration: BoxDecoration(
+          color: MainColors.white,
+          borderRadius: BorderRadius.circular(24)
+      ),
       margin: EdgeInsets.only(bottom:0),
-      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       child: GestureDetector(
         onTap: () async{
           FocusScope.of(context).requestFocus(FocusNode());
@@ -44,22 +48,22 @@ class AchievementListItemShimmerWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 8),
-                    SkeltonWidget(
-                      height: 12,
-                      padding: EdgeInsets.only(right: size.width * 0.6 / 10, left: size.width * 0.6 / 10, ),
-                    ),
+                    // SizedBox(height: 8),
+                    // SkeltonWidget(
+                    //   height: 12,
+                    //   padding: EdgeInsets.only(right: size.width * 0.6 / 10, left: size.width * 0.6 / 10, ),
+                    // ),
                     SizedBox(height: 8),
                     SkeltonWidget(
                       height: 10,
                       // padding: EdgeInsets.only(right: size.width * 0.6 / 10),
                     ),
                     SizedBox(height: 4),
-                    SkeltonWidget(
-                      height: 10,
-                      // padding: EdgeInsets.only(right: size.width * 0.6 / 10),
-                    ),
-                    SizedBox(height: 8),
+                    // SkeltonWidget(
+                    //   height: 10,
+                    //   // padding: EdgeInsets.only(right: size.width * 0.6 / 10),
+                    // ),
+                    // SizedBox(height: 8),
                   ],
                 ),
               )

@@ -65,31 +65,31 @@
 //                         BlocProvider<HomeDailyStepCubit>(
 //                             create: (BuildContext context) =>
 //                                 HomeDailyStepCubit(
-//                                     authRepo: UserRepository(),
+//                                     authRepo: GetIt.instance<UserRepository>(),
 //                                     sessionCubit: BlocProvider.of<
 //                                         SessionCubit>(context))),
-//                         BlocProvider<HomeCharityListCubit>(create: (BuildContext context) => HomeCharityListCubit(donationRepository: DonationRepository())),
+//                         BlocProvider<HomeCharityListCubit>(create: (BuildContext context) => HomeCharityListCubit(donationRepository: GetIt.instance<DonationRepository>())),
 //                         BlocProvider<IndexCubit>(
 //                             create: (BuildContext context) =>
 //                                 IndexCubit(
-//                                     homeRepository: HomeRepository())),
+//                                     homeRepository: GetIt.instance<HomeRepository>())),
 //                         BlocProvider<LeaderBoardHomeCubit>(
 //                             create: (BuildContext context) =>
 //                                 LeaderBoardHomeCubit()),
 //                         BlocProvider<HomeLeaderBoardDonationCubit>(
 //                             create: (BuildContext context) =>
 //                                 HomeLeaderBoardDonationCubit(
-//                                     stepRepository: StepRepository())),
+//                                     stepRepository: GetIt.instance<StepRepository>())),
 //                         BlocProvider<HomeLeaderBoardStepCubit>(
 //                             create: (BuildContext context) =>
 //                                 HomeLeaderBoardStepCubit(
-//                                     stepRepository: StepRepository())),
+//                                     stepRepository: GetIt.instance<StepRepository>())),
 //                       ],
 //                       child: IndexView()
 //                   );
 //                 } else if (apploadingState.result.pref.containsKey('onboard')) {
 //                   return RepositoryProvider(
-//                     create: (context) => UserRepository(),
+//                     create: (context) => GetIt.instance<UserRepository>(),
 //                     child: BlocProvider(
 //                       create: (context) =>
 //                           AuthCubit(),

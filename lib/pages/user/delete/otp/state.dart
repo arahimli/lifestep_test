@@ -1,0 +1,36 @@
+import 'package:lifestep/pages/user/form-submission-status.dart';
+
+class OtpRemoveState {
+  final String? otp;
+  final bool isValidOtp;
+  final bool isWrongOtp;
+  final int endTime;
+  // bool get isValidOtp => otp != null && otp!.length > 3;
+
+
+  final FormSubmissionStatus formStatus;
+
+  OtpRemoveState({
+    this.otp = '',
+    this.isValidOtp = true,
+    this.isWrongOtp = false,
+    this.endTime = 0,
+    this.formStatus = const InitialFormStatus(),
+  });
+
+  OtpRemoveState copyWith({
+    String? otp,
+    bool? isValidOtp,
+    bool? isWrongOtp,
+    int? endTime,
+    FormSubmissionStatus? formStatus,
+  }) {
+    return OtpRemoveState(
+      otp: otp ?? this.otp,
+      isValidOtp: isValidOtp ?? this.isValidOtp,
+      isWrongOtp: isWrongOtp ?? this.isWrongOtp,
+      endTime: endTime ?? this.endTime,
+      formStatus: formStatus ?? this.formStatus,
+    );
+  }
+}

@@ -368,7 +368,7 @@ class _ChallengeViewState extends State<ChallengeView>  with WidgetsBindingObser
                                                             builder: (context, stepSectionState) {
                                                               double calStep = calculateDistance(stepSectionState.step);
                                                               return AutoSizeText(
-                                                                "${ calStep > 10 ? Utils.humanizeDouble(Utils.roundNumber(calStep, toPoint: 1)) : Utils.roundNumber(calStep, toPoint: 2)} ${ Utils.getString(context, "challenges_details_view___distance_measure")}",
+                                                                "${ calStep > 10 ? Utils.humanizeDouble(context, Utils.roundNumber(calStep, toPoint: 1)) : Utils.roundNumber(calStep, toPoint: 2)} ${ Utils.getString(context, "challenges_details_view___distance_measure")}",
                                                                 style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 16),
                                                                 textAlign: TextAlign.center,
                                                                 maxLines: 2,

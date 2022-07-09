@@ -15,7 +15,11 @@ class HealthInfoItemWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(bottom:0),
-      padding: EdgeInsets.all(2),
+      decoration: BoxDecoration(
+          color: MainColors.white,
+          borderRadius: BorderRadius.circular(24)
+      ),
+      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       child: GestureDetector(
         onTap: () async{
           FocusScope.of(context).requestFocus(FocusNode());

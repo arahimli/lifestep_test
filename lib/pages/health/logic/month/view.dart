@@ -235,7 +235,7 @@ class HealthMonthViewState extends State<HealthMonthView> {
                                                         .end,
                                                     children: [
                                                       Text(
-                                                        settingsState is  SettingsStateLoaded ? "${healthMonthState.stepCount != null ? Utils.humanizeDouble(Utils.stringToDouble(value: healthMonthState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
+                                                        settingsState is  SettingsStateLoaded ? "${healthMonthState.stepCount != null ? Utils.humanizeDouble(context, Utils.stringToDouble(value: healthMonthState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
                                                         style: MainStyles.boldTextStyle
                                                             .copyWith(fontSize: 24),
                                                         textAlign: TextAlign.left,
@@ -286,7 +286,7 @@ class HealthMonthViewState extends State<HealthMonthView> {
                                             children: [
 
                                               Text(
-                                                "${healthMonthState.stepCount.toString().length > 6 ? Utils.humanizeInteger(healthMonthState.stepCount) : healthMonthState.stepCount}",
+                                                "${healthMonthState.stepCount.toString().length > 6 ? Utils.humanizeInteger(context, healthMonthState.stepCount) : healthMonthState.stepCount}",
                                                 style: MainStyles.boldTextStyle
                                                     .copyWith(
                                                     height: 1.1, fontSize: 24),
@@ -322,7 +322,7 @@ class HealthMonthViewState extends State<HealthMonthView> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 32,),
+                    SizedBox(height: 16,),
 
                     //Initialize the chart widget
                     // https://medium.com/syncfusion/data-visualization-widgets-for-flutter-be1338adbe94
@@ -358,8 +358,8 @@ class HealthMonthViewState extends State<HealthMonthView> {
   //                                        childAspectRatio: 0.6
                         crossAxisCount: 2,
                         // childAspectRatio: 0.601,
-                        mainAxisSpacing: 4.0,
-                        crossAxisSpacing: 4.0,
+                        mainAxisSpacing: 16.0,
+                        crossAxisSpacing: 16.0,
                       ),
                       children: [
                         HealthInfoItemWidget(
@@ -375,7 +375,7 @@ class HealthMonthViewState extends State<HealthMonthView> {
                           subTitle: BlocBuilder<SettingsCubit, SettingsState>(
                               builder: (context, settingsState) {
                                 return AutoSizeText(
-                                  settingsState is  SettingsStateLoaded ? "${healthMonthState.stepCount != null ? Utils.humanizeDouble(Utils.stringToDouble(value: healthMonthState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
+                                  settingsState is  SettingsStateLoaded ? "${healthMonthState.stepCount != null ? Utils.humanizeDouble(context, Utils.stringToDouble(value: healthMonthState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
                                   style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24),
                                   textAlign: TextAlign.left,
                                   maxLines: 1,
@@ -395,7 +395,7 @@ class HealthMonthViewState extends State<HealthMonthView> {
                             overflow: TextOverflow.ellipsis,
                           ),
                           subTitle: AutoSizeText(
-                            "${healthMonthState.stepCount.toString().length > 6 ? Utils.humanizeInteger(healthMonthState.stepCount) : healthMonthState.stepCount}",
+                            "${healthMonthState.stepCount.toString().length > 6 ? Utils.humanizeInteger(context, healthMonthState.stepCount) : healthMonthState.stepCount}",
                             style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24),
                             textAlign: TextAlign.left,
                             maxLines: 1,
@@ -417,7 +417,7 @@ class HealthMonthViewState extends State<HealthMonthView> {
                             overflow: TextOverflow.ellipsis,
                           ),
                           subTitle: AutoSizeText(
-                            "${Utils.humanizeDouble(double.parse((healthMonthState.distance / 1000).toString()))} ${Utils.getString(context, "challenges_details_view___distance_measure")}",
+                            "${Utils.humanizeDouble(context, double.parse((healthMonthState.distance / 1000).toString()))} ${Utils.getString(context, "challenges_details_view___distance_measure")}",
                             style: MainStyles.boldTextStyle.copyWith(
                                 height: 1.1, fontSize: 24),
                             textAlign: TextAlign.left,
@@ -440,7 +440,7 @@ class HealthMonthViewState extends State<HealthMonthView> {
                             overflow: TextOverflow.ellipsis,
                           ),
                           subTitle: AutoSizeText(
-                            "${Utils.humanizeDouble(double.parse((healthMonthState.calories ).toString()))}",
+                            "${Utils.humanizeDouble(context, double.parse((healthMonthState.calories ).toString()))}",
                             style: MainStyles.boldTextStyle.copyWith(
                                 height: 1.1, fontSize: 24),
                             textAlign: TextAlign.left,

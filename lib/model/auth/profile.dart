@@ -113,7 +113,7 @@ class UserModel {
     height = json['height'] != null ? json['height'].toString() : '';
     targetSteps = Utils.stringToInt(value: json['target_steps'] != null ? json['target_steps'].toString() : null );
     totalDonateSteps = json['total_donate_steps'];
-    balanceSteps = json['balance_steps'];
+    balanceSteps = json['balance_steps'] != null ? json['balance_steps'] < 0 ? 0 : json['balance_steps'] : 0;
     balanceSteps2 = json['balance2'];
     totalDonations = json['total_donations'] != null ? double.parse(json['total_donations'].toString()) : 0;;
     invitationCode = json['invitation_code'];

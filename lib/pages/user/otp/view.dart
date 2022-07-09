@@ -215,7 +215,7 @@ class _OtpViewState extends State<OtpView> {
                                   switch (data[2]) {
                                     case WEB_SERVICE_ENUM.SUCCESS:
                                       {
-                                        BlocProvider.of<OtpNumpadBloc>(context).otpChange("");
+                                        BlocProvider.of<OtpNumpadCubit>(context).otpChange("");
                                       }
                                       break;
                                     case WEB_SERVICE_ENUM.INTERNET_ERROR:

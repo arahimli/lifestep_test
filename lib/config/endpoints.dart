@@ -21,6 +21,11 @@ String LOGOUT_URL = '${API_URL}${'logout'}';
 String REGISTRATION_URL = '${API_URL}${'register'}';
 String CONFIRM_OTP_URL = '${API_URL}${'confirm-otp'}';
 String RESEND_OTP_URL = '${API_URL}${'minute-code-again'}';
+
+String DELETE_USER_URL = '${API_URL}${'user-profile-delete'}';
+String DELETE_CONFIRM_OTP_URL = '${API_URL}${'user-profile-delete-confirm'}';
+String RESEND_DELETE_OTP_URL = '${API_URL}${'user-profile-delete'}';
+
 String NOTIFICATIONS_URL = '${API_URL}${'user-notifications/%s/%s'}';
 String ACHIEVEMENTS_URL = '${API_URL}${'user-achievements'}';
 String STEP_INFO_URL = '${API_URL}${'last-user-step'}';

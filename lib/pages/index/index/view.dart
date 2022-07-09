@@ -5,6 +5,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/common/confetti.dart';
 import 'package:lifestep/tools/components/error/internet_error.dart';
@@ -109,14 +110,28 @@ class _IndexViewState extends State<IndexView> {
                 ErrorHappenedView() :
                 state is InternetError ?
                 InternetConnectionErrorView() :
-                BlocBuilder<SettingsCubit, SettingsState>(
+                BlocConsumer<SettingsCubit, SettingsState>(
+                  listener: (context, settingsState){
+                      if(settingsState is SettingsStateLoaded) {
+                        SessionCubit sessionCubit = BlocProvider.of<
+                            SessionCubit>(context);
+                        if (sessionCubit.currentUser != null &&
+                            settingsState.settingsModel != null) {
+                          if (sessionCubit.currentUser!.balanceSteps! >=
+                              settingsState.settingsModel!.balanceLimit) {
+                            Utils.showBalanceBlockedModal(context, size);
+                          }
+                        }
+                      }
+                    },
                     builder: (context, settingsState) {
-                      return
-                        settingsState is SettingsLoading ?
-                          AppSplashScreen():
-                        settingsState is SettingsError ?
-                          AppSplashScreen():
-                        Container(
+                      if(settingsState is SettingsLoading){
+                        return AppSplashScreen();
+                      }else if(settingsState is SettingsError){
+                        return AppSplashScreen();
+                      }else{
+
+                        return Container(
                           child: BlocListener<GeneralStepCalculationCubit, GeneralStepCalculationState>(
                             listener: (context, state) async{
                               if (state is GeneralStepCalculationSuccess){
@@ -166,12 +181,12 @@ class _IndexViewState extends State<IndexView> {
 
                                               BlocProvider<CharityListCubit>(
                                                 create: (BuildContext context) => CharityListCubit(
-                                                    donationRepository: DonationRepository()
+                                                    donationRepository: GetIt.instance<DonationRepository>()
                                                 ),
                                               ),
                                               BlocProvider<FondListCubit>(
                                                 create: (BuildContext context) => FondListCubit(
-                                                    donationRepository: DonationRepository()
+                                                    donationRepository: GetIt.instance<DonationRepository>()
                                                 ),
                                               ),
                                             ],
@@ -198,13 +213,13 @@ class _IndexViewState extends State<IndexView> {
                                               BlocProvider<ProfileInformationCubit>(
                                                 create: (BuildContext context) => ProfileInformationCubit(
                                                     sessionCubit: BlocProvider.of<SessionCubit>(context),
-                                                    authRepo: UserRepository()
+                                                    authRepo: GetIt.instance<UserRepository>()
                                                 ),
                                               ),
 
                                               BlocProvider<AchievementListCubit>(
                                                 create: (BuildContext context) => AchievementListCubit(
-                                                    authRepo: UserRepository()
+                                                    authRepo: GetIt.instance<UserRepository>()
                                                 ),
                                               ),
 
@@ -215,9 +230,9 @@ class _IndexViewState extends State<IndexView> {
                                             ],
                                             child: ProfileView(backPermit: false,)
                                         );
-                                      // case Navigation.PROFILE:
-                                      //   return MapsDemo();
-                                        // return SampleNavigationApp();
+                                    // case Navigation.PROFILE:
+                                    //   return MapsDemo();
+                                    // return SampleNavigationApp();
                                     }
                                   },
                                 ),
@@ -225,6 +240,7 @@ class _IndexViewState extends State<IndexView> {
                             ),
                           ),
                         );
+                      }
                     }
                   );
               }
@@ -241,7 +257,20 @@ class _IndexViewState extends State<IndexView> {
                     stream: navigationBloc.currentNavigationIndex,
                     builder: (context, snapshotIndex) {
 
-                      return MainBottomNavigationBar(index: Utils.getTabIndex(snapshotIndex.data!),);
+                      return MainBottomNavigationBar(
+                        index: Utils.getTabIndex(snapshotIndex.data!),
+                        onAction: (){
+                          SessionCubit sessionCubit = BlocProvider.of<SessionCubit>(context);
+                          if( sessionCubit.currentUser != null && settingsState.settingsModel != null){
+                            if (sessionCubit.currentUser!.balanceSteps! >= settingsState.settingsModel!.balanceLimit){
+                              Utils.showBalanceBlockedModal(context, size, onTap: (){
+                                Navigator.pop(context);
+                                navigationBloc.changeNavigationIndex(Navigation.DONATIONS);
+                              });
+                            }
+                          }
+                        },
+                      );
                     }): SizedBox();
               }
             ) : SizedBox();

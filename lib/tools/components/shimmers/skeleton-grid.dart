@@ -4,7 +4,9 @@ import 'package:lifestep/config/scroll_behavior.dart';
 class SkeletonGridViewWidget extends StatelessWidget {
   final int itemCount;
   final Widget child;
-  const SkeletonGridViewWidget({Key? key, this.itemCount: 4, required this.child}) : super(key: key);
+  final double? crossAxisSpacing;
+  final double? mainAxisSpacing;
+  const SkeletonGridViewWidget({Key? key, this.itemCount: 4, required this.child, this.crossAxisSpacing, this.mainAxisSpacing}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,11 @@ class SkeletonGridViewWidget extends StatelessWidget {
         physics: ScrollPhysics(),
         shrinkWrap: true,
         gridDelegate:
-        const SliverGridDelegateWithFixedCrossAxisCount(
+        SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           // childAspectRatio: 0.601,
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
+          mainAxisSpacing: mainAxisSpacing ?? 4.0,
+          crossAxisSpacing: crossAxisSpacing ?? 4.0,
         ),
         itemBuilder: (context, index){
           return child;

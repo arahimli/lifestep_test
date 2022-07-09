@@ -41,8 +41,8 @@ class AchievementListWidgetState extends State<AchievementListWidget> {
               const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 // childAspectRatio: 0.601,
-                mainAxisSpacing: 4.0,
-                crossAxisSpacing: 4.0,
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 10.0,
               ),
               itemBuilder: (context, index){
                 if(index < state.userDataList.length ) {
@@ -117,6 +117,8 @@ class AchievementListWidgetState extends State<AchievementListWidget> {
           );
         else
           return SkeletonGridViewWidget(
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
             child: AchievementListItemShimmerWidget(),
           );
       }
@@ -136,69 +138,67 @@ class _AchievementItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-      child: GestureDetector(
-        onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
-          Utils.showInfoByImageModal(context, size, title: titleText, text: descriptionText, buttonText: Utils.getString(context, "general__close_button_text"), imageText: iconAddress, onTap: (ctx){Navigator.pop(ctx);});
-        },
-        child: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                // padding: EdgeInsets.symmetric(
-                //   horizontal: size.width * 1 / 12,
-                // ),
-                  child: Padding(
-                    padding: EdgeInsets.all(4.0),
-                    child: CachedNetworkImage(
-                      placeholder: (context, key){
-                        return Container(
-                          // width: size.width * 0.95 / 6,
-                          // height: size.width * 0.95 / 6,
-                          child: Shimmer.fromColors(
-                              highlightColor: MainColors.middleGrey150!.withOpacity(0.2),
-                              baseColor: MainColors.middleGrey150!,
-                              child: Image.asset("assets/images/achievements/prize.png", color: MainColors.middleGrey150,)
-                          ),
-                        );
-                      },
-                      // key: Key("${"vvvvv"}${1}"),
-                      // key: Key("${MainWidgetKey.PRODUCT__IMAGE}${item.id}"),
-                      fit: BoxFit.cover,
-                      imageUrl: iconAddress,
-                      // width: size.width * 0.95 / 6,
-                      // height: size.width * 0.95 / 6,
-                    ),
-                  )
-                  // SvgPicture.asset(iconAddress)
-                  // child: Image.asset(iconAddress)
+    return InkWell(
+      onTap: () async{
+        FocusScope.of(context).requestFocus(FocusNode());
+        Utils.showInfoByImageModal(context, size, title: titleText, text: descriptionText, buttonText: Utils.getString(context, "general__close_button_text"), imageText: iconAddress, onTap: (ctx){Navigator.pop(ctx);});
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: MainColors.white,
+          borderRadius: BorderRadius.circular(24)
+        ),
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              // padding: EdgeInsets.symmetric(
+              //   horizontal: size.width * 1 / 12,
+              // ),
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: CachedNetworkImage(
+                    placeholder: (context, key){
+                      return Container(
+                        // width: size.width * 0.95 / 6,
+                        // height: size.width * 0.95 / 6,
+                        child: Shimmer.fromColors(
+                            highlightColor: MainColors.middleGrey150!.withOpacity(0.2),
+                            baseColor: MainColors.middleGrey150!,
+                            child: Image.asset("assets/images/achievements/prize.png", color: MainColors.middleGrey150,)
+                        ),
+                      );
+                    },
+                    // key: Key("${"vvvvv"}${1}"),
+                    // key: Key("${MainWidgetKey.PRODUCT__IMAGE}${item.id}"),
+                    fit: BoxFit.cover,
+                    imageUrl: iconAddress,
+                    // width: size.width * 0.95 / 6,
+                    // height: size.width * 0.95 / 6,
+                  ),
+                )
+                // SvgPicture.asset(iconAddress)
+                // child: Image.asset(iconAddress)
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 4,
               ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 4,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 8),
-                    title,
-                    SizedBox(height: 4),
-                    // subTitle,
-                    // SizedBox(height: 8),
-                  ],
-                ),
-              )
-            ],
-          ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 8),
+                  title,
+                  SizedBox(height: 4),
+                  // subTitle,
+                  // SizedBox(height: 8),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -80,7 +80,7 @@ class HealthTodayViewState extends State<HealthTodayView> {
                                                         .end,
                                                     children: [
                                                       Text(
-                                                        settingsState is  SettingsStateLoaded ? "${healthTodayState.stepCount != null ? Utils.humanizeDouble(Utils.stringToDouble(value: healthTodayState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
+                                                        settingsState is  SettingsStateLoaded ? "${healthTodayState.stepCount != null ? Utils.humanizeDouble(context, Utils.stringToDouble(value: healthTodayState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
                                                         style: MainStyles.boldTextStyle
                                                             .copyWith(fontSize: 24),
                                                         textAlign: TextAlign.left,
@@ -131,7 +131,7 @@ class HealthTodayViewState extends State<HealthTodayView> {
                                             children: [
 
                                               Text(
-                                                "${healthTodayState.stepCount.toString().length > 6 ? Utils.humanizeInteger(healthTodayState.stepCount) : healthTodayState.stepCount}",
+                                                "${healthTodayState.stepCount.toString().length > 6 ? Utils.humanizeInteger(context, healthTodayState.stepCount) : healthTodayState.stepCount}",
                                                 style: MainStyles.boldTextStyle
                                                     .copyWith(
                                                     height: 1.1, fontSize: 24),
@@ -163,19 +163,19 @@ class HealthTodayViewState extends State<HealthTodayView> {
                       SizedBox(height: 16,),
                       // BigUnBorderedButton(text: Utils.getString(context, "health_detail_view___tab_today__donate_button")),
 
-                      SizedBox(height: 16,),
+                      // SizedBox(height: 16,),
                       GridView(
                         padding: EdgeInsets.symmetric(horizontal: 0),
                         physics: ScrollPhysics(),
                         shrinkWrap: true,
                         gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                        SliverGridDelegateWithFixedCrossAxisCount(
 //                                        maxCrossAxisExtent: 220,
 //                                        childAspectRatio: 0.6
                           crossAxisCount: 2,
                           // childAspectRatio: 0.601,
-                          mainAxisSpacing: 4.0,
-                          crossAxisSpacing: 4.0,
+                          mainAxisSpacing: 16.0,
+                          crossAxisSpacing: 16.0,
                         ),
                         children: [
                           HealthInfoItemWidget(
@@ -193,7 +193,7 @@ class HealthTodayViewState extends State<HealthTodayView> {
                               overflow: TextOverflow.ellipsis,
                             ),
                             subTitle: AutoSizeText(
-                              "${Utils.humanizeDouble(double.parse((healthTodayState.distance / 1000).toString()))} ${Utils.getString(context, "challenges_details_view___distance_measure")}",
+                              "${Utils.humanizeDouble(context, double.parse((healthTodayState.distance / 1000).toString()))} ${Utils.getString(context, "challenges_details_view___distance_measure")}",
                               style: MainStyles.boldTextStyle.copyWith(
                                   height: 1.1, fontSize: 24),
                               textAlign: TextAlign.left,
@@ -216,7 +216,7 @@ class HealthTodayViewState extends State<HealthTodayView> {
                               overflow: TextOverflow.ellipsis,
                             ),
                             subTitle: AutoSizeText(
-                              "${Utils.humanizeDouble(double.parse((healthTodayState.calories).toString()))}",
+                              "${Utils.humanizeDouble(context, double.parse((healthTodayState.calories).toString()))}",
                               style: MainStyles.boldTextStyle.copyWith(
                                   height: 1.1, fontSize: 24),
                               textAlign: TextAlign.left,

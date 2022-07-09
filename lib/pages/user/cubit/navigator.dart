@@ -52,7 +52,7 @@ class _AuthNavigatorState extends State<AuthNavigator> {
               ),
             ),
             BlocProvider(
-              create: (context) => OtpNumpadBloc(
+              create: (context) => OtpNumpadCubit(
               ),
             ),
           ],

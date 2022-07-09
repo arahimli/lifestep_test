@@ -79,7 +79,7 @@ class _OtpNumpadState extends State<OtpNumpad> {
     final size = MediaQuery.of(context).size;
     return Flexible(
       flex: 1,
-      child: BlocConsumer<OtpNumpadBloc, OtpNumpadState>(
+      child: BlocConsumer<OtpNumpadCubit, OtpNumpadState>(
         listener: (_, otpNumpadState){
           setState(() {
             number = otpNumpadState.otp;

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/appbar/logo.dart';
 import 'package:lifestep/tools/components/error/general-widget.dart';
@@ -289,7 +290,7 @@ class _HomeViewState extends State<HomeView> {
                                                     children: [
                                                       TextSpan(
                                                         // text: "${homeDailyStepState.stepCountDay}",
-                                                          text: "${ homeDailyStepState.stepCountDay != null && homeDailyStepState.stepCountDay.toString().length > 6 ? Utils.humanizeInteger(homeDailyStepState.stepCountDay) : homeDailyStepState.stepCountDay }",
+                                                          text: "${ homeDailyStepState.stepCountDay != null && homeDailyStepState.stepCountDay.toString().length > 6 ? Utils.humanizeInteger(context, homeDailyStepState.stepCountDay) : homeDailyStepState.stepCountDay }",
                                                           style: MainStyles.semiBoldTextStyle.copyWith(color: MainColors.white, fontSize: 40),
                                                       ),
                                                       TextSpan(
@@ -307,7 +308,7 @@ class _HomeViewState extends State<HomeView> {
                                                           children: [
                                                             TextSpan(
                                                                 // text: "${homeDailyStepState.stepCountDay}",
-                                                                text: "${ settingsState is  SettingsStateLoaded ? homeDailyStepState.stepCountDay != null ? Utils.humanizeDouble(Utils.stringToDouble(value: homeDailyStepState.stepCountDay.toString()) * (settingsState.settingsModel!.step)) : 0 : 0 }",
+                                                                text: "${ settingsState is  SettingsStateLoaded ? homeDailyStepState.stepCountDay != null ? Utils.humanizeDouble(context, Utils.stringToDouble(value: homeDailyStepState.stepCountDay.toString()) * (settingsState.settingsModel!.step)) : 0 : 0 }",
                                                                 style: MainStyles.semiBoldTextStyle.copyWith(color: MainColors.white, fontSize: 14)
                                                             ),
                                                             TextSpan(
@@ -583,11 +584,11 @@ class _DonationWidget extends StatelessWidget {
               providers: [
                 BlocProvider<CharityDetailsBloc>(create: (context) => CharityDetailsBloc(
                     charityModel: dataItem,
-                    donationRepository: DonationRepository()
+                    donationRepository: GetIt.instance<DonationRepository>()
                 )),
                 BlocProvider<DonorListCubit>(create: (context) => DonorListCubit(
                     charityModel: dataItem,
-                    donationRepository: DonationRepository()
+                    donationRepository: GetIt.instance<DonationRepository>()
                 )),
               ],
               child: DonationPersonalDetailView()))).then((value){
@@ -674,7 +675,7 @@ class _DonationWidget extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     AutoSizeText(
-                      "${dataItem.requiredSteps <= dataItem.presentSteps ? 0 : Utils.humanizeInteger(dataItem.requiredSteps - dataItem.presentSteps)} ${Utils.getString(context, "general__steps__count")}",
+                      "${dataItem.requiredSteps <= dataItem.presentSteps ? 0 : Utils.humanizeInteger(context, dataItem.requiredSteps - dataItem.presentSteps)} ${Utils.getString(context, "general__steps__count")}",
                       style: MainStyles.boldTextStyle.copyWith(color: MainColors.darkPink500, fontSize: 14, height: 1.1),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -715,11 +716,11 @@ class _FondWidget extends StatelessWidget {
               providers: [
                 BlocProvider<FondDetailsBloc>(create: (context) => FondDetailsBloc(
                     fondModel: dataItem,
-                    donationRepository: DonationRepository()
+                    donationRepository: GetIt.instance<DonationRepository>()
                 )),
                 BlocProvider<FondDonorListCubit>(create: (context) => FondDonorListCubit(
                     fondModel: dataItem,
-                    donationRepository: DonationRepository()
+                    donationRepository: GetIt.instance<DonationRepository>()
                 )),
               ],
               child: DonationFondDetailView()))).then((value){
@@ -1026,7 +1027,7 @@ class CarouselWidget extends StatelessWidget {
                                     width: generalWidth,
                                     height: double.infinity,
                                     child:
-                                    item.image != null ? CachedNetworkImage(
+                                    item.image != null || item.imageLocalization != null ? CachedNetworkImage(
                                       placeholder: (context, key){
                                         return Container(
                                           // child:
@@ -1053,7 +1054,7 @@ class CarouselWidget extends StatelessWidget {
                                         );
                                       },
                                       key: Key("${MainWidgetKey.SLIDER_ITEM}${item.id}"),
-                                      imageUrl: item.image ?? MainConfig.defaultImage,
+                                      imageUrl: item.imageLocalization != null ? item.imageLocalization! : item.image != null ? item.image! : MainConfig.defaultImage,
                                       width: size.width * 10 / 10 / 2,
                                       height: double.infinity,
                                       fit: BoxFit.fill,

@@ -78,7 +78,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
                                                     .end,
                                                 children: [
                                                   Text(
-                                                    settingsState is  SettingsStateLoaded ? "${healthWeekState.stepCount != null ? Utils.humanizeDouble(Utils.stringToDouble(value: healthWeekState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
+                                                    settingsState is  SettingsStateLoaded ? "${healthWeekState.stepCount != null ? Utils.humanizeDouble(context, Utils.stringToDouble(value: healthWeekState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
                                                     style: MainStyles.boldTextStyle
                                                         .copyWith(fontSize: 24),
                                                     textAlign: TextAlign.left,
@@ -129,7 +129,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
                                         children: [
 
                                           Text(
-                                            "${healthWeekState.stepCount.toString().length > 6 ? Utils.humanizeInteger(healthWeekState.stepCount) : healthWeekState.stepCount}",
+                                            "${healthWeekState.stepCount.toString().length > 6 ? Utils.humanizeInteger(context, healthWeekState.stepCount) : healthWeekState.stepCount}",
                                             style: MainStyles.boldTextStyle
                                                 .copyWith(
                                                 height: 1.1, fontSize: 24),
@@ -183,7 +183,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
                                                     .end,
                                                 children: [
                                                   Text(
-                                                    settingsState is  SettingsStateLoaded ? "${healthWeekState.stepCount != null ? Utils.humanizeDouble(Utils.stringToDouble(value: healthWeekState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
+                                                    settingsState is  SettingsStateLoaded ? "${healthWeekState.stepCount != null ? Utils.humanizeDouble(context, Utils.stringToDouble(value: healthWeekState.stepCount.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
                                                     style: MainStyles.boldTextStyle
                                                         .copyWith(fontSize: 24),
                                                     textAlign: TextAlign.left,
@@ -234,7 +234,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
                                         children: [
 
                                           Text(
-                                            "${healthWeekState.stepCount.toString().length > 6 ? Utils.humanizeInteger(healthWeekState.stepCount) : healthWeekState.stepCount}",
+                                            "${healthWeekState.stepCount.toString().length > 6 ? Utils.humanizeInteger(context, healthWeekState.stepCount) : healthWeekState.stepCount}",
                                             style: MainStyles.boldTextStyle
                                                 .copyWith(
                                                 height: 1.1, fontSize: 24),
@@ -322,7 +322,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
                     ),
                   ),
 
-                  SizedBox(height: 8,),
+                  SizedBox(height: 16,),
                   if(healthWeekState is HealthWeekSuccess)
                     GridView(
                       padding: EdgeInsets.symmetric(horizontal: 0),
@@ -334,8 +334,8 @@ class HealthWeekViewState extends State<HealthWeekView> {
   //                                        childAspectRatio: 0.6
                         crossAxisCount: 2,
                         // childAspectRatio: 0.601,
-                        mainAxisSpacing: 4.0,
-                        crossAxisSpacing: 4.0,
+                        mainAxisSpacing: 16.0,
+                        crossAxisSpacing: 16.0,
                       ),
                       children: [
                         HealthInfoItemWidget(
@@ -351,7 +351,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
                           subTitle: BlocBuilder<SettingsCubit, SettingsState>(
                             builder: (context, settingsState) {
                               return AutoSizeText(
-                                settingsState is  SettingsStateLoaded ? "${healthWeekState.stepCountDay != null ? Utils.humanizeDouble(Utils.stringToDouble(value: healthWeekState.stepCountDay.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
+                                settingsState is  SettingsStateLoaded ? "${healthWeekState.stepCountDay != null ? Utils.humanizeDouble(context, Utils.stringToDouble(value: healthWeekState.stepCountDay.toString()) * (settingsState.settingsModel!.step)) : 0 }" : "",
                                 style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24),
                                 textAlign: TextAlign.left,
                                 maxLines: 1,
@@ -371,7 +371,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
                             overflow: TextOverflow.ellipsis,
                           ),
                           subTitle: AutoSizeText(
-                            "${healthWeekState.stepCountDay.toString().length > 6 ? Utils.humanizeInteger(healthWeekState.stepCountDay) : healthWeekState.stepCountDay}",
+                            "${healthWeekState.stepCountDay.toString().length > 6 ? Utils.humanizeInteger(context, healthWeekState.stepCountDay) : healthWeekState.stepCountDay}",
                             style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24),
                             textAlign: TextAlign.left,
                             maxLines: 1,
@@ -393,7 +393,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
                             overflow: TextOverflow.ellipsis,
                           ),
                           subTitle: AutoSizeText(
-                            "${Utils.humanizeDouble(double.parse((healthWeekState.distance / 1000).toString()))} ${Utils.getString(context, "challenges_details_view___distance_measure")}",
+                            "${Utils.humanizeDouble(context, double.parse((healthWeekState.distance / 1000).toString()))} ${Utils.getString(context, "challenges_details_view___distance_measure")}",
                             style: MainStyles.boldTextStyle.copyWith(
                                 height: 1.1, fontSize: 24),
                             textAlign: TextAlign.left,
@@ -417,7 +417,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
                           ),
                           subTitle: AutoSizeText(
                             // "${healthWeekState.calories * 1000}",
-                            "${Utils.humanizeDouble(double.parse((healthWeekState.calories).toString()))}",
+                            "${Utils.humanizeDouble(context, double.parse((healthWeekState.calories).toString()))}",
                             style: MainStyles.boldTextStyle.copyWith(
                                 height: 1.1, fontSize: 24),
                             textAlign: TextAlign.left,

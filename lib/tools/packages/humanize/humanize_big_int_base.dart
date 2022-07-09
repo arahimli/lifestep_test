@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+import 'package:lifestep/tools/common/utlis.dart';
+
 /// Function that converts large numbers to humanized form \
 /// Returns same if number < 1000 \
 /// Else Returns rounded number with appropriate suffix \
@@ -12,7 +15,7 @@ import 'dart:math';
 /// 123400     ->   123K    \
 /// 1234000    ->   1.2M    \
 /// ....
-String humanizeInt(int n) {
+String humanizeInt(BuildContext context, int n) {
   // < 1000
   if (n < 1000) return n.toString();
 
@@ -20,53 +23,53 @@ String humanizeInt(int n) {
   if (n < 10000) {
     final s = (n / 1000).toStringAsFixed(1);
     if (s[s.length - 1] == '0') {
-      return s.substring(0, s.length - 2) + "K";
+      return s.substring(0, s.length - 2) + Utils.getString(context, "K");
     }
-    return s + "K";
+    return s + Utils.getString(context, "K");
   }
   if (n < 1000000) {
-    return (n / 1000).toStringAsFixed(0) + "K";
+    return (n / 1000).toStringAsFixed(0) + Utils.getString(context, "K");
   }
 
   // 1,000,000s
   if (n < 10000000) {
     final s = (n / pow(1000, 2)).toStringAsFixed(1);
     if (s[s.length - 1] == '0') {
-      return s.substring(0, s.length - 2) + "M";
+      return s.substring(0, s.length - 2) + Utils.getString(context, "M");
     }
-    return s + "M";
+    return s + Utils.getString(context, "M");
   }
   if (n < 1000000000) {
-    return (n / pow(1000, 2)).toStringAsFixed(0) + "M";
+    return (n / pow(1000, 2)).toStringAsFixed(0) + Utils.getString(context, "M");
   }
 
   // 1,000,000,000s
   if (n < 10000000000) {
     final s = (n / pow(1000, 3)).toStringAsFixed(1);
     if (s[s.length - 1] == '0') {
-      return s.substring(0, s.length - 2) + "B";
+      return s.substring(0, s.length - 2) + Utils.getString(context, "B");
     }
-    return s + "B";
+    return s + Utils.getString(context, "B");
   }
   if (n < 1000000000000) {
-    return (n / pow(1000, 3)).toStringAsFixed(0) + "B";
+    return (n / pow(1000, 3)).toStringAsFixed(0) + Utils.getString(context, "B");
   }
 
   // 1,000,000,000,000s
   if (n < 10000000000000) {
     final s = (n / pow(1000, 4)).toStringAsFixed(1);
     if (s[s.length - 1] == '0') {
-      return s.substring(0, s.length - 2) + "T";
+      return s.substring(0, s.length - 2) + Utils.getString(context, "T");
     }
     return s + "T";
   }
   if (n < 1000000000000000) {
-    return (n / pow(1000, 4)).toStringAsFixed(0) + "T";
+    return (n / pow(1000, 4)).toStringAsFixed(0) + Utils.getString(context, "T");
   }
 
   // >= 1,000,000,000,000,000s
 
-  return (n / pow(1000, 5)).toStringAsFixed(0) + "Q";
+  return (n / pow(1000, 5)).toStringAsFixed(0) + Utils.getString(context, "Q");
 }
 
 /// Function that converts large numbers to humanized form \

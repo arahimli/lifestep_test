@@ -8,8 +8,9 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class MainBottomNavigationBar extends StatelessWidget {
   final int index;
+  final Function() onAction;
 
-  const MainBottomNavigationBar({Key? key, required this.index}) : super(key: key);
+  const MainBottomNavigationBar({Key? key, required this.index, required this.onAction}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -22,7 +23,7 @@ class MainBottomNavigationBar extends StatelessWidget {
           color: MainColors.bottomBarUnselectedColor),
       selectedLabelStyle: MainStyles.boldTextStyle.copyWith(fontSize: 13, color: MainColors.darkPink500),
       showUnselectedLabels: true,
-
+      // mouseCursor: MouseCursor.defer,
       elevation: 0,
       type: BottomNavigationBarType.fixed,
       onTap: (i){
@@ -30,11 +31,15 @@ class MainBottomNavigationBar extends StatelessWidget {
         //////// print(i);
         //////// print(Navigation.values[i]);
         //////// print("navigationBloc.changeNavigationIndex");
+        if([0,2,3].contains(i)){
+          onAction();
+        }
         navigationBloc.changeNavigationIndex(Navigation.values[i]);
       },
       items: [
         /// Home
         BottomNavigationBarItem(
+          tooltip: '',
           icon: Padding(
             padding: EdgeInsets.only(bottom: 2.0),
             child: SvgPicture.asset("assets/svgs/bottom/home.svg", color: MainColors.bottomBarUnselectedColor,),
@@ -48,6 +53,7 @@ class MainBottomNavigationBar extends StatelessWidget {
 
         /// Likes
         BottomNavigationBarItem(
+          tooltip: '',
           icon: Padding(
             padding: EdgeInsets.only(bottom: 2.0),
             child: SvgPicture.asset("assets/svgs/bottom/donations.svg", color: MainColors.bottomBarUnselectedColor,),
@@ -61,6 +67,7 @@ class MainBottomNavigationBar extends StatelessWidget {
 
         /// Search
         BottomNavigationBarItem(
+          tooltip: '',
           icon: Padding(
             padding: EdgeInsets.only(bottom: 2.0),
             child: SvgPicture.asset("assets/svgs/bottom/challenges.svg", color: MainColors.bottomBarUnselectedColor,),
@@ -74,6 +81,7 @@ class MainBottomNavigationBar extends StatelessWidget {
 
         // / Profile
         BottomNavigationBarItem(
+          tooltip: '',
           icon: Padding(
             padding: EdgeInsets.only(bottom: 2.0),
             child: SvgPicture.asset("assets/svgs/bottom/profile.svg", color: MainColors.bottomBarUnselectedColor,),

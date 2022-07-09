@@ -352,25 +352,26 @@ class _RegistrationViewState extends State<RegistrationView> with TickerProvider
                                         suffixIcon: SvgPicture.asset("assets/svgs/form/email.svg"),
                                       );
                                     }),
-                                    BlocBuilder<RegistrationBloc, RegistrationState>(builder: (context, state) {
-                                      return  GeneralTextField(
-                                        requiredInput: false,
-                                        size: size,
-                                        label: Utils.getString(context, "registration_view___form_field__invitation_code_label"),
-                                        hintText: Utils.getString(context, "registration_view___form_field__invitation_code_hint"),
-                                        hasError: !state.isValidInvitationCode,
-                                        errorText: Utils.getString(context, "registration_view___form_field__invitation_code_error_text"),
-                                        controller: BlocProvider.of<RegistrationBloc>(context).invitationCodeController,
-                                        format: [
-                                          LengthLimitingTextInputFormatter(50),
-                                        ],
-                                        toDo: (value){
-                                          BlocProvider.of<RegistrationBloc>(context).inviteChanged(
-                                              value
-                                          );
-                                        },
-                                      );
-                                    }),
+
+                                    // BlocBuilder<RegistrationBloc, RegistrationState>(builder: (context, state) {
+                                    //   return  GeneralTextField(
+                                    //     requiredInput: false,
+                                    //     size: size,
+                                    //     label: Utils.getString(context, "registration_view___form_field__invitation_code_label"),
+                                    //     hintText: Utils.getString(context, "registration_view___form_field__invitation_code_hint"),
+                                    //     hasError: !state.isValidInvitationCode,
+                                    //     errorText: Utils.getString(context, "registration_view___form_field__invitation_code_error_text"),
+                                    //     controller: BlocProvider.of<RegistrationBloc>(context).invitationCodeController,
+                                    //     format: [
+                                    //       LengthLimitingTextInputFormatter(50),
+                                    //     ],
+                                    //     toDo: (value){
+                                    //       BlocProvider.of<RegistrationBloc>(context).inviteChanged(
+                                    //           value
+                                    //       );
+                                    //     },
+                                    //   );
+                                    // }),
                                     // SizedBox(height: 12,),
 
 

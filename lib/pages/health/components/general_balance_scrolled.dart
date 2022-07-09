@@ -60,7 +60,7 @@ class _GeneralBalanceOverViewScrolledState extends State<GeneralBalanceOverViewS
                                   builder: (context, settingsState) {
                                     return settingsState is  SettingsStateLoaded ?
                                     AutoSizeText(
-                                      "${sessionState.currentUser!.balanceSteps != null ? (Utils.stringToDouble(value: sessionState.currentUser!.balanceSteps.toString()) * (settingsState.settingsModel!.step)) > 10 ? Utils.humanizeDouble(Utils.stringToDouble(value: sessionState.currentUser!.balanceSteps.toString()) * (settingsState.settingsModel!.step)) : Utils.roundNumber(Utils.stringToDouble(value: sessionState.currentUser!.balanceSteps.toString()) * (settingsState.settingsModel!.step), toPoint: 3) : 0 }",
+                                      "${sessionState.currentUser!.balanceSteps != null ? (Utils.stringToDouble(value: sessionState.currentUser!.balanceSteps.toString()) * (settingsState.settingsModel!.step)) > 10 ? Utils.humanizeDouble(context, Utils.stringToDouble(value: sessionState.currentUser!.balanceSteps.toString()) * (settingsState.settingsModel!.step)) : Utils.roundNumber(Utils.stringToDouble(value: sessionState.currentUser!.balanceSteps.toString()) * (settingsState.settingsModel!.step), toPoint: 3) : 0 }",
                                       style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24, color: MainColors.white),
                                       textAlign: TextAlign.left,
                                       maxLines: 2,
@@ -95,7 +95,7 @@ class _GeneralBalanceOverViewScrolledState extends State<GeneralBalanceOverViewS
                           iconAddress: "assets/svgs/profile/step2.svg",
                           backgroundColor: MainColors.darkPink500!,
                           title: Text(
-                            "${sessionState.currentUser!.balanceSteps.toString().length > 6 ? Utils.humanizeInteger(sessionState.currentUser!.balanceSteps ?? 0) : sessionState.currentUser!.balanceSteps ?? 0}",
+                            "${sessionState.currentUser!.balanceSteps.toString().length > 6 ? Utils.humanizeInteger(context, sessionState.currentUser!.balanceSteps ?? 0) : sessionState.currentUser!.balanceSteps ?? 0}",
                             style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24, color: MainColors.white),
                             textAlign: TextAlign.left,
                             maxLines: 1,
@@ -135,7 +135,7 @@ class _GeneralBalanceOverViewScrolledState extends State<GeneralBalanceOverViewS
                                   builder: (context, settingsState) {
                                     return settingsState is  SettingsStateLoaded ?
                                     AutoSizeText(
-                                      "${sessionState.currentUser!.totalDonations != null ? sessionState.currentUser!.totalDonations! > 10 ? Utils.humanizeDouble(Utils.stringToDouble(value: sessionState.currentUser!.totalDonations!.toString())) : Utils.roundNumber(Utils.stringToDouble(value: sessionState.currentUser!.totalDonations!.toString()), toPoint: 3) : 0 }",
+                                      "${sessionState.currentUser!.totalDonations != null ? sessionState.currentUser!.totalDonations! > 10 ? Utils.humanizeDouble(context, Utils.stringToDouble(value: sessionState.currentUser!.totalDonations!.toString())) : Utils.roundNumber(Utils.stringToDouble(value: sessionState.currentUser!.totalDonations!.toString()), toPoint: 3) : 0 }",
                                       style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24, color: MainColors.white),
                                       textAlign: TextAlign.left,
                                       maxLines: 2,
@@ -170,7 +170,7 @@ class _GeneralBalanceOverViewScrolledState extends State<GeneralBalanceOverViewS
                           iconAddress: "assets/svgs/profile/step2.svg",
                           backgroundColor: MainColors.darkPink500!,
                           title: Text(
-                            "${sessionState.currentUser!.totalDonateSteps.toString().length > 6 ? Utils.humanizeInteger((sessionState.currentUser!.totalDonateSteps ?? 0)) : sessionState.currentUser!.totalDonateSteps ?? 0}",
+                            "${sessionState.currentUser!.totalDonateSteps.toString().length > 6 ? Utils.humanizeInteger(context, (sessionState.currentUser!.totalDonateSteps ?? 0)) : sessionState.currentUser!.totalDonateSteps ?? 0}",
                             style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24, color: MainColors.white),
                             textAlign: TextAlign.left,
                             maxLines: 1,
@@ -210,7 +210,7 @@ class _GeneralBalanceOverViewScrolledState extends State<GeneralBalanceOverViewS
 //                                       builder: (context, settingsState) {
 //                                         return settingsState is  SettingsStateLoaded ?
 //                                         AutoSizeText(
-//                                           "${Utils.humanizeDouble(Utils.stringToDouble(value: ((sessionState.currentUser!.totalDonateSteps ?? 0) + (sessionState.currentUser!.balanceSteps ?? 0)).toString()) * (settingsState.settingsModel!.step))}",
+//                                           "${Utils.humanizeDouble(context, Utils.stringToDouble(value: ((sessionState.currentUser!.totalDonateSteps ?? 0) + (sessionState.currentUser!.balanceSteps ?? 0)).toString()) * (settingsState.settingsModel!.step))}",
 //                                           style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24, color: MainColors.white),
 //                                           textAlign: TextAlign.left,
 //                                           maxLines: 2,
@@ -245,7 +245,7 @@ class _GeneralBalanceOverViewScrolledState extends State<GeneralBalanceOverViewS
 //                               iconAddress: "assets/svgs/profile/step2.svg",
 //                               backgroundColor: MainColors.darkPink500!,
 //                               title: Text(
-//                                 "${Utils.humanizeInteger((sessionState.currentUser!.totalDonateSteps ?? 0) + (sessionState.currentUser!.balanceSteps ?? 0)) }",
+//                                 "${Utils.humanizeInteger(context, (sessionState.currentUser!.totalDonateSteps ?? 0) + (sessionState.currentUser!.balanceSteps ?? 0)) }",
 //                                 style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24, color: MainColors.white),
 //                                 textAlign: TextAlign.left,
 //                                 maxLines: 1,

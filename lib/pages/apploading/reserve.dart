@@ -109,7 +109,7 @@
 //
 //
 //     //////// print("LANGUAGE_LANGUAGE_LANGUAGE_LANGUAGE_LANGUAGE_LANGUAGE_LANGUAGE_LANGUAGE_121-v7");
-//     UserRepository authRepo = UserRepository();
+//     UserRepository authRepo = GetIt.instance<UserRepository>();
 //     if (isConnectedToWeb == 1 && TOKEN != null && TOKEN != '') {
 //       try {
 //
@@ -214,15 +214,15 @@
 //                           BlocProvider<HomeDailyStepCubit>(
 //                               create: (BuildContext context) =>
 //                                   HomeDailyStepCubit(
-//                                       authRepo: UserRepository(),
+//                                       authRepo: GetIt.instance<UserRepository>(),
 //                                       sessionCubit: BlocProvider.of<
 //                                           SessionCubit>(context))),
 
-                              // BlocProvider<HomeCharityListCubit>(create: (BuildContext context) => HomeCharityListCubit(donationRepository: DonationRepository())),
+                              // BlocProvider<HomeCharityListCubit>(create: (BuildContext context) => HomeCharityListCubit(donationRepository: GetIt.instance<DonationRepository>())),
 //                           BlocProvider<IndexCubit>(
 //                               create: (BuildContext context) =>
 //                                   IndexCubit(
-//                                       homeRepository: HomeRepository())),
+//                                       homeRepository: GetIt.instance<HomeRepository>())),
 //                         ],
 //                         child: IndexView()
 //                     );
@@ -231,7 +231,7 @@
 //                     // }
 //                   }else if (snapshot.data!.pref.containsKey('onboard')) {
 //                     return RepositoryProvider(
-//                       create: (context) => UserRepository(),
+//                       create: (context) => GetIt.instance<UserRepository>(),
 //                       child: BlocProvider(
 //                         create: (context) =>
 //                             AuthCubit(),

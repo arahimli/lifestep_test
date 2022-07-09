@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lifestep/config/main_config.dart';
+import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/common/validator.dart';
 import 'package:lifestep/config/endpoints.dart';
 import 'package:lifestep/config/main_constants.dart';
@@ -10,6 +14,7 @@ import 'package:lifestep/pages/user/registration/state.dart';
 import 'package:lifestep/pages/user/repositories/auth.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sprintf/sprintf.dart';
 
 class RegistrationBloc extends Cubit<RegistrationState> {
   final UserRepository authRepo;
@@ -107,6 +112,8 @@ class RegistrationBloc extends Cubit<RegistrationState> {
   Future<List> registerSubmit() async{
 
       emit(state.copyWith(formStatus: FormSubmitting()));
+      String playerId = await Utils.getPlayerId();
+
       final data = await authRepo.registerUser(
         data: {
           "full_name": state.fullName,
@@ -121,7 +128,8 @@ class RegistrationBloc extends Cubit<RegistrationState> {
             'Authorization': "Bearer ${authCubit.token}",
             'Accept-Language': LANGUAGE,
             'Accept': 'application/json'
-          }
+          },
+        extraUrl: sprintf("?player_id=%s&os=%s&app_version=%s", [playerId, Platform.isIOS ? 1 : 2, Platform.isIOS ? MainConfig.app_version_ios : MainConfig.app_version_android, ])
       );
       if(data[2] == WEB_SERVICE_ENUM.SUCCESS){
         ProfileResponse loginResponse = ProfileResponse.fromJson(data[1]);
