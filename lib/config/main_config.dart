@@ -16,6 +16,12 @@ class MainConfig {
   ///
   static const String app_name = 'LifeStep test';
 
+  // static const String app_metrica_config = '72b95a64-bed7-4932-8b02-c9e9899bfc6d';
+  static const String app_metrica_config = '-';
+
+  static const String app_flurry_config_android = '3KVR7BC2247MR22F7YNG';
+  static const String app_flurry_config_ios = 'YVG74KDTQVWM2VBT78PP';
+
   static const String app_version = '1.0.36';
 
   static const int app_version_android = 36;

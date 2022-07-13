@@ -61,7 +61,7 @@ class _MainAppState extends State<MainApp> {
     });
 
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       // AndroidNotification android = message.notification.android;
       if (notification != null && message.notification != null && !kIsWeb) {
@@ -94,11 +94,11 @@ class _MainAppState extends State<MainApp> {
 
       }
     });
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       // Navigator.pushNamed(context, '/message',
       //     arguments: MessageArguments(message, true));
-    });
-    getToken();
+  });
+  getToken();
 
   }
   getToken() async {

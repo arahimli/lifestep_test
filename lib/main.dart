@@ -46,7 +46,7 @@ void requestIOSPermissions() {
 
 GetIt getIt = GetIt.instance;
 // AppMetricaConfig get _config => const AppMetricaConfig(dotenv.env['YANDEX_KEY']!.toString(), logs: true);
-AppMetricaConfig get _config => const AppMetricaConfig("72b95a64-bed7-4932-8b02-c9e9899bfc6d", logs: true);
+AppMetricaConfig get _config => const AppMetricaConfig(MainConfig.app_metrica_config, logs: true);
 
 void main() async{
   AppMetrica.runZoneGuarded(() async{

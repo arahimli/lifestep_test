@@ -123,6 +123,7 @@ dependencies:
 
   #metric and statistic
   appmetrica_plugin: ^0.1.0
+  flutter_flurry_sdk: ^2.2.0
 
 
 dependency_overrides:
