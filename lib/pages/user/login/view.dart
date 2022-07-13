@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/tools/components/dialog/loading.dart';
 import 'package:lifestep/model/auth/login.dart';
-import 'package:lifestep/pages/user/cubit/cubit.dart';
+import 'package:lifestep/pages/user/logic/cubit.dart';
 import 'package:lifestep/pages/user/form-submission-status.dart';
 import 'package:lifestep/pages/user/login/cubit.dart';
 import 'package:lifestep/pages/user/login/state.dart';

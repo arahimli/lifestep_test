@@ -15,7 +15,7 @@ class SkeletonNoScrollingListWidget extends StatelessWidget {
       child: SingleChildScrollView(
           physics: ScrollPhysics(),
           child: Container(
-            // padding: EdgeInsets.symmetric(horizontal: 16),
+            // padding: PagePadding.leftRight16(),
             child: Column(
               children: [
                 for(int i = 0; i < itemCount; i++)

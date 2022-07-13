@@ -7,6 +7,7 @@ import 'package:lifestep/config/main_colors.dart';
 import 'package:lifestep/config/styles.dart';
 import 'package:lifestep/pages/user/otp/logic/cubit.dart';
 import 'package:lifestep/pages/user/otp/logic/state.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 // class OtpNumpadLayer extends StatelessWidget {
 //
@@ -87,9 +88,9 @@ class _OtpNumpadState extends State<OtpNumpad> {
           });
         },
           builder: (_, otpNumpadState) {
-          print(otpNumpadState.otp);
+          // print(otpNumpadState.otp);
           return Container(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: PagePadding.leftRight16(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[

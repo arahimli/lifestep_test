@@ -7,7 +7,7 @@ import 'package:lifestep/config/main_colors.dart';
 import 'package:lifestep/config/scroll_behavior.dart';
 import 'package:lifestep/config/styles.dart';
 import 'package:lifestep/pages/health/components/general_balance.dart';
-import 'package:lifestep/pages/index/index/navigation_bloc.dart';
+import 'package:lifestep/pages/index/logic/navigation_bloc.dart';
 import 'package:lifestep/pages/user/profile/achievement/view.dart';
 import 'package:lifestep/pages/user/profile/information/view.dart';
 import 'package:lifestep/pages/user/profile/settings/view.dart';

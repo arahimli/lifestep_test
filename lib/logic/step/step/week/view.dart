@@ -7,6 +7,7 @@ import 'package:lifestep/tools/constants/enum.dart';
 import 'package:lifestep/logic/session/cubit.dart';
 import 'package:lifestep/model/step/user-item.dart';
 import 'package:lifestep/pages/home/components/liderboard_item.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 import 'cubit.dart';
 import 'state.dart';
 
@@ -37,7 +38,7 @@ class WeekStepUserOrderView extends StatelessWidget {
             }
             else if(state is GeneralUserLeaderBoardWeekStepError){
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: PagePadding.leftRight16(),
                 child: GeneralErrorLoadAgainWidget(
                   onTap: (){
                     context.read<GeneralUserLeaderBoardWeekStepCubit>().refresh();

@@ -14,6 +14,7 @@ import 'package:lifestep/logic/settings/state.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'general_balance_blocked.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class GeneralBalanceOverView extends StatefulWidget {
   const GeneralBalanceOverView({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _GeneralBalanceOverViewState extends State<GeneralBalanceOverView> {
                   Column(
                     children: [
                       GridView(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        padding: PagePadding.leftRight16(),
                         physics: ScrollPhysics(),
                         shrinkWrap: true,
                         gridDelegate:

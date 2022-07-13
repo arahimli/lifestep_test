@@ -53,6 +53,7 @@ import 'logic/pin-click/cubit.dart';
 import 'logic/pin-click/state.dart';
 import 'logic/sliding-up-panel/cubit.dart';
 import 'logic/sliding-up-panel/state.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class ChallengeDetailView extends StatefulWidget {
   const ChallengeDetailView({Key? key}) : super(key: key);
@@ -407,7 +408,7 @@ class _ChallengeDetailViewState extends State<ChallengeDetailView> with WidgetsB
 
                                               Container(
                                                 width: double.infinity,
-                                                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                                padding: PagePadding.all16(),
                                                 decoration: BoxDecoration(
                                                     borderRadius: BorderRadius.circular(16),
                                                     border: Border.all(color: MainColors.darkPink500!, width: 2)
@@ -568,7 +569,7 @@ class _ChallengeDetailViewState extends State<ChallengeDetailView> with WidgetsB
                                                 SizedBox(height: 16),
                                               if(state.challengeModel.sponsorName != null)
                                                 Container(
-                                                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                                  padding: PagePadding.all16(),
                                                   width: double.infinity,
                                                   decoration: BoxDecoration(
                                                     color: MainColors.backgroundColor,

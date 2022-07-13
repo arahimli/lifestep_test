@@ -38,6 +38,7 @@ import 'package:lifestep/pages/donations/details/personal/logic/donors/cubit.dar
 import 'package:lifestep/pages/donations/details/personal/logic/donors/state.dart';
 import 'package:lifestep/repositories/donation.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 import 'package:lifestep/tools/packages/read_more/text_overflow_decector.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -348,7 +349,7 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
                                                   SizedBox(height: 16),
                                                 if(state.charityModel.sponsorName != null)
                                                   Container(
-                                                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                                    padding: PagePadding.all16(),
                                                     width: double.infinity,
                                                     decoration: BoxDecoration(
                                                       color: MainColors.backgroundColor,
@@ -601,7 +602,7 @@ class _DonationModal extends StatelessWidget {
 
                             Container(
                               width: double.infinity,
-                              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                              padding: PagePadding.all16(),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
                                 // border: Border.all(color: MainColors.darkPink500!, width: 2),

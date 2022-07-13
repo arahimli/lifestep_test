@@ -14,6 +14,8 @@ class MainConfig {
   /// AppVersion
   /// For your app, you need to change according based on your app version
   ///
+  static const String app_name = 'LifeStep test';
+
   static const String app_version = '1.0.36';
 
   static const int app_version_android = 36;

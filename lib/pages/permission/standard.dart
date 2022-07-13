@@ -60,7 +60,7 @@ class _StandardPermissionHandleViewState extends State<StandardPermissionHandleV
                               constraints: BoxConstraints(
                                   minHeight: constraints.maxHeight
                               ),
-                              // padding: EdgeInsets.symmetric(horizontal: 16),
+                              // padding: PagePadding.leftRight16(),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [

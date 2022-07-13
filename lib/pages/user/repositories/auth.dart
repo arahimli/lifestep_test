@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:lifestep/config/endpoints.dart';
 import 'package:lifestep/config/main_config.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
+import 'package:lifestep/tools/constants/header/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sprintf/sprintf.dart';
 
@@ -65,10 +66,10 @@ class UserProvider {
       List data = await WebService.postCall(
           url: requestUrl,
           headers: {
-            'Authorization': "Bearer $TOKEN",
-            'Accept-Language': LANGUAGE,
-            'Accept': 'application/json'
-          },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
           data: {}
       );
       return data;
@@ -78,10 +79,10 @@ class UserProvider {
     String requestUrl = GET_USER_URL + (extraUrl ?? '');
     // print(requestUrl);
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    });
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+});
     return data;
   }
 
@@ -89,10 +90,10 @@ class UserProvider {
     String requestUrl = ACHIEVEMENTS_URL;
     // String requestUrl = "https://app.lifestep.az/api/charities/0/10?search=";
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
     token: dioToken);
     return data;
   }
@@ -101,10 +102,10 @@ class UserProvider {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = sprintf(NOTIFICATIONS_URL, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count]);
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
     token: dioToken);
     return data;
   }
@@ -112,15 +113,15 @@ class UserProvider {
   Future<List> loginWithCredential(String phone) async {
     String requestUrl = LOGIN_URL;
     List data = await WebService.postCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
     data: {
       'phone': phone
     }
   );
-    print(data);
+    // print(data);
     return data;
   }
 
@@ -147,7 +148,7 @@ class UserProvider {
     List data = await WebService.postCall(url: requestUrl, headers: header,
     data: mainData
   );
-    print(data);
+    // print(data);
     return data;
   }
 
@@ -155,10 +156,10 @@ class UserProvider {
     String requestUrl = DELETE_CONFIRM_OTP_URL;
     List data = await WebService.deleteCall(url: requestUrl,
         headers: {
-          'Authorization': "Bearer $TOKEN",
-          'Accept-Language': LANGUAGE,
-          'Accept': 'application/json'
-        },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
         data: requestData
     );
     return data;
@@ -168,10 +169,10 @@ class UserProvider {
     String requestUrl = DELETE_USER_URL;
     List data = await WebService.postCall(url: requestUrl,
         headers: {
-          'Authorization': "Bearer $TOKEN",
-          'Accept-Language': LANGUAGE,
-          'Accept': 'application/json'
-        },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
         data: requestData
     );
     return data;
@@ -189,10 +190,10 @@ class UserProvider {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = STEP_INFO_URL;
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
         token: dioToken);
     return data;
   }
@@ -201,10 +202,10 @@ class UserProvider {
     String requestUrl = SET_STEP_INFO_URL;
     List data = await WebService.postCall(url: requestUrl,
       headers: {
-        'Authorization': "Bearer $TOKEN",
-        'Accept-Language': LANGUAGE,
-        'Accept': 'application/json'
-      },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
       data: requestData
     );
     return data;
@@ -214,10 +215,10 @@ class UserProvider {
     String requestUrl = SET_STEP_INFO_URL2;
     List data = await WebService.postCall(url: requestUrl,
       headers: {
-        'Authorization': "Bearer $TOKEN",
-        'Accept-Language': LANGUAGE,
-        'Accept': 'application/json'
-      },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
       data: requestData
     );
     return data;
@@ -227,10 +228,10 @@ class UserProvider {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = STEP_DAILY_INFO_URL;
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
         token: dioToken);
     return data;
   }
@@ -239,10 +240,10 @@ class UserProvider {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = USER_ACHIEVEMENTS_CONTROL_INFO_URL;
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
         token: dioToken);
     return data;
   }
@@ -251,17 +252,18 @@ class UserProvider {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = STEP_DAILY_INFO_URL2;
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
         token: dioToken);
     return data;
   }
 
   Future<List> setDailyStepInfo(Map<String, dynamic> requestData, CancelToken dioToken) async {
     String requestUrl = SET_STEP_DAILY_INFO_URL;
-   ///////// print("setDailyStepInfo = ${requestUrl}");
+   // print("setDailyStepInfo = ${requestUrl}");
+   // print(requestData);
     List data = await WebService.postCall(url: requestUrl,
       headers: {
         'Authorization': "Bearer $TOKEN",
@@ -270,6 +272,7 @@ class UserProvider {
       },
       data: requestData
     );
+    // print(data);
     return data;
   }
 
@@ -279,10 +282,10 @@ class UserProvider {
    ///////// print("setDailyStepInfo = ${requestUrl}");
     List data = await WebService.postCall(url: requestUrl,
       headers: {
-        'Authorization': "Bearer $TOKEN",
-        'Accept-Language': LANGUAGE,
-        'Accept': 'application/json'
-      },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
       data: requestData
     );
     return data;
@@ -293,10 +296,10 @@ class UserProvider {
     String requestUrl = SOCIAL_LOGIN_URL;
     List data = await WebService.postCall(url: requestUrl,
       headers: {
-        'Authorization': "Bearer $TOKEN",
-        'Accept-Language': LANGUAGE,
-        'Accept': 'application/json'
-      },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
       data: requestData
     );
     return data;

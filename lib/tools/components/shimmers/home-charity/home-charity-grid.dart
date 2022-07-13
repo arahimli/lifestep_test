@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifestep/config/scroll_behavior.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class HomeSkeletonGridViewWidget extends StatelessWidget {
   final int itemCount;
@@ -12,7 +13,7 @@ class HomeSkeletonGridViewWidget extends StatelessWidget {
       behavior: MainScrollBehavior(),
       child: GridView.builder(
         itemCount: itemCount,
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: PagePadding.leftRight16(),
         physics: ScrollPhysics(),
         shrinkWrap: true,
         gridDelegate:

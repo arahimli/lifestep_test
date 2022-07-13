@@ -44,9 +44,9 @@ class GeneralListItem extends StatelessWidget {
                           constraints: BoxConstraints(
                               minHeight: constraints.maxHeight
                           ),
-                          // padding: EdgeInsets.symmetric(horizontal: 16),
+                          // padding: PagePadding.leftRight16(),
                           child: Container(
-                            // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                            // padding: PagePadding.all16(),
                             child: Column(
                               children: ratingList.asMap().entries.map((entry) => HomeLiderDataItem(
                                 owner: BlocProvider.of<SessionCubit>(context).currentUser != null ? BlocProvider.of<SessionCubit>(context).currentUser!.id == entry.value.userId : false,

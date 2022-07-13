@@ -5,6 +5,7 @@ import 'package:lifestep/config/main_config.dart';
 import 'package:lifestep/model/challenge/map.dart';
 import 'package:lifestep/model/donation/search_configuration.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
+import 'package:lifestep/tools/constants/header/auth.dart';
 import 'package:sprintf/sprintf.dart';
 
 class ChallengeRepository {
@@ -28,30 +29,30 @@ class ChallengeProvider {
 
     String requestUrl = sprintf(CHALLENGES_URL, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count, searchText]);
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    });
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+});
     return data;
   }
   
   Future<List> getChallengeParticipants(String requestUrl, CancelToken token) async {
 
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    });
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+});
     return data;
   }
 
   Future<List> joinChallenge(String requestUrl, Map<String, dynamic> mapData, CancelToken token) async {
 
     List data = await WebService.postCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
     data: mapData,
     );
     return data;
@@ -60,10 +61,10 @@ class ChallengeProvider {
   Future<List> successChallenge(String requestUrl, Map<String, dynamic> mapData, CancelToken token) async {
 
     List data = await WebService.postCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
     data: mapData,
     );
     return data;
@@ -72,10 +73,10 @@ class ChallengeProvider {
   Future<List> cancelChallenge(String requestUrl, Map<String, dynamic> mapData, CancelToken token) async {
 
     List data = await WebService.deleteCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    },
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+},
     data: mapData
     );
     return data;

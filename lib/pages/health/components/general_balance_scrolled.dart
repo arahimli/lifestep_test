@@ -12,6 +12,7 @@ import 'package:lifestep/logic/session/state.dart';
 import 'package:lifestep/logic/settings/cubit.dart';
 import 'package:lifestep/logic/settings/state.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class GeneralBalanceOverViewScrolled extends StatefulWidget {
   const GeneralBalanceOverViewScrolled({Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class _GeneralBalanceOverViewScrolledState extends State<GeneralBalanceOverViewS
                   controller: pageController,
                   children: [
                     GridView(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: PagePadding.leftRight16(),
                       physics: ScrollPhysics(),
                       shrinkWrap: true,
                       gridDelegate:
@@ -112,7 +113,7 @@ class _GeneralBalanceOverViewScrolledState extends State<GeneralBalanceOverViewS
                       ],
                     ),
                     GridView(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: PagePadding.leftRight16(),
                       physics: ScrollPhysics(),
                       shrinkWrap: true,
                       gridDelegate:
@@ -187,7 +188,7 @@ class _GeneralBalanceOverViewScrolledState extends State<GeneralBalanceOverViewS
                       ],
                     ),
 //                         GridView(
-//                           padding: EdgeInsets.symmetric(horizontal: 16),
+//                           padding: PagePadding.leftRight16(),
 //                           physics: ScrollPhysics(),
 //                           shrinkWrap: true,
 //                           gridDelegate:

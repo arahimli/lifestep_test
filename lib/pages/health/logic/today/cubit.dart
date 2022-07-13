@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health/health.dart';
 import 'package:lifestep/pages/health/details.dart';
 import 'package:lifestep/pages/health/logic/today/state.dart';
-import 'package:lifestep/pages/health/logic/_tools/element.dart';
+import 'package:lifestep/tools/constants/health/element.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
 
 class HealthTodayCubit extends Cubit<HealthTodayState>{

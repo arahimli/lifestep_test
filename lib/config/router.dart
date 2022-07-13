@@ -8,12 +8,12 @@ import 'package:lifestep/pages/health/details.dart';
 import 'package:lifestep/pages/health/logic/month/cubit.dart';
 import 'package:lifestep/pages/health/logic/today/cubit.dart';
 import 'package:lifestep/pages/health/logic/week/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/charity/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/dailystep/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/leaderboard/logic/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/leaderboard/logic/donation/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/leaderboard/logic/step/cubit.dart';
-import 'package:lifestep/pages/index/index/view.dart';
+import 'package:lifestep/pages/index/logic/charity/cubit.dart';
+import 'package:lifestep/pages/index/logic/dailystep/cubit.dart';
+import 'package:lifestep/pages/index/logic/leaderboard/logic/cubit.dart';
+import 'package:lifestep/pages/index/logic/leaderboard/logic/donation/cubit.dart';
+import 'package:lifestep/pages/index/logic/leaderboard/logic/step/cubit.dart';
+import 'package:lifestep/pages/index/view.dart';
 import 'package:lifestep/pages/leaderboard/details.dart';
 import 'package:lifestep/pages/leaderboard/logic/cubit.dart';
 import 'package:lifestep/pages/leaderboard/logic/donation/cubit.dart';
@@ -33,7 +33,7 @@ import 'package:lifestep/repositories/home.dart';
 import 'package:lifestep/repositories/static.dart';
 import 'package:lifestep/repositories/step.dart';
 
-import '../pages/index/index/cubit.dart';
+import '../pages/index/logic/main/cubit.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {

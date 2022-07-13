@@ -19,7 +19,7 @@ import 'package:lifestep/pages/challenges/details/view.dart';
 import 'package:lifestep/pages/challenges/list/logic/cubit.dart';
 import 'package:lifestep/pages/challenges/list/logic/state.dart';
 import 'package:lifestep/pages/challenges/preview_map/logic/cubit.dart';
-import 'package:lifestep/pages/index/index/navigation_bloc.dart';
+import 'package:lifestep/pages/index/logic/navigation_bloc.dart';
 import 'package:lifestep/repositories/challenge.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
 import 'package:sprintf/sprintf.dart';
@@ -158,7 +158,7 @@ class _DataListWidgetState extends State<_DataListWidget> {
                           constraints: BoxConstraints(
                               minHeight: constraints.maxHeight
                           ),
-                          // padding: EdgeInsets.symmetric(horizontal: 16),
+                          // padding: PagePadding.leftRight16(),
                           child: Column(
                             children: [
                               for(int i = 0; i<state.dataList!.length; i++)

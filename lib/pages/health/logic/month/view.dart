@@ -16,6 +16,7 @@ import 'package:lifestep/pages/health/logic/month/state.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
 
 import 'cubit.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class HealthMonthView extends StatefulWidget {
   final ScrollController scrollController;
@@ -133,7 +134,7 @@ class HealthMonthViewState extends State<HealthMonthView> {
             behavior: MainScrollBehavior(),
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: PagePadding.all16(),
                 child: Column(
                   children: [
 

@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/config/styles.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class Item0 extends StatelessWidget {
   const Item0({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class Item0 extends StatelessWidget {
         ),
         Container(
           // color: Colors.red,
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: PagePadding.leftRight16(),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -106,7 +107,7 @@ class Item1 extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: PagePadding.leftRight16(),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -181,7 +182,7 @@ class Item2 extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: PagePadding.leftRight16(),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

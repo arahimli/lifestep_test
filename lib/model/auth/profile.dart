@@ -2,7 +2,7 @@ import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/config/endpoints.dart';
 import 'package:lifestep/tools/constants/enum.dart';
 import 'package:sprintf/sprintf.dart';
-import 'package:lifestep/pages/user/cubit/cubit.dart';
+import 'package:lifestep/pages/user/logic/cubit.dart';
 
 class ProfileResponse {
   bool? status;

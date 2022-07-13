@@ -1,5 +1,3 @@
-
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +13,7 @@ import 'package:lifestep/pages/health/components/health_info.dart';
 import 'package:lifestep/pages/health/logic/today/cubit.dart';
 import 'package:lifestep/pages/health/logic/today/state.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class HealthTodayView extends StatefulWidget {
   const HealthTodayView({Key? key}) : super(key: key);
@@ -37,7 +36,7 @@ class HealthTodayViewState extends State<HealthTodayView> {
               behavior: MainScrollBehavior(),
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  padding: PagePadding.all16(),
                   child: Column(
                     children: [
 

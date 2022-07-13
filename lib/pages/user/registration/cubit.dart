@@ -8,7 +8,7 @@ import 'package:lifestep/tools/common/validator.dart';
 import 'package:lifestep/config/endpoints.dart';
 import 'package:lifestep/config/main_constants.dart';
 import 'package:lifestep/model/auth/profile.dart';
-import 'package:lifestep/pages/user/cubit/cubit.dart';
+import 'package:lifestep/pages/user/logic/cubit.dart';
 import 'package:lifestep/pages/user/form-submission-status.dart';
 import 'package:lifestep/pages/user/registration/state.dart';
 import 'package:lifestep/pages/user/repositories/auth.dart';

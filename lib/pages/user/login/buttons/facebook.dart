@@ -10,7 +10,7 @@ import 'package:lifestep/config/main_config.dart';
 import 'package:lifestep/logic/session/cubit.dart';
 import 'package:lifestep/model/auth/profile.dart';
 import 'package:lifestep/model/auth/social_login.dart';
-import 'package:lifestep/pages/user/cubit/cubit.dart';
+import 'package:lifestep/pages/user/logic/cubit.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
 import 'package:sprintf/sprintf.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';

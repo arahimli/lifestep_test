@@ -12,7 +12,7 @@ import 'package:lifestep/pages/donations/list/logic/charity_list_cubit.dart';
 import 'package:lifestep/pages/donations/list/logic/fond_list_cubit.dart';
 import 'package:lifestep/pages/donations/list/tabs/fond.dart';
 import 'package:lifestep/pages/donations/list/tabs/personal.dart';
-import 'package:lifestep/pages/index/index/navigation_bloc.dart';
+import 'package:lifestep/pages/index/logic/navigation_bloc.dart';
 
 class DonationListView extends StatefulWidget {
   const DonationListView({Key? key}) : super(key: key);

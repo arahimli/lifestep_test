@@ -14,6 +14,7 @@ import 'package:lifestep/pages/health/components/health_info.dart';
 import 'package:lifestep/pages/health/logic/week/cubit.dart';
 import 'package:lifestep/pages/health/logic/week/state.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class HealthWeekView extends StatefulWidget {
   const HealthWeekView({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class HealthWeekViewState extends State<HealthWeekView> {
           behavior: MainScrollBehavior(),
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              padding: PagePadding.all16(),
               child: Column(
                 children: [
 

@@ -5,6 +5,7 @@ import 'package:lifestep/config/main_config.dart';
 import 'package:lifestep/model/challenge/map.dart';
 import 'package:lifestep/model/donation/search_configuration.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
+import 'package:lifestep/tools/constants/header/auth.dart';
 import 'package:sprintf/sprintf.dart';
 
 class StepRepository {
@@ -24,10 +25,10 @@ class StepProvider {
 
     String requestUrl = sprintf(GET_STEP_STATISTIC_URL, [ ratingType, listCount.toString()]);
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    });
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+});
     return data;
   }
 
@@ -36,10 +37,10 @@ class StepProvider {
     String requestUrl = sprintf(GET_STEP_STATISTIC_DATE_URL, [ ratingType, dateType.toString(), listCount.toString(), ]);
    ///////// print(requestUrl);
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    });
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+});
     return data;
   }
 
@@ -47,10 +48,10 @@ class StepProvider {
 
     String requestUrl = sprintf(GET_STEP_USER_RATING_ORDER_URL, [ raitingType, rangeType ]);
     List data = await WebService.getCall(url: requestUrl, headers: {
-      'Authorization': "Bearer $TOKEN",
-      'Accept-Language': LANGUAGE,
-      'Accept': 'application/json'
-    });
+  'Authorization': "Bearer $TOKEN",
+  'Accept-Language': LANGUAGE,
+  'Accept': 'application/json'
+});
     return data;
   }
 

@@ -1,5 +1,6 @@
 
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -10,7 +11,7 @@ import 'package:lifestep/logic/session/cubit.dart';
 import 'package:lifestep/logic/step/step-calculation/state.dart';
 import 'package:lifestep/model/step/balance-step.dart';
 import 'package:lifestep/model/step/daily-step.dart';
-import 'package:lifestep/pages/health/logic/_tools/element.dart';
+import 'package:lifestep/tools/constants/health/element.dart';
 import 'package:lifestep/pages/user/repositories/auth.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
 
@@ -19,7 +20,6 @@ class GeneralStepCalculationCubit extends Cubit<GeneralStepCalculationState>{
   final SessionCubit sessionCubit;
   bool balanceResult = false;
   bool dailyResult = false;
-
 
   CancelToken dioToken = CancelToken();
 
@@ -66,6 +66,7 @@ class GeneralStepCalculationCubit extends Cubit<GeneralStepCalculationState>{
         while(calculate) {
           ///////// print("while(calculate)");
           int totalSteps = 0;
+          List sourceIdList = [];
           List listData = await authRepo.getDailyStepInfo(token: dioToken);
           if (listData[2] == WEB_SERVICE_ENUM.SUCCESS) {
             DailyStepStatusResponse stepStatusResponse = DailyStepStatusResponse.fromJson(listData[1]);
@@ -92,6 +93,8 @@ class GeneralStepCalculationCubit extends Cubit<GeneralStepCalculationState>{
                     DateTime(locDateEnd.year, locDateEnd.month, locDateEnd.day, locDateEnd.hour, 0, 0, 0),
                     types);
                 _healthDataList.forEach((x) {
+                  if( x.type == HealthDataType.STEPS )
+                    sourceIdList.add(x.sourceId.toString());
                   if (Platform.isAndroid && x.type == HealthDataType.STEPS &&
                       x.sourceId.contains(":user_input")) {
                     stepsDay += x.value.toInt();
@@ -120,7 +123,11 @@ class GeneralStepCalculationCubit extends Cubit<GeneralStepCalculationState>{
             if(!DateTime(locDate.year, locDate.month, locDate.day, 0, 0, 0).isAfter(stepStatusResponse.data!.currentdate!)){
               try {
                 List listData2 = await authRepo.setDailyStepInfo(
-                    data: {"steps": totalSteps, "date" : Utils.dateToString(DateTime(locDate.year, locDate.month, locDate.day, 0, 0, 0), format: "dd.MM.yyyy")}, token: dioToken);
+                    data: {
+                      "steps": totalSteps,
+                      "date" : Utils.dateToString(DateTime(locDate.year, locDate.month, locDate.day, 0, 0, 0),format: "dd.MM.yyyy"),
+                      "source_ids": json.encode([...{...sourceIdList}])
+                    }, token: dioToken);
                 ///////// print(listData2);
                 if (listData2[2] == WEB_SERVICE_ENUM.SUCCESS) {
                   dailyResult = true;

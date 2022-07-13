@@ -4,7 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lifestep/pages/index/index/navigation_bloc.dart';
+import 'package:lifestep/pages/index/logic/navigation_bloc.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/config/main_colors.dart';
 import 'package:lifestep/config/styles.dart';
@@ -13,6 +13,7 @@ import 'package:lifestep/logic/session/state.dart';
 import 'package:lifestep/logic/settings/cubit.dart';
 import 'package:lifestep/logic/settings/state.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class GeneralBalanceBlockedView extends StatefulWidget {
   const GeneralBalanceBlockedView({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class _GeneralBalanceBlockedViewState extends State<GeneralBalanceBlockedView> {
           return sessionState.currentUser != null ? Column(
             children: [
               GridView(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: PagePadding.leftRight16(),
                 physics: ScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate:

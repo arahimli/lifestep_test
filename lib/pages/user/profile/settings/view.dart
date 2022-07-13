@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,6 +32,7 @@ import 'package:lifestep/pages/user/repositories/auth.dart';
 import 'package:lifestep/repositories/donation.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class SettingsWidget extends StatefulWidget {
   const SettingsWidget({Key? key}) : super(key: key);
@@ -46,7 +49,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
       behavior: MainScrollBehavior(),
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: PagePadding.leftRight16(),
           child: Column(
             children: [
               // SizedBox(height: 16,),
@@ -329,6 +332,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
                 ),
               ),
               SizedBox(height: 16,),
+              if(Platform.isIOS)
               GestureDetector(
                 onTap: ()async{
                   ModalUtils.removeUserBottomModal(context, size, onTap: (context){

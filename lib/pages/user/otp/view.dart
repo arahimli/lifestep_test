@@ -22,7 +22,7 @@ import 'package:lifestep/logic/term_privacy/cubit.dart';
 import 'package:lifestep/logic/term_privacy/state.dart';
 import 'package:lifestep/model/auth/otp.dart';
 import 'package:lifestep/model/auth/profile.dart';
-import 'package:lifestep/pages/user/cubit/cubit.dart';
+import 'package:lifestep/pages/user/logic/cubit.dart';
 import 'package:lifestep/pages/user/otp/cubit.dart';
 import 'package:lifestep/pages/user/otp/state.dart';
 import 'package:lifestep/pages/user/components/otp-number.dart';

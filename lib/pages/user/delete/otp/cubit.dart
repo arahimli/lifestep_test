@@ -4,7 +4,7 @@ import 'package:lifestep/pages/user/delete/otp/state.dart';
 import 'package:lifestep/tools/common/validator.dart';
 import 'package:lifestep/config/endpoints.dart';
 import 'package:lifestep/model/auth/otp.dart';
-import 'package:lifestep/pages/user/cubit/cubit.dart';
+import 'package:lifestep/pages/user/logic/cubit.dart';
 import 'package:lifestep/pages/user/form-submission-status.dart';
 import 'package:lifestep/pages/user/otp/state.dart';
 import 'package:lifestep/pages/user/repositories/auth.dart';
@@ -60,7 +60,7 @@ class OtpRemoveCubit extends Cubit<OtpRemoveState> {
         data: {
         },
       );
-      print(data);
+      // print(data);
       if (data[0] == 200) {
         _endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 180;
         _countdownTimerController = CountdownTimerController(endTime: _endTime);

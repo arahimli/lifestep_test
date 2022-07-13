@@ -9,6 +9,7 @@ import 'package:lifestep/model/step/user-item.dart';
 import 'package:lifestep/pages/home/components/liderboard_item.dart';
 import 'cubit.dart';
 import 'state.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class AllStepUserOrderView extends StatelessWidget {
   final bool display;
@@ -37,7 +38,7 @@ class AllStepUserOrderView extends StatelessWidget {
             }
             else if(state is GeneralUserLeaderBoardAllStepError){
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: PagePadding.leftRight16(),
                 child: GeneralErrorLoadAgainWidget(
                   onTap: (){
                     context.read<GeneralUserLeaderBoardAllStepCubit>().refresh();

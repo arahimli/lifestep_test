@@ -199,7 +199,7 @@
 //                                         ),
 //                                         Container(
 //                                           width: double.infinity,
-//                                           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+//                                           padding: PagePadding.all16(),
 //                                           decoration: BoxDecoration(
 //                                               borderRadius: BorderRadius.circular(16),
 //                                               border: Border.all(color: MainColors.darkPink500!, width: 2)

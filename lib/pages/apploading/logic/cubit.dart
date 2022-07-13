@@ -57,7 +57,7 @@ class ApploadingCubit extends Cubit<ApploadingState> {
 
     if (pref.containsKey('token')) {
       TOKEN = pref.getString('token');
-      print("TOKEN = ${TOKEN}");
+      // print("TOKEN = ${TOKEN}");
     }
 
     if(!pref.containsKey('player_id')){

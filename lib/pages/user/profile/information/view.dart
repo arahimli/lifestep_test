@@ -18,7 +18,7 @@ import 'package:lifestep/config/scroll_behavior.dart';
 import 'package:lifestep/config/styles.dart';
 import 'package:lifestep/logic/session/cubit.dart';
 import 'package:lifestep/logic/session/state.dart';
-import 'package:lifestep/pages/user/cubit/cubit.dart';
+import 'package:lifestep/pages/user/logic/cubit.dart';
 import 'package:lifestep/pages/user/profile/information/cubit.dart';
 import 'package:lifestep/pages/user/profile/information/goal_step/cubit.dart';
 import 'package:lifestep/pages/user/profile/information/goal_step/state.dart';
@@ -26,6 +26,7 @@ import 'package:lifestep/pages/user/profile/information/state.dart';
 import 'package:lifestep/pages/user/repositories/auth.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class InformationWidget extends StatefulWidget {
   const InformationWidget({Key? key}) : super(key: key);
@@ -44,12 +45,12 @@ class InformationWidgetState extends State<InformationWidget> {
       behavior: MainScrollBehavior(),
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: PagePadding.all16(),
           child: Column(
             children: [
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: PagePadding.all16(),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: MainColors.darkPink500!, width: 2)

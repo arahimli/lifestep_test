@@ -18,9 +18,9 @@ class TermsPrivacyCubit extends Cubit<TermsPrivacyState> {
   }
 
   Future<bool> resetErrorTermsPrivacy({bool refresh: false}) async{
-    print(state);
+    // print(state);
     if(refresh && state is TermsPrivacyError){
-      print("refresh && state is TermsPrivacyError");
+      // print("refresh && state is TermsPrivacyError");
       emit(TermsPrivacyLoading());
       this.getTermsPrivacy();
       // times = 0;
@@ -29,12 +29,12 @@ class TermsPrivacyCubit extends Cubit<TermsPrivacyState> {
   }
 
   getTermsPrivacy() async {
-    print("getTermsPrivacy");
-    print("listData[2]");
+    // print("getTermsPrivacy");
+    // print("listData[2]");
     List listData = await staticRepository.getTermsPrivacy();
 
-    print("listData[2]");
-    print(listData[2]);
+    // print("listData[2]");
+    // print(listData[2]);
     if(listData[2] == WEB_SERVICE_ENUM.SUCCESS) {
       TermsPrivacyResponse  termsPrivacyResponse = TermsPrivacyResponse.fromJson(listData[1]);
       emit(TermsPrivacyStateLoaded(termsPrivacyModel: termsPrivacyResponse.data));

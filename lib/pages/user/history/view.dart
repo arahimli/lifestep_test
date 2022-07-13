@@ -117,7 +117,7 @@ class _DonationHistoryViewState extends State<DonationHistoryView> with TickerPr
                                         constraints: BoxConstraints(
                                             minHeight: constraints.maxHeight
                                         ),
-                                        // padding: EdgeInsets.symmetric(horizontal: 16),
+                                        // padding: PagePadding.leftRight16(),
                                         child: Column(
                                           children: [
                                             for(int i = 0; i<state.dataList!.length; i++)

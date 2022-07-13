@@ -47,21 +47,22 @@ import 'package:lifestep/pages/donations/details/personal/view.dart';
 import 'package:lifestep/pages/general/static_page.dart';
 import 'package:lifestep/pages/health/details.dart';
 import 'package:lifestep/pages/home/components/liderboard_item.dart';
-import 'package:lifestep/pages/index/index/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/charity/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/charity/state.dart';
-import 'package:lifestep/pages/index/index/logic/dailystep/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/dailystep/state.dart';
-import 'package:lifestep/pages/index/index/logic/leaderboard/logic/donation/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/leaderboard/logic/step/cubit.dart';
-import 'package:lifestep/pages/index/index/logic/leaderboard/view.dart';
-import 'package:lifestep/pages/index/index/navigation_bloc.dart';
-import 'package:lifestep/pages/index/index/state.dart';
+import 'package:lifestep/pages/index/logic/main/cubit.dart';
+import 'package:lifestep/pages/index/logic/charity/cubit.dart';
+import 'package:lifestep/pages/index/logic/charity/state.dart';
+import 'package:lifestep/pages/index/logic/dailystep/cubit.dart';
+import 'package:lifestep/pages/index/logic/dailystep/state.dart';
+import 'package:lifestep/pages/index/logic/leaderboard/logic/donation/cubit.dart';
+import 'package:lifestep/pages/index/logic/leaderboard/logic/step/cubit.dart';
+import 'package:lifestep/pages/index/logic/leaderboard/view.dart';
+import 'package:lifestep/pages/index/logic/navigation_bloc.dart';
+import 'package:lifestep/pages/index/logic/main/state.dart';
 import 'package:lifestep/pages/test/silver-appbar-map/main.dart';
 import 'package:lifestep/repositories/challenge.dart';
 import 'package:lifestep/repositories/donation.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:sprintf/sprintf.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -134,12 +135,12 @@ class _HomeViewState extends State<HomeView> {
                         children: [
 
                           Container(
-                              // padding: EdgeInsets.symmetric(horizontal: 16),
+                              // padding: PagePadding.leftRight16(),
                               child: CarouselWidget()
                           ),
                           SizedBox(height: 40,),
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
+                            padding: PagePadding.leftRight16(),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -349,7 +350,7 @@ class _HomeViewState extends State<HomeView> {
 
                           SizedBox(height: 24,),
                           Container(
-                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              padding: PagePadding.leftRight16(),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -385,7 +386,7 @@ class _HomeViewState extends State<HomeView> {
                                     charityList = state.dataList ?? [];
                                   }
                                   return charityList.length > 0 ? Container(
-                                      padding: EdgeInsets.symmetric(horizontal: 16),
+                                      padding: PagePadding.leftRight16(),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -422,7 +423,7 @@ class _HomeViewState extends State<HomeView> {
                                     charityList = state.dataList ?? [];
                                   }
                                   return charityList.length > 0 ? GridView.builder(
-                                    padding: EdgeInsets.symmetric(horizontal: 16),
+                                    padding: PagePadding.leftRight16(),
                                     itemCount: charityList.length,
                                     physics: ScrollPhysics(),
                                     shrinkWrap: true,
@@ -447,7 +448,7 @@ class _HomeViewState extends State<HomeView> {
                                 }
                                 else if(state is HomeCharityListError){
                                   return Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 16),
+                                    padding: PagePadding.leftRight16(),
                                     child: GeneralErrorLoadAgainWidget(
                                       onTap: (){
                                         context.read<HomeCharityListCubit>().refresh();
@@ -468,7 +469,7 @@ class _HomeViewState extends State<HomeView> {
 //                           BlocBuilder<IndexCubit,IndexState>(
 //                             builder: (context, state) {
 //                               return state is IndexLoaded ? GridView.builder(
-//                                 padding: EdgeInsets.symmetric(horizontal: 16),
+//                                 padding: PagePadding.leftRight16(),
 //                                 itemCount: state.indexPageModel.charityList.length,
 //                                 physics: ScrollPhysics(),
 //                                 shrinkWrap: true,
@@ -493,7 +494,7 @@ class _HomeViewState extends State<HomeView> {
                           SizedBox(height: 24,),
 
                           Container(
-                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              padding: PagePadding.leftRight16(),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -518,7 +519,7 @@ class _HomeViewState extends State<HomeView> {
                           //       separatorBuilder: (BuildContext context, int index) {
                           //         return SizedBox(height: 4,);
                           //       },
-                          //       padding: EdgeInsets.symmetric(horizontal: 16),
+                          //       padding: PagePadding.leftRight16(),
                           //       itemCount: state.indexPageModel.fondList.length,
                           //       physics: ScrollPhysics(),
                           //       shrinkWrap: true,
@@ -537,7 +538,7 @@ class _HomeViewState extends State<HomeView> {
                                 separatorBuilder: (BuildContext context, int index) {
                                   return SizedBox(height: 4,);
                                 },
-                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                padding: PagePadding.leftRight16(),
                                 itemCount: state.indexPageModel.challengeList.length,
                                 physics: ScrollPhysics(),
                                 shrinkWrap: true,

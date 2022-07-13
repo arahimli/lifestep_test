@@ -1,30 +1,17 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lifestep/tools/common/input-format.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/tools/components/dialog/loading.dart';
-import 'package:lifestep/tools/components/form/datefield/general.dart';
-import 'package:lifestep/tools/components/form/select/selectable/view.dart';
 import 'package:lifestep/tools/components/form/textfield/general.dart';
 import 'package:lifestep/config/main_colors.dart';
-import 'package:lifestep/config/main_constants.dart';
 import 'package:lifestep/config/scroll_behavior.dart';
-import 'package:lifestep/config/styles.dart';
-import 'package:lifestep/logic/session/cubit.dart';
-import 'package:lifestep/logic/session/state.dart';
-import 'package:lifestep/pages/user/cubit/cubit.dart';
 import 'package:lifestep/pages/user/profile/information/goal_step/cubit.dart';
 import 'package:lifestep/pages/user/profile/information/goal_step/state.dart';
-import 'package:lifestep/pages/user/repositories/auth.dart';
 import 'package:lifestep/repositories/service/web_service.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
-import 'cubit.dart';
-import 'state.dart';
 
 class InformationWidget extends StatefulWidget {
   const InformationWidget({Key? key}) : super(key: key);
@@ -42,7 +29,7 @@ class InformationWidgetState extends State<InformationWidget> {
       behavior: MainScrollBehavior(),
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: PagePadding.all16(),
         ),
       ),
     );

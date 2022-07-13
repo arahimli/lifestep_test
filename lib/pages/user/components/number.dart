@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lifestep/config/main_colors.dart';
 import 'package:lifestep/config/styles.dart';
+import 'package:lifestep/tools/general/padding/page-padding.dart';
 
 class Numpad extends StatefulWidget {
   final int? length;
@@ -50,7 +51,7 @@ class _NumpadState extends State<Numpad> {
       child: Container(
         // height: widget.height,
         // color: Colors.black12,
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: PagePadding.leftRight16(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[

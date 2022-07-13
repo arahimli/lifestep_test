@@ -6,6 +6,8 @@ import 'package:lifestep/repositories/home.dart';
 import 'package:lifestep/repositories/static.dart';
 import 'package:lifestep/repositories/step.dart';
 
+import 'endpoints.dart';
+
 GetIt getIt = GetIt.instance;
 
 void setupLocator() {
@@ -23,3 +25,4 @@ class NavigationService {
   //   return navigatorKey.currentState.pushNamed(routeName!);
   // }
 }
+
