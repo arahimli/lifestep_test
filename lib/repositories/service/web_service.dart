@@ -3,8 +3,10 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:lifestep/tools/common/input-data.dart';
 
-enum WEB_SERVICE_ENUM {SUCCESS, STANDARD_ERROR, UNEXCEPTED_ERROR, INTERNET_ERROR, UN_AUTH}
+
+enum WEB_SERVICE_ENUM {SUCCESS, STANDARD_ERROR, UNEXCEPTED_ERROR, INTERNET_ERROR, UN_AUTH, BLOCK, DELETED}
 class WebService {
 
   static BaseOptions options = BaseOptions(
@@ -17,7 +19,7 @@ class WebService {
     Dio dio = Dio(options);
     try {
       Response response;
-      dio..options.headers.addAll(headers);
+      dio..options.headers.addAll(headers ?? DataUtils.getHeader());
       response = await dio.delete(url,data: data);
       return [response.statusCode, response.data, WEB_SERVICE_ENUM.SUCCESS];
     } on DioError catch (e, stacktrace) {
@@ -37,6 +39,18 @@ class WebService {
               {
                 error_text = 'error_went_wrong';
                 errorEnum = WEB_SERVICE_ENUM.UN_AUTH;
+              }
+              break;
+            case 410:
+              {
+                error_text = 'blocked_user';
+                errorEnum = WEB_SERVICE_ENUM.BLOCK;
+              }
+              break;
+            case 411:
+              {
+                error_text = 'deleted_user';
+                errorEnum = WEB_SERVICE_ENUM.DELETED;
               }
               break;
             case 500:
@@ -66,7 +80,7 @@ class WebService {
     Dio dio = Dio(options);
     try {
       Response response;
-      dio..options.headers.addAll(headers);
+      dio..options.headers.addAll(headers ?? DataUtils.getHeader());
       response = await dio.post(url,data: data);
    ////// print(response.data);
       return [response.statusCode, response.data, WEB_SERVICE_ENUM.SUCCESS];
@@ -91,6 +105,18 @@ class WebService {
               {
                 error_text = 'error_went_wrong';
                 errorEnum = WEB_SERVICE_ENUM.UN_AUTH;
+              }
+              break;
+            case 410:
+              {
+                error_text = 'blocked_user';
+                errorEnum = WEB_SERVICE_ENUM.BLOCK;
+              }
+              break;
+            case 411:
+              {
+                error_text = 'deleted_user';
+                errorEnum = WEB_SERVICE_ENUM.DELETED;
               }
               break;
             case 500:
@@ -119,7 +145,7 @@ class WebService {
     Dio dio = Dio(options);
     try {
       Response response;
-      dio..options.headers.addAll(headers);
+      dio..options.headers.addAll(headers ?? DataUtils.getHeader());
       response = await dio.get(url, cancelToken: token);
       return [response.statusCode, response.data, WEB_SERVICE_ENUM.SUCCESS];
     } on DioError catch (e, stacktrace) {
@@ -146,6 +172,18 @@ class WebService {
               {
                 error_text = 'error_went_wrong';
                 errorEnum = WEB_SERVICE_ENUM.UN_AUTH;
+              }
+              break;
+            case 410:
+              {
+                error_text = 'blocked_user';
+                errorEnum = WEB_SERVICE_ENUM.BLOCK;
+              }
+              break;
+            case 411:
+              {
+                error_text = 'deleted_user';
+                errorEnum = WEB_SERVICE_ENUM.DELETED;
               }
               break;
             case 500:
@@ -176,7 +214,7 @@ class WebService {
       var response;
       response = await http.get(
         Uri.parse(url),
-        headers: headers,
+        headers: headers ?? DataUtils.getHeader(),
       );
 
       // If the call to the server was successful, parse the JSON.

@@ -65,11 +65,6 @@ class UserProvider {
       String requestUrl = LOGOUT_URL;
       List data = await WebService.postCall(
           url: requestUrl,
-          headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
           data: {}
       );
       return data;
@@ -78,22 +73,14 @@ class UserProvider {
   Future<List> getUser({String? extraUrl}) async {
     String requestUrl = GET_USER_URL + (extraUrl ?? '');
     // print(requestUrl);
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 
   Future<List> getAchievements(CancelToken dioToken) async {
     String requestUrl = ACHIEVEMENTS_URL;
     // String requestUrl = "https://app.lifestep.az/api/charities/0/10?search=";
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
+    List data = await WebService.getCall(url: requestUrl,
     token: dioToken);
     return data;
   }
@@ -101,22 +88,14 @@ class UserProvider {
   Future<List> getNotifications(int pageValue, CancelToken dioToken) async {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = sprintf(NOTIFICATIONS_URL, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count]);
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
+    List data = await WebService.getCall(url: requestUrl,
     token: dioToken);
     return data;
   }
 
   Future<List> loginWithCredential(String phone) async {
     String requestUrl = LOGIN_URL;
-    List data = await WebService.postCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
+    List data = await WebService.postCall(url: requestUrl,
     data: {
       'phone': phone
     }
@@ -154,26 +133,14 @@ class UserProvider {
 
   Future<List> deleteOtp(Map<String, dynamic> requestData) async {
     String requestUrl = DELETE_CONFIRM_OTP_URL;
-    List data = await WebService.deleteCall(url: requestUrl,
-        headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-        data: requestData
+    List data = await WebService.deleteCall(url: requestUrl,data: requestData
     );
     return data;
   }
 
   Future<List> deleteUser(Map<String, dynamic> requestData) async {
     String requestUrl = DELETE_USER_URL;
-    List data = await WebService.postCall(url: requestUrl,
-        headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-        data: requestData
+    List data = await WebService.postCall(url: requestUrl, data: requestData
     );
     return data;
   }
@@ -189,37 +156,20 @@ class UserProvider {
   Future<List> getStepInfo(CancelToken dioToken) async {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = STEP_INFO_URL;
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-        token: dioToken);
+    List data = await WebService.getCall(url: requestUrl, token: dioToken);
     return data;
   }
 
   Future<List> setStepInfo(Map<String, dynamic> requestData, CancelToken dioToken) async {
     String requestUrl = SET_STEP_INFO_URL;
-    List data = await WebService.postCall(url: requestUrl,
-      headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-      data: requestData
+    List data = await WebService.postCall(url: requestUrl, data: requestData
     );
     return data;
   }
 
   Future<List> setStepInfo2(Map<String, dynamic> requestData, CancelToken dioToken) async {
     String requestUrl = SET_STEP_INFO_URL2;
-    List data = await WebService.postCall(url: requestUrl,
-      headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-      data: requestData
+    List data = await WebService.postCall(url: requestUrl, data: requestData
     );
     return data;
   }
@@ -227,36 +177,21 @@ class UserProvider {
   Future<List> getDailyStepInfo(CancelToken dioToken) async {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = STEP_DAILY_INFO_URL;
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-        token: dioToken);
+    List data = await WebService.getCall(url: requestUrl, token: dioToken);
     return data;
   }
 
   Future<List> getAchievementsControlInfo(CancelToken dioToken) async {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = USER_ACHIEVEMENTS_CONTROL_INFO_URL;
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-        token: dioToken);
+    List data = await WebService.getCall(url: requestUrl, token: dioToken);
     return data;
   }
 
   Future<List> getDailyStepInfo2(CancelToken dioToken) async {
     // String requestUrl = FOND_USERS_URL;
     String requestUrl = STEP_DAILY_INFO_URL2;
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-        token: dioToken);
+    List data = await WebService.getCall(url: requestUrl, token: dioToken);
     return data;
   }
 
@@ -264,13 +199,7 @@ class UserProvider {
     String requestUrl = SET_STEP_DAILY_INFO_URL;
    // print("setDailyStepInfo = ${requestUrl}");
    // print(requestData);
-    List data = await WebService.postCall(url: requestUrl,
-      headers: {
-        'Authorization': "Bearer $TOKEN",
-        'Accept-Language': LANGUAGE,
-        'Accept': 'application/json'
-      },
-      data: requestData
+    List data = await WebService.postCall(url: requestUrl, data: requestData
     );
     // print(data);
     return data;
@@ -280,13 +209,7 @@ class UserProvider {
   Future<List> setDailyStepInfo2(Map<String, dynamic> requestData, CancelToken dioToken) async {
     String requestUrl = SET_STEP_DAILY_INFO_URL2;
    ///////// print("setDailyStepInfo = ${requestUrl}");
-    List data = await WebService.postCall(url: requestUrl,
-      headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-      data: requestData
+    List data = await WebService.postCall(url: requestUrl, data: requestData
     );
     return data;
   }
@@ -294,13 +217,7 @@ class UserProvider {
 
   Future<List> socialLogin(Map<String, dynamic> requestData, CancelToken dioToken) async {
     String requestUrl = SOCIAL_LOGIN_URL;
-    List data = await WebService.postCall(url: requestUrl,
-      headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-      data: requestData
+    List data = await WebService.postCall(url: requestUrl, data: requestData
     );
     return data;
   }

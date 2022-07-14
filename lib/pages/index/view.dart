@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:lifestep/repositories/service/web_service.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/common/confetti.dart';
 import 'package:lifestep/tools/components/error/internet_error.dart';
@@ -159,6 +160,37 @@ class _IndexViewState extends State<IndexView> {
                                   // if(state.userAchievementModels != null && state.userAchievementModels!.length > 0){
                                   //
                                   // }
+                                }
+                              }else if(state is GeneralStepCalculationError){
+
+                                switch (state.errorCode) {
+                                  case WEB_SERVICE_ENUM.DELETED:
+                                    {
+                                      Navigator.pushReplacementNamed(context, "/user-removed-by-admin");
+                                    }
+                                    break;
+                                  case WEB_SERVICE_ENUM.BLOCK:
+                                    {
+                                      Navigator.pushReplacementNamed(context, "/user-blocked");
+                                    }
+                                    break;
+                                  case WEB_SERVICE_ENUM.INTERNET_ERROR:
+                                    {
+                                      Utils.showErrorModal(context, size,
+                                          errorCode: WEB_SERVICE_ENUM.INTERNET_ERROR,
+                                          title: Utils.getString(
+                                              context, "internet_connection_error"));
+                                      //////// print("internet error");
+                                    }
+                                    break;
+                                  default:
+                                    {
+                                      Utils.showErrorModal(context, size,
+                                          errorCode: state.errorCode,
+                                          title: Utils.getString(
+                                              context, "error_went_wrong"));
+                                    }
+                                    break;
                                 }
                               }
                             },

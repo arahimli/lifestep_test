@@ -113,7 +113,7 @@ class HealthWeekCubit extends Cubit<HealthWeekState>{
 
    ////// print("stepsWeekFull = ${stepsWeekFull}");
    ////// print("stepsInputWeek = ${stepsInputWeek}");
-
+   //      if(this.isClosed)
         emit(HealthWeekSuccess(stepCount: (stepsWeekFull - stepsInputWeek.toInt()) > 0 ? stepsWeekFull - stepsInputWeek.toInt() : 0, stepCountDay: stepsWeekDayFull - stepsInputWeekDay, calories: calories, distance: distance, selectedDate: selectedDate));
     } else {
       //////// print("Authorization not granted");

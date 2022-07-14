@@ -29,11 +29,7 @@ class DonationProvider {
   Future<List> getUserDonations(String searchText, int pageValue, CancelToken token) async {
 
     String requestUrl = sprintf(USER_DONATIONS_URL, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count, searchText]);
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl,);
     return data;
   }
 
@@ -41,73 +37,45 @@ class DonationProvider {
   Future<List> getCharities(String searchText, int pageValue, CancelToken token) async {
 
     String requestUrl = sprintf(CHARITIES_URL, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count, searchText]);
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 
   Future<List> getFonds(String searchText, int pageValue, CancelToken token) async {
 
     String requestUrl = sprintf(FONDS_URL, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count, searchText]);
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 
   Future<List> getCharityDonors(String requestUrl, CancelToken token) async {
 
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 
   Future<List> donateStepCharity(Map<String, dynamic> dataMap, CancelToken token) async {
     String requestUrl = CHARITIY_DONATION_URL;
-    List data = await WebService.postCall(url: requestUrl, data: dataMap, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.postCall(url: requestUrl, data: dataMap);
     return data;
   }
 
 
   Future<List> donateStepFond(Map<String, dynamic> dataMap, CancelToken token) async {
     String requestUrl = FOND_DONATION_URL;
-    List data = await WebService.postCall(url: requestUrl, data: dataMap, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.postCall(url: requestUrl, data: dataMap);
     return data;
   }
 
   Future<List> getFondDonors(String requestUrl, CancelToken token) async {
 
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 
   Future<List> homeCharities() async {
     String requestUrl = HOME_CHARITIES_URL;
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 

@@ -89,6 +89,16 @@ class _AuthViewState extends State<AuthView> {
                                 BlocProvider.of<AuthCubit>(context).phone = state.phone ?? '';
                               }
                               break;
+                            case WEB_SERVICE_ENUM.DELETED:
+                              {
+                                Navigator.pushReplacementNamed(context, "/user-removed-by-admin");
+                              }
+                              break;
+                            case WEB_SERVICE_ENUM.BLOCK:
+                              {
+                                Navigator.pushReplacementNamed(context, "/user-blocked");
+                              }
+                              break;
                             case WEB_SERVICE_ENUM.INTERNET_ERROR:
                               {
                                 Utils.showErrorModal(context, size,

@@ -334,7 +334,7 @@ class InformationWidgetState extends State<InformationWidget> {
                         controller: context.read<ProfileInformationCubit>().genderController,
                         requiredInput: true,
                         initialValue: state.gender ?? 'male',
-                        dataMap: InputDataUtils.genderData(context),
+                        dataMap: DataUtils.genderData(context),
                         validateFunction: context.read<ProfileInformationCubit>().formValidator.validGender,
                         toDo: (value){
                           context.read<ProfileInformationCubit>().genderChanged(

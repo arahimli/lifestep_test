@@ -22,6 +22,8 @@ import 'package:lifestep/pages/notifications/logic/cubit.dart';
 import 'package:lifestep/pages/notifications/view.dart';
 import 'package:lifestep/pages/permission/health.dart';
 import 'package:lifestep/pages/permission/standard.dart';
+import 'package:lifestep/pages/user/block/view.dart';
+import 'package:lifestep/pages/user/delete/by-admin-view.dart';
 import 'package:lifestep/pages/user/delete/info/view.dart';
 import 'package:lifestep/pages/user/delete/otp/cubit.dart';
 import 'package:lifestep/pages/user/delete/otp/view.dart';
@@ -145,6 +147,17 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return PageRouteBuilder<dynamic>(
           pageBuilder: (_, Animation<double> a1, Animation<double> a2) =>
               AuthView());
+
+    case '/user-blocked':
+      return PageRouteBuilder<dynamic>(
+          pageBuilder: (_, Animation<double> a1, Animation<double> a2) =>
+              UserBlockedView());
+
+
+    case '/user-removed-by-admin':
+      return PageRouteBuilder<dynamic>(
+          pageBuilder: (_, Animation<double> a1, Animation<double> a2) =>
+              UserRemovedByAdminView());
 
     case '/otp-remove':
       return PageRouteBuilder<dynamic>(

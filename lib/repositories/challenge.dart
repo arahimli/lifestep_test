@@ -28,43 +28,26 @@ class ChallengeProvider {
   Future<List> getChallenges(String searchText, int pageValue, CancelToken token) async {
 
     String requestUrl = sprintf(CHALLENGES_URL, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count, searchText]);
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
   
   Future<List> getChallengeParticipants(String requestUrl, CancelToken token) async {
 
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 
   Future<List> joinChallenge(String requestUrl, Map<String, dynamic> mapData, CancelToken token) async {
 
-    List data = await WebService.postCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
-    data: mapData,
+    List data = await WebService.postCall(url: requestUrl,data: mapData,
     );
     return data;
   }
 
   Future<List> successChallenge(String requestUrl, Map<String, dynamic> mapData, CancelToken token) async {
 
-    List data = await WebService.postCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
+    List data = await WebService.postCall(url: requestUrl,
     data: mapData,
     );
     return data;
@@ -72,11 +55,7 @@ class ChallengeProvider {
 
   Future<List> cancelChallenge(String requestUrl, Map<String, dynamic> mapData, CancelToken token) async {
 
-    List data = await WebService.deleteCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-},
+    List data = await WebService.deleteCall(url: requestUrl,
     data: mapData
     );
     return data;

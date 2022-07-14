@@ -1,8 +1,11 @@
+import 'dart:io';
+
+import 'package:lifestep/config/endpoints.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:flutter/material.dart';
 
-class InputDataUtils {
-  InputDataUtils._();
+class DataUtils {
+  DataUtils._();
 
   static List<Map<String, dynamic>> genderData(BuildContext context) {
     return [
@@ -18,4 +21,15 @@ class InputDataUtils {
       },
     ];
   }
+
+
+  static Map<String, dynamic> getHeader() {
+    return {
+      'Authorization': "Bearer $TOKEN",
+      'Accept-Language': LANGUAGE,
+      'Accept': 'application/json',
+      'OS': Platform.isIOS ? '1' : '2'
+    };
+  }
+
 }

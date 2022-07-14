@@ -24,11 +24,7 @@ class StepProvider {
   Future<List> getStepStatistic(String ratingType, int listCount, CancelToken token) async {
 
     String requestUrl = sprintf(GET_STEP_STATISTIC_URL, [ ratingType, listCount.toString()]);
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 
@@ -36,22 +32,14 @@ class StepProvider {
 
     String requestUrl = sprintf(GET_STEP_STATISTIC_DATE_URL, [ ratingType, dateType.toString(), listCount.toString(), ]);
    ///////// print(requestUrl);
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 
   Future<List> getUserOrderRatingStepStatistic(String raitingType, String rangeType, CancelToken token) async {
 
     String requestUrl = sprintf(GET_STEP_USER_RATING_ORDER_URL, [ raitingType, rangeType ]);
-    List data = await WebService.getCall(url: requestUrl, headers: {
-  'Authorization': "Bearer $TOKEN",
-  'Accept-Language': LANGUAGE,
-  'Accept': 'application/json'
-});
+    List data = await WebService.getCall(url: requestUrl);
     return data;
   }
 
