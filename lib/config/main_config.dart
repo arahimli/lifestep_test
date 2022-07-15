@@ -27,6 +27,7 @@ class MainConfig {
   static const int app_version_android = 36;
   static const int app_version_ios = 36;
 
+  static const String app_url = 'https://lifestep.az';
   static const String app_playsotre_url = 'https://play.google.com/store/apps/details?id=az.lifestep';
   static const String app_appsotre_url = 'https://apps.apple.com/az/app/lifestep-steps-to-charity/id1613896644';
 

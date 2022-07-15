@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -332,7 +330,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
                 ),
               ),
               SizedBox(height: 16,),
-              if(Platform.isIOS)
+              // if(Platform.isIOS)
               GestureDetector(
                 onTap: ()async{
                   ModalUtils.removeUserBottomModal(context, size, onTap: (context){

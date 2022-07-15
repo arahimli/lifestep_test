@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifestep/config/main_config.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/error/standard-message-widget.dart';
 import 'package:lifestep/tools/constants/enum.dart';
@@ -20,7 +21,7 @@ class _UserBlockedViewState extends State<UserBlockedView> {
         imageUrl: "assets/svgs/dialog/user-blocked.svg",
         buttonText: Utils.getString(context, "blocked_user_info_view_button_text"),
         onTap: (){
-          Navigator.pushReplacementNamed(context, "/apploading");
+          Utils.launchUrl(MainConfig.app_url);
         }
 
     );

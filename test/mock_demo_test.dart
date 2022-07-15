@@ -9,6 +9,7 @@ import 'mock_demo_test.mocks.dart';
 
 // Generate a MockClient using the Mockito package.
 // Create new instances of this class in each test.
+
 @GenerateMocks([http.Client])
 void main() {
   final staticRepository = StaticRepository();

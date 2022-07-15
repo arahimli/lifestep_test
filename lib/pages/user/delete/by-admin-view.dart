@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifestep/config/main_config.dart';
 import 'package:lifestep/tools/common/utlis.dart';
 import 'package:lifestep/tools/components/error/standard-message-widget.dart';
 import 'package:lifestep/tools/constants/enum.dart';
@@ -20,7 +21,8 @@ class _UserRemovedByAdminViewState extends State<UserRemovedByAdminView> {
         imageUrl: "assets/svgs/dialog/user-delete.svg",
         buttonText: Utils.getString(context, "delete_user_by_admin_info_view_button_text"),
         onTap: (){
-          Navigator.pushReplacementNamed(context, "/apploading");
+          Utils.launchUrl(MainConfig.app_url);
+          // Navigator.pushReplacementNamed(context, "/apploading");
         }
 
     );
