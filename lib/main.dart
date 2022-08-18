@@ -8,16 +8,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lifestep/config/get_it.dart';
+import 'package:lifestep/src/tools/config/get_it.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:lifestep/src/app.dart';
 
-import 'main/app.dart';
-import 'tools/common/language.dart';
-import 'config/main_config.dart';
+import 'src/tools/common/language.dart';
+import 'src/tools/config/main_config.dart';
 import 'package:loggy/loggy.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
+import 'package:flutter_uxcam/flutter_uxcam.dart';
 
 
 
@@ -54,8 +55,11 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
+  FlutterUxcam.optIntoSchematicRecordings();
+  FlutterUxcam.startWithKey(MainConfig.app_uxcam_config);
+
   // await Permission.appTrackingTransparency.request();
-  final TrackingStatus status = await AppTrackingTransparency.requestTrackingAuthorization();
+  await AppTrackingTransparency.requestTrackingAuthorization();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -105,7 +109,7 @@ void main() async{
     AppMetrica.activate(_config);
 
     runApp(EasyLocalization(
-        path: 'assets/langs',
+        path: MainConfig.LANG_PATH,
         startLocale: await MainConfig.defaultLanguage.startLocale(),
         supportedLocales: getSupportedLanguages(),
         child: MainApp(

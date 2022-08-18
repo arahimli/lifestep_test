@@ -1,8 +1,6 @@
-
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lifestep/config/endpoints.dart';
-import 'package:lifestep/pages/user/repositories/auth.dart';
-import 'package:lifestep/repositories/service/web_service.dart';
+import 'package:lifestep/src/resources/service/web_service.dart';
+import 'package:lifestep/src/ui/user/repositories/auth.dart';
 
 void main() {
   UserRepository userRepository = UserRepository();

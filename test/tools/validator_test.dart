@@ -1,6 +1,6 @@
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lifestep/tools/common/validator.dart';
+import 'package:lifestep/src/tools/common/validator.dart';
 
 void main() {
   FormValidator formValidator = FormValidator();

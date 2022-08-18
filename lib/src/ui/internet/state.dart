@@ -1,0 +1,34 @@
+
+import 'package:equatable/equatable.dart';
+import 'package:lifestep/src/tools/constants/enum.dart';
+
+
+
+abstract class InternetState extends Equatable {
+  const InternetState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class InternetLoading extends InternetState {
+  @override
+  List<Object> get props => [];
+}
+
+class InternetConnected extends InternetState {
+  const InternetConnected({required this.connectionType});
+
+  final ConnectionType connectionType;
+
+  @override
+  List<Object> get props => [connectionType];
+
+  @override
+  String toString() => 'InternetConnected(connectionType: $connectionType)';
+}
+
+class InternetDisconnected extends InternetState {
+  @override
+  List<Object> get props => [];
+}

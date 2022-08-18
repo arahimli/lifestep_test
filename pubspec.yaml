@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.31+31
+version: 1.0.39+39
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -44,13 +44,12 @@ dependencies:
   provider: ^6.0.2
 
 
-
-  url_launcher: ^6.0.18
-  flutter_svg: ^1.0.3
+  # animation
   smooth_page_indicator: ^1.0.0+2
   decorative_app_bar: ^0.0.2
   concentric_transition: ^1.0.1+1
   salomon_bottom_bar: ^3.2.0
+  pull_to_refresh:
   percent_indicator: ^3.4.0
   health: ^3.4.3
   modal_bottom_sheet: ^2.0.0
@@ -113,6 +112,9 @@ dependencies:
   cached_network_image: ^3.2.0
   collection: ^1.0.0
   flutter_dotenv: ^5.0.2
+  url_launcher: ^6.0.18
+  flutter_svg: ^1.0.3
+  json_annotation: ^4.0.1
 
   # map
   flutter_map: ^0.14.0
@@ -123,7 +125,8 @@ dependencies:
 
   #metric and statistic
   appmetrica_plugin: ^0.1.0
-  flutter_flurry_sdk: ^2.2.0
+  flutter_uxcam:
+  f_logs:
 
 
 dependency_overrides:
@@ -139,10 +142,12 @@ dependency_overrides:
   firebase_performance_platform_interface: 0.1.0+5
   firebase_app_installations_platform_interface: 0.1.0+6
 
+
 dev_dependencies:
   flutter_launcher_icons: "^0.9.0"
   flutter_test:
     sdk: flutter
+  bloc_test: ^9.0.3
   integration_test:
     sdk: flutter
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -153,6 +158,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   mockito:
   build_runner:
+  json_serializable: ^5.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
