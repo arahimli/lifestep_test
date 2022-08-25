@@ -5,15 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get_it/get_it.dart';
 import 'package:lifestep/src/tools/common/language.dart';
-import 'package:lifestep/src/tools/common/modal-utlis.dart';
+import 'package:lifestep/src/tools/common/modal_utlis.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/buttons/big_borderd_button.dart';
 import 'package:lifestep/src/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/src/tools/components/dialog/loading.dart';
 import 'package:lifestep/src/tools/components/dialog/yesno.dart';
-import 'package:lifestep/src/tools/components/error/general-widget.dart';
+import 'package:lifestep/src/tools/components/error/general_widget.dart';
 import 'package:lifestep/src/tools/components/static/html.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/scroll_behavior.dart';
@@ -21,14 +20,10 @@ import 'package:lifestep/src/tools/config/styles.dart';
 import 'package:lifestep/src/cubits/global/session/cubit.dart';
 import 'package:lifestep/src/cubits/global/term_privacy/cubit.dart';
 import 'package:lifestep/src/cubits/global/term_privacy/state.dart';
-import 'package:lifestep/src/ui/notifications/logic/cubit.dart';
 import 'package:lifestep/src/ui/notifications/view.dart';
-import 'package:lifestep/src/ui/user/history/logic/cubit.dart';
 import 'package:lifestep/src/ui/user/history/view.dart';
 import 'package:lifestep/src/ui/user/profile/language/cubit.dart';
 import 'package:lifestep/src/ui/user/profile/language/state.dart';
-import 'package:lifestep/src/ui/user/repositories/auth.dart';
-import 'package:lifestep/src/resources/donation.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:lifestep/src/tools/general/padding/page-padding.dart';
@@ -72,11 +67,11 @@ class SettingsWidgetState extends State<SettingsWidget> {
               //               //////// print("DynamicTheme.of(context)!.setTheme(");
               //               //////// print(value);
               //               if(value) {
-              //                 context.read<ThemeCubit>().applyTheme(AppThemes.DarkBlue);
-              //                 await DynamicTheme.of(context)!.setTheme(AppThemes.DarkBlue);
+              //                 context.read<ThemeCubit>().applyTheme(AppThemes.darkBlue);
+              //                 await DynamicTheme.of(context)!.setTheme(AppThemes.darkBlue);
               //               }else{
-              //                 context.read<ThemeCubit>().applyTheme(AppThemes.LightBlue);
-              //                 await DynamicTheme.of(context)!.setTheme(AppThemes.LightBlue);
+              //                 context.read<ThemeCubit>().applyTheme(AppThemes.lightBlue);
+              //                 await DynamicTheme.of(context)!.setTheme(AppThemes.lightBlue);
               //               }
               //             },
               //             activeColor: MainColors.darkPink500,
@@ -102,7 +97,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
                     context: context,
                     backgroundColor: Colors.transparent,
                     builder: (context) => BlocProvider(create: (context) => LocalLanguageCubit(),
-                        child: _LanguageModal()
+                        child: const _LanguageModal()
                     ),
                   );
                 },
@@ -113,7 +108,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
                       )
                   ),
                   child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
                     title: Text(Utils.getString(context, "profile_view___tab_settings__language"),
                       style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16),
                       textAlign: TextAlign.left,
@@ -125,14 +120,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
               ),
               // SizedBox(height: 16,),
               InkWell(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MultiBlocProvider(
-                    providers: [
-                      BlocProvider<DonationHistoryListBloc>(create: (BuildContext context) => DonationHistoryListBloc(
-                        donationRepository: GetIt.instance<DonationRepository>(),
-                      )),
-                    ],
-                    child: DonationHistoryView()
-                ))),
+                onTap: () => Navigator.pushNamed(context, DonationHistoryView.routeName),
                 child: Container(
                   decoration: BoxDecoration(
                       border: Border(
@@ -140,7 +128,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
                       )
                   ),
                   child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
                     title: Text(Utils.getString(context, "profile_view___tab_settings__history"),
                       style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16),
                       textAlign: TextAlign.left,
@@ -152,13 +140,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
               ),
               // SizedBox(height: 16,),
               InkWell(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MultiBlocProvider(
-                    providers: [
-                      BlocProvider<NotificationListCubit>(create: (BuildContext context) => NotificationListCubit(
-                        userRepository: GetIt.instance<UserRepository>(),
-                      )),
-                    ],
-                    child: NotificationListView()))),
+                onTap: () => Navigator.pushNamed(context, NotificationListView.routeName),
                 child: Container(
                   decoration: BoxDecoration(
                       border: Border(
@@ -166,7 +148,7 @@ class SettingsWidgetState extends State<SettingsWidget> {
                       )
                   ),
                   child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
                     title: Text(Utils.getString(context, "profile_view___tab_settings__notifications"),
                       style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16),
                       textAlign: TextAlign.left,
@@ -190,15 +172,11 @@ class SettingsWidgetState extends State<SettingsWidget> {
                     ),
                   );
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                  ),
-                  child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__privacy_policy"),
-                    style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkBlue500),
-                    textAlign: TextAlign.left,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,)
-                  ),
+                child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__privacy_policy"),
+                  style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkBlue500),
+                  textAlign: TextAlign.left,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,)
                 ),
               ),
               const SizedBox(height: 16,),
@@ -214,16 +192,12 @@ class SettingsWidgetState extends State<SettingsWidget> {
                     ),
                   );
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                  ),
-                  child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__terms_and_conditions"),
-                    style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkBlue500),
-                    textAlign: TextAlign.left,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  )),
-                ),
+                child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__terms_and_conditions"),
+                  style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkBlue500),
+                  textAlign: TextAlign.left,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                )),
               ),
               const SizedBox(height: 16,),
               GestureDetector(
@@ -262,16 +236,12 @@ class SettingsWidgetState extends State<SettingsWidget> {
                     ),
                   );
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                  ),
-                  child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__about"),
-                    style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkBlue500),
-                    textAlign: TextAlign.left,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  )),
-                ),
+                child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__about"),
+                  style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkBlue500),
+                  textAlign: TextAlign.left,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                )),
               ),
               const SizedBox(height: 16,),
               GestureDetector(
@@ -317,15 +287,11 @@ class SettingsWidgetState extends State<SettingsWidget> {
                     Navigator.of(context).pop();
                   });
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                  ),
-                  child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__logout"),
-                    style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkBlue500),
-                    textAlign: TextAlign.left,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,)
-                  ),
+                child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__logout"),
+                  style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkBlue500),
+                  textAlign: TextAlign.left,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,)
                 ),
               ),
               const SizedBox(height: 16,),
@@ -378,15 +344,11 @@ class SettingsWidgetState extends State<SettingsWidget> {
                   });
                   // bool shouldClose = true;
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                  ),
-                  child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__delete_user"),
-                    style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkPink500),
-                    textAlign: TextAlign.left,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,)
-                  ),
+                child: Center(child: Text(Utils.getString(context, "profile_view___tab_settings__delete_user"),
+                  style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 16, color: MainColors.darkPink500),
+                  textAlign: TextAlign.left,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,)
                 ),
               ),
               const SizedBox(height: 16,),
@@ -581,7 +543,7 @@ class _TitleTextModalWidget extends StatelessWidget {
                       ),
                     ):
                     state is TermsPrivacyLoading ?
-                    Container(child: Center(child: CircularProgressIndicator(),),):
+                    const Center(child: CircularProgressIndicator(),):
                     Container()
                 );
               }
@@ -592,76 +554,76 @@ class _TitleTextModalWidget extends StatelessWidget {
   }
 }
 
-
-class _AboutAppModalWidget extends StatelessWidget {
-  final String title;
-  final String text;
-  const _AboutAppModalWidget({Key? key, required this.title, required this.text}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-            leading: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100)
-                ),
-                padding: const EdgeInsets.fromLTRB(
-                  8,
-                  8,
-                  8,
-                  8,
-                ),
-                //                  padding: const EdgeInsets.all(4),
-                // child: Text("d"),
-                child: SvgPicture.asset("assets/svgs/menu/back.svg", height: 24,),
-              ),
-            ), middle: Text(title, textAlign: TextAlign.center,)),
-        child: SafeArea(
-          bottom: false,
-          child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              height: double.infinity,
-              width: double.infinity,
-              child:
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-                    // Container(
-                    //     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                    //     child: SvgPicture.asset("assets/svgs/logo/rib_digitalks.svg")
-                    // ),
-
-                    Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 32.0),
-                        child: Image.asset("assets/images/logo/rib_digitalks-about.png",)
-                    ),
-                    HtmlPageWidget(content: text),
-
-
-                    // Container(
-                    //     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                    //     child: Image.asset("assets/images/logo/rib_digitalks-about.png",)
-                    // ),
-                    // Container(
-                    //     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                    //     child: Image.asset("assets/images/logo/riib_logo.png",)
-                    // ),
-                    // Container(
-                    //     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                    //     child: Image.asset("assets/images/logo/digitalks_logo.png",)
-                    // ),
-                  ],
-                )
-              )
-          ),
-        ),
-      ),
-    );
-  }
-}
-
+//
+// class _AboutAppModalWidget extends StatelessWidget {
+//   final String title;
+//   final String text;
+//   const _AboutAppModalWidget({Key? key, required this.title, required this.text}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Material(
+//       child: CupertinoPageScaffold(
+//         navigationBar: CupertinoNavigationBar(
+//             leading: GestureDetector(
+//               onTap: () => Navigator.pop(context),
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                     borderRadius: BorderRadius.circular(100)
+//                 ),
+//                 padding: const EdgeInsets.fromLTRB(
+//                   8,
+//                   8,
+//                   8,
+//                   8,
+//                 ),
+//                 //                  padding: const EdgeInsets.all(4),
+//                 // child: Text("d"),
+//                 child: SvgPicture.asset("assets/svgs/menu/back.svg", height: 24,),
+//               ),
+//             ), middle: Text(title, textAlign: TextAlign.center,)),
+//         child: SafeArea(
+//           bottom: false,
+//           child: Container(
+//               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+//               height: double.infinity,
+//               width: double.infinity,
+//               child:
+//               SingleChildScrollView(
+//                 child: Column(
+//                   children: [
+//                     // Container(
+//                     //     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+//                     //     child: SvgPicture.asset("assets/svgs/logo/rib_digitalks.svg")
+//                     // ),
+//
+//                     Container(
+//                         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 32.0),
+//                         child: Image.asset("assets/images/logo/rib_digitalks-about.png",)
+//                     ),
+//                     HtmlPageWidget(content: text),
+//
+//
+//                     // Container(
+//                     //     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+//                     //     child: Image.asset("assets/images/logo/rib_digitalks-about.png",)
+//                     // ),
+//                     // Container(
+//                     //     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+//                     //     child: Image.asset("assets/images/logo/riib_logo.png",)
+//                     // ),
+//                     // Container(
+//                     //     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+//                     //     child: Image.asset("assets/images/logo/digitalks_logo.png",)
+//                     // ),
+//                   ],
+//                 )
+//               )
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
 

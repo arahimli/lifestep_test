@@ -7,7 +7,7 @@ import 'package:lifestep/src/tools/config/endpoints.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
 import 'package:lifestep/src/models/auth/profile.dart';
 import 'package:lifestep/src/models/settings/model.dart';
-import 'package:lifestep/src/models/settings/version-check.dart';
+import 'package:lifestep/src/models/settings/version_check.dart';
 import 'package:lifestep/src/ui/apploading/logic/state.dart';
 import 'package:lifestep/src/ui/user/repositories/auth.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';

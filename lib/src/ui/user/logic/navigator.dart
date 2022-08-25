@@ -36,13 +36,13 @@ class _AuthNavigatorState extends State<AuthNavigator> {
             authRepo: context.read<UserRepository>(),
             authCubit: context.read<AuthCubit>(),
           ),
-          child: RegistrationView(),
+          child: const RegistrationView(),
         ) : state == AuthState.login ? BlocProvider(
           create: (context) => LoginBloc(
             authRepo: context.read<UserRepository>(),
             authCubit: context.read<AuthCubit>(),
           ),
-          child: AuthView(),
+          child: const AuthView(),
         ) : MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -56,7 +56,7 @@ class _AuthNavigatorState extends State<AuthNavigator> {
               ),
             ),
           ],
-          child: OtpView(),
+          child: const OtpView(),
         ),
       );
     });

@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:lifestep/src/resources/log.dart';
-import 'package:lifestep/src/tools/common/input-data.dart';
+import 'package:lifestep/src/tools/common/input_data.dart';
 import 'package:lifestep/src/tools/constants/page_key.dart';
 import 'package:sprintf/sprintf.dart';
 

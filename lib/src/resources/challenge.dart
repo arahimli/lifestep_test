@@ -1,80 +1,107 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lifestep/src/tools/config/endpoint_config.dart';
+import 'package:lifestep/src/tools/config/endpoints.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
 import 'package:lifestep/src/models/challenge/map.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 import 'package:sprintf/sprintf.dart';
 
-class ChallengeRepository {
+abstract class IChallengeRepository {
 
-  final donationProvider = ChallengeProvider();
 
-  Future<List> getChallenges({required String searchText, required int pageValue, required CancelToken token}) => donationProvider.getChallenges(searchText, pageValue, token);
-  Future<List> getChallengeParticipants({required String requestUrl, required CancelToken token}) => donationProvider.getChallengeParticipants(requestUrl, token);
-  Future<List> getStepBaseStage({required String requestUrl, required CancelToken token}) => donationProvider.getStepBaseStage(requestUrl, token);
-  Future<List> joinChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token}) => donationProvider.joinChallenge(requestUrl, mapData, token);
-  Future<List> successChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token}) => donationProvider.successChallenge(requestUrl, mapData, token);
-  Future<List> cancelChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token}) => donationProvider.cancelChallenge(requestUrl, mapData, token);
-  Future<List> getAddressInfo({required String requestUrl, required Map<String, dynamic> headers, required CancelToken token}) => donationProvider.getAddressInfo(requestUrl, headers, token);
-  Future<List<int>> getDistanceBetweenPoints(LatLng startPosition, LatLng endPosition) => donationProvider.getDistanceBetweenPoints(startPosition, endPosition);
-
+  Future<List> getChallenges({required String searchText, required int pageValue, required CancelToken token});
+  Future<List> getChallengeParticipants({required String requestUrl, required CancelToken token});
+  Future<List> getStepBaseStage({required String requestUrl, required CancelToken token});
+  Future<List> joinChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token});
+  Future<List> joinStepBaseChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token});
+  Future<List> cancelStepBaseChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token});
+  Future<List> successChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token});
+  Future<List> cancelChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token});
+  Future<List> getAddressInfo({required String requestUrl, required Map<String, dynamic> headers, required CancelToken token});
+  Future<List<int>> getDistanceBetweenPoints(LatLng startPosition, LatLng endPosition);
+  Future<List> homeChallenges();
 }
 
 
-class ChallengeProvider {
+class ChallengeRepository implements IChallengeRepository{
 
-  Future<List> getChallenges(String searchText, int pageValue, CancelToken token) async {
+  @override
+  Future<List> getChallenges({required String searchText, required int pageValue, required CancelToken token}) async {
 
     String requestUrl = sprintf(EndpointConfig.challenges, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count, searchText]);
-    List data = await WebService.getCall(url: requestUrl);
-    return data;
-  }
-  
-  Future<List> getChallengeParticipants(String requestUrl, CancelToken token) async {
+    List listData = await WebService.getCall(url: requestUrl);
 
-    List data = await WebService.getCall(url: requestUrl);
-    return data;
+    return listData ;
   }
 
-  Future<List> getStepBaseStage(String requestUrl, CancelToken token) async {
+  @override
+  Future<List> getChallengeParticipants({required String requestUrl, required CancelToken token}) async {
 
-    List data = await WebService.getCall(url: requestUrl);
-    return data;
+    List listData = await WebService.getCall(url: requestUrl);
+    return listData ;
   }
 
-  Future<List> joinChallenge(String requestUrl, Map<String, dynamic> mapData, CancelToken token) async {
+  @override
+  Future<List> getStepBaseStage({required String requestUrl, required CancelToken token}) async {
 
-    List data = await WebService.postCall(url: requestUrl,data: mapData,
+    List listData = await WebService.getCall(url: requestUrl);
+    return listData ;
+  }
+
+  @override
+  Future<List> joinChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token}) async {
+
+    List listData = await WebService.postCall(url: requestUrl,data: mapData,
     );
-    return data;
+    return listData ;
   }
 
-  Future<List> successChallenge(String requestUrl, Map<String, dynamic> mapData, CancelToken token) async {
+  @override
+  Future<List> joinStepBaseChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token}) async {
 
-    List data = await WebService.postCall(url: requestUrl,
+    List listData = await WebService.postCall(url: requestUrl,data: mapData,);
+    return listData ;
+
+  }
+  @override
+  Future<List> cancelStepBaseChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token}) async {
+
+    List listData = await WebService.postCall(url: requestUrl,data: mapData,);
+    return listData ;
+
+  }
+
+  @override
+  Future<List> successChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token}) async {
+
+    List listData = await WebService.postCall(url: requestUrl,
     data: mapData,
     );
-    return data;
+    return listData ;
   }
 
-  Future<List> cancelChallenge(String requestUrl, Map<String, dynamic> mapData, CancelToken token) async {
+  @override
+  Future<List> cancelChallenge({required String requestUrl, required Map<String, dynamic> mapData, required CancelToken token}) async {
 
-    List data = await WebService.deleteCall(url: requestUrl,
+    List listData = await WebService.deleteCall(url: requestUrl,
     data: mapData
     );
-    return data;
+    return listData ;
   }
 
-  Future<List> getAddressInfo(String requestUrl, Map<String, dynamic> headers, CancelToken token) async {
+  @override
+  Future<List> getAddressInfo({required String requestUrl, required Map<String, dynamic> headers, required CancelToken token}) async {
 
-    List data = await WebService.getCall(
+    List listData = await WebService.getCall(
       url: requestUrl, headers: headers,
     );
-    return data;
+    return listData ;
   }
 
-
+  @override
   Future<List<int>> getDistanceBetweenPoints(LatLng startPosition, LatLng endPosition) async {
     try {
       String reqUrl = sprintf(
@@ -98,6 +125,13 @@ class ChallengeProvider {
         -1,
       ];
     }
+  }
+
+  @override
+  Future<List> homeChallenges() async {
+    String requestUrl = HOME_CHALLENGES_URL;
+    List data = await WebService.getCall(url: requestUrl);
+    return data;
   }
 
 

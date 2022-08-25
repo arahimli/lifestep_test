@@ -1,18 +1,18 @@
 import 'package:lifestep/src/tools/config/endpoints.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
-class HomeRepository {
-  final homeProvider = HomeProvider();
 
-  Future<List> getSlider() => homeProvider.getSlider();
-  Future<List> homeFonds() => homeProvider.homeFonds();
-  Future<List> homeChallenges() => homeProvider.homeChallenges();
+abstract class IHomeRepository {
+
+  Future<List> getSlider();
+  Future<List> homeFonds();
+  Future<List> homeChallenges();
 
 }
 
 
 
-class HomeProvider {
+class HomeRepository implements IHomeRepository{
 
   Future<List> getSlider() async {
     String requestUrl = GET_SLIDER_URL;

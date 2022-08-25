@@ -56,7 +56,7 @@ class MainAdvancedChildButton extends StatelessWidget {
         child: Container(
           width: double.infinity,
 
-          padding: mainPadding ?? EdgeInsets.fromLTRB(10, 16, 10, 16),
+          padding: mainPadding ?? const EdgeInsets.fromLTRB(10, 16, 10, 16),
           decoration: BoxDecoration(
             color: buttonColor ?? MainColors.primaryColor,
             borderRadius: BorderRadius.circular(borderRadius ?? 20),

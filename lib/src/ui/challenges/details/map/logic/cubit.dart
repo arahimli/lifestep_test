@@ -10,7 +10,7 @@
 //
 //
 // class PreviewPolylineMapCubit extends Cubit<PreviewPolylineMapState> {
-//   final ChallengeRepository challengeRepository;
+//   final IChallengeRepository challengeRepository;
 //   final ChallengeModel challengeModel;
 //
 //

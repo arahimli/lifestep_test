@@ -5,7 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lifestep/src/tools/common/input-format.dart';
+import 'package:lifestep/src/tools/common/input_format.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/appbar/general.dart';
 import 'package:lifestep/src/tools/components/buttons/big_unborderd_button.dart';
@@ -121,7 +121,7 @@ class _RegistrationViewState extends State<RegistrationView> with TickerProvider
                                       return  Container(
                                         padding: const EdgeInsets.only(bottom: 12),
                                         child: GeneralTextField(
-                                          enabled: !(BlocProvider.of<AuthCubit>(context).authType == AuthType.OTP),
+                                          enabled: !(BlocProvider.of<AuthCubit>(context).authType == AuthType.otp),
                                           size: size,
                                           label: Utils.getString(context, "registration_view___form_field__phone_label"),
                                           hintText: Utils.getString(context, "registration_view___form_field__phone_hint"),
@@ -270,7 +270,7 @@ class _RegistrationViewState extends State<RegistrationView> with TickerProvider
                                               controller: context.read<RegistrationBloc>().genderController,
                                               requiredInput: true,
                                               initialValue: state.gender ?? '',
-                                              dataMap: MainConst.GENDER_DATA_MAP,
+                                              dataMap: MainConst.genderDataMap,
                                               validateFunction: context.read<RegistrationBloc>().formValidator.validGender,
                                               toDo: (value){
                                                 context.read<RegistrationBloc>().genderChanged(
@@ -295,7 +295,7 @@ class _RegistrationViewState extends State<RegistrationView> with TickerProvider
                             ),
                             decoration: BoxDecoration(
                               color: MainColors.white,
-                              borderRadius: BorderRadius.only(topRight: Radius.circular(24), topLeft: Radius.circular(24), ),
+                              borderRadius: const BorderRadius.only(topRight: Radius.circular(24), topLeft: Radius.circular(24), ),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),

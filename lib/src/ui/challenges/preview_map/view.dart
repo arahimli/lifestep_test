@@ -106,12 +106,7 @@ class _PreviewMapViewState extends State<PreviewMapView>  with WidgetsBindingObs
                     onMapCreated: (controller) async{
                       _controller = controller;
 
-                      if(locationData == null) {
-                        // showLoading(context, Utils.getString(
-                        //     context, "general__loading_text"));
-                        locationData = await location.getLocation();
-                        // closeLoading(context);
-                      }
+                      locationData ??= await location.getLocation();
                       onMapCreated(controller);
                       locationSubscription = location.onLocationChanged.listen((loc)  {
                         locationData = loc;

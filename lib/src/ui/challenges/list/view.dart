@@ -6,28 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get_it/get_it.dart';
+import 'package:lifestep/src/models/arguments/challenge_detail_view.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/appbar/auth-left.dart';
+import 'package:lifestep/src/tools/components/appbar/auth_left.dart';
 import 'package:lifestep/src/tools/components/countdown/countdown_tag.dart';
-import 'package:lifestep/src/tools/components/page-messages/list-message.dart';
-import 'package:lifestep/src/tools/components/shimmers/challenges/challenge-list.dart';
+import 'package:lifestep/src/tools/components/page_messages/list-message.dart';
+import 'package:lifestep/src/tools/components/shimmers/challenges/challenge_list.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton-list.dart';
 import 'package:lifestep/src/tools/config/cache_image_key.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
-import 'package:lifestep/src/tools/config/main_config.dart';
 import 'package:lifestep/src/tools/config/scroll_behavior.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
 import 'package:lifestep/src/models/challenge/challenges.dart';
-import 'package:lifestep/src/ui/challenges/details/logic/deatil_cubit.dart';
-import 'package:lifestep/src/ui/challenges/details/logic/participants/cubit.dart';
-import 'package:lifestep/src/ui/challenges/details/logic/step_base_stage/cubit.dart';
 import 'package:lifestep/src/ui/challenges/details/view.dart';
 import 'package:lifestep/src/ui/challenges/list/logic/cubit.dart';
 import 'package:lifestep/src/ui/challenges/list/logic/state.dart';
-import 'package:lifestep/src/ui/challenges/preview_map/logic/cubit.dart';
 import 'package:lifestep/src/ui/index/logic/navigation_bloc.dart';
-import 'package:lifestep/src/resources/challenge.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 class ChallengeListView extends StatefulWidget {
@@ -43,7 +37,7 @@ class _ChallengeListViewState extends State<ChallengeListView> {
     final size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: ()async{
-        navigationBloc.changeNavigationIndex(Navigation.HOME);
+        navigationBloc.changeNavigationIndex(Navigation.home);
         return Future.value(false);
       },
       child: Scaffold(
@@ -81,7 +75,7 @@ class _ChallengeListViewState extends State<ChallengeListView> {
                         // style: MainStyles.normalTextStyle,
                         // placeholderStyle: MainStyles.grayTextStyle,
                         itemSize: size.height / (836 / 24),
-                        itemColor: Color(0xFFC3C5D4),
+                        itemColor: const Color(0xFFC3C5D4),
                         placeholder: Utils.getString(context, "page_donation_list___search_hint"),
                         placeholderStyle: MainStyles.semiBoldTextStyle.copyWith(color: MainColors.generalCupertinoSearchPlaceholder),
                         padding: EdgeInsets.symmetric(vertical: size.height / (836 / 16), horizontal: size.width / (375 / 16)),
@@ -102,7 +96,7 @@ class _ChallengeListViewState extends State<ChallengeListView> {
                 ),
               ),
               const SizedBox(height: 12,),
-              Flexible(
+              const Flexible(
                 flex: 1,
                 child: _DataListWidget(),
               ),
@@ -135,7 +129,7 @@ class _DataListWidgetState extends State<_DataListWidget> {
           }
         },
         builder: (BuildContext context, state){
-           if (state is ChallengeListSuccess )
+           if (state is ChallengeListSuccess ){
            return state.dataList != null && state.dataList!.isNotEmpty ? NotificationListener(
             onNotification: (t) {
               //////// print("onNotification: (t)");
@@ -174,7 +168,7 @@ class _DataListWidgetState extends State<_DataListWidget> {
                                   hasReachedMax: state.hasReachedMax,
                                 )),
                               if(!state.hasReachedMax)
-                                Container(child: Text("Loading"))
+                                const Text("Loading")
                             ],
                           ),
                         )
@@ -188,8 +182,8 @@ class _DataListWidgetState extends State<_DataListWidget> {
                context.read<ChallengeListCubit>().refresh();
              },
               text: Utils.getString(context, "general__list__empty_message"),
-           );
-           else if (state is ChallengeListError )
+           );}
+           else if (state is ChallengeListError ) {
              return ListErrorMessageWidget(
                errorCode: state.errorCode,
                refresh: () {
@@ -197,11 +191,14 @@ class _DataListWidgetState extends State<_DataListWidget> {
                },
                text: Utils.getString(context, state.errorText),
              );
-           else
+           }
+           else {
              return SkeletonListWidget(
-                 itemCount: ((size.height - 300)  / (size.width * 0.95 / 6 + 16)).round(),
-                 child: ChallengeListItemShimmerWidget(),
-               );
+               itemCount: ((size.height - 300) / (size.width * 0.95 / 6 + 16))
+                   .round(),
+               child: const ChallengeListItemShimmerWidget(),
+             );
+           }
         }
     );
   }
@@ -242,37 +239,25 @@ class _DataListItem0State extends State<_DataListItem0> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.only(bottom:0),
       padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
       child: GestureDetector(
         onTap: () async{
           Utils.focusClose(context);
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>MultiBlocProvider(
-              providers: [
-                BlocProvider<ChallengeDetailBloc>(create: (context) => ChallengeDetailBloc(
-                    challengeModel: widget.dataItem,
-                    challengeRepository: GetIt.instance<ChallengeRepository>()
-                )),
-                BlocProvider<ParticipantListCubit>(create: (context) => ParticipantListCubit(
-                    challengeModel: widget.dataItem,
-                    challengeRepository: GetIt.instance<ChallengeRepository>()
-                )),
-                BlocProvider<StepBaseStageCubit>(create: (context) => StepBaseStageCubit(
-                    challengeModel: widget.dataItem,
-                    challengeRepository: GetIt.instance<ChallengeRepository>()
-                )),
-
-                BlocProvider<PreviewPolylineMapCubit>(
-                    create: (
-                        BuildContext context) =>
-                        PreviewPolylineMapCubit(
-                          challengeRepository: GetIt.instance<ChallengeRepository>(),
-                          challengeModel: widget.dataItem,
-                        )),
-              ],
-              child: ChallengeDetailView())));
+          await
+          Navigator.pushNamed(
+            context,
+            ChallengeDetailView.routeName,
+            arguments: ChallengeDetailViewArguments(
+              dataItem: widget.dataItem
+            ),
+          ).then((value){
+            if(value != null && value is ChallengeModel ){
+              BlocProvider.of<ChallengeListCubit>(context).changeChallenge(listValue: widget.dataList, boolValue: widget.hasReachedMax, value: value, index: widget.index);
+            }
+          });
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -302,7 +287,7 @@ class _DataListItem0State extends State<_DataListItem0> {
                             return AspectRatio(
                               aspectRatio: 343 / 200,
                               child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   // color: Colors.blue,
                                   image: DecorationImage(
                                     image: AssetImage("assets/images/general/gray-shimmer.gif", ),
@@ -318,7 +303,7 @@ class _DataListItem0State extends State<_DataListItem0> {
                           },
                           key: Key("${MainWidgetKey.challengeItem}${widget.dataItem.id}"),
                           fit: BoxFit.cover,
-                          imageUrl: widget.dataItem.image ?? MainConfig.defaultImage,
+                          imageUrl: widget.dataItem.getImage(),
                           height: double.infinity,
                           width: double.infinity,
 
@@ -334,7 +319,7 @@ class _DataListItem0State extends State<_DataListItem0> {
                     child: CountdownTagWidget(controller: controller,),
                   ),
 
-                  // if(widget.dataItem.isCompleted())
+                  if(widget.dataItem.isJoined!)
                     Positioned(
                       bottom: 16,
                       right: 16,
@@ -358,10 +343,10 @@ class _DataListItem0State extends State<_DataListItem0> {
                             ),
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10, ),
-                              color: MainColors.successGreenColor,
+                              color: widget.dataItem.isCompleted! ? MainColors.successGreenColor : widget.dataItem.isJoined! ? MainColors.darkPink500 : MainColors.transparent,
                               child: Row(
                                 children: [
-                                  SvgPicture.asset("assets/svgs/general/succesed.svg"),
+                                  SvgPicture.asset("assets/svgs/general/${widget.dataItem.isCompleted! ? "'succesed'" : widget.dataItem.isJoined! ? 'active-challenge' : 'succesed'}.svg"),
                                 ],
                               ),
                             ),

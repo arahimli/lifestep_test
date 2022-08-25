@@ -16,7 +16,8 @@ class IndexLoading extends IndexState {
 class IndexLoaded extends IndexState {
   final IndexPageModel indexPageModel;
 
-  IndexLoaded({required this.indexPageModel});
+  const IndexLoaded({required this.indexPageModel});
+
   @override
   List<Object> get props => [indexPageModel];
 }

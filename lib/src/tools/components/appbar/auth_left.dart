@@ -49,12 +49,12 @@ class AuthLeftAppBar extends StatelessWidget {
                               userRepository: UserRepository(),
                             )),
                           ],
-                          child: NotificationListView()))),
+                          child: const NotificationListView()))),
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100)
                         ),
-                        padding: EdgeInsets.fromLTRB(
+                        padding: const EdgeInsets.fromLTRB(
                           8,
                           8,
                           8,

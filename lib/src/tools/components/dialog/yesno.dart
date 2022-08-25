@@ -26,7 +26,7 @@ class _YesNoDialogWidgetState extends State<YesNoDialogWidget> {
     return Material(
       type: MaterialType.transparency,
       child: Dialog(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius:
               BorderRadius.all(Radius.circular(12.0))),
           child: Container(

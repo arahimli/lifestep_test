@@ -32,7 +32,7 @@ class ProfileInformationCubit extends Cubit<ProfileInformationState> {
     heightController.text = sessionCubit.currentUser!.height ?? '';
     weightController.text = sessionCubit.currentUser!.weight ?? '';
     emailController.text = sessionCubit.currentUser!.email ?? '';
-    genderController.text = Utils.getListMapDisplay(sessionCubit.currentUser!.gender ?? '', MainConst.GENDER_DATA_MAP);
+    genderController.text = Utils.getListMapDisplay(sessionCubit.currentUser!.gender ?? '', MainConst.genderDataMap);
     emit(
         state.copyWith(
           phone: sessionCubit.currentUser!.phone, isValidPhone: formValidator.validPhone(sessionCubit.currentUser!.phone ?? ''),
@@ -41,17 +41,17 @@ class ProfileInformationCubit extends Cubit<ProfileInformationState> {
           height: sessionCubit.currentUser!.height, isValidHeight: formValidator.validHeight(sessionCubit.currentUser!.height ?? ''),
           weight: sessionCubit.currentUser!.weight, isValidWeight: formValidator.validWeight(sessionCubit.currentUser!.weight ?? ''),
           email: sessionCubit.currentUser!.email, isValidEmail: formValidator.validEmail(sessionCubit.currentUser!.email ?? '', req: false),
-          gender: sessionCubit.currentUser!.gender, isValidGender: formValidator.validGender(sessionCubit.currentUser!.gender ?? '', MainConst.GENDER_DATA_MAP, req: true),
+          gender: sessionCubit.currentUser!.gender, isValidGender: formValidator.validGender(sessionCubit.currentUser!.gender ?? '', MainConst.genderDataMap, req: true),
         )
     );
   }
 
   reInitialize(BuildContext context){
     // print("reInitializereInitializereInitializereInitializereInitialize");
-    genderController.text = Utils.getString(context, Utils.getListMapKey(sessionCubit.currentUser!.gender ?? '', MainConst.GENDER_DATA_MAP));
+    genderController.text = Utils.getString(context, Utils.getListMapKey(sessionCubit.currentUser!.gender ?? '', MainConst.genderDataMap));
     // emit(
     //     state.copyWith(
-    //       gender: sessionCubit.currentUser!.gender, isValidGender: formValidator.validGender(sessionCubit.currentUser!.gender ?? '', MainConst.GENDER_DATA_MAP, req: true),
+    //       gender: sessionCubit.currentUser!.gender, isValidGender: formValidator.validGender(sessionCubit.currentUser!.gender ?? '', MainConst.genderDataMap, req: true),
     //     )
     // );
   }
@@ -106,8 +106,8 @@ class ProfileInformationCubit extends Cubit<ProfileInformationState> {
   void genderChanged(String value, {bool req=false}){
     //////// print("void genderChanged");
     //////// print(value);
-    //////// print(formValidator.validGender(value, MainConst.GENDER_DATA_MAP));
-    emit(state.copyWith(gender: formValidator.validGender(value, MainConst.GENDER_DATA_MAP) ? value : '', isValidGender: formValidator.validGender(value, MainConst.GENDER_DATA_MAP)));
+    //////// print(formValidator.validGender(value, MainConst.genderDataMap));
+    emit(state.copyWith(gender: formValidator.validGender(value, MainConst.genderDataMap) ? value : '', isValidGender: formValidator.validGender(value, MainConst.genderDataMap)));
   }
 
   Future<List> profileChangeSubmit() async{

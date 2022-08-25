@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/error/standard-message-widget.dart';
+import 'package:lifestep/src/tools/components/error/standard_message_widget.dart';
 import 'package:lifestep/src/tools/constants/enum.dart';
 
 class InfoRemoveView extends StatefulWidget {

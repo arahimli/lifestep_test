@@ -64,8 +64,11 @@ class MainColors {
   static Color? successGreenColor;
 
   static Color? liderboardBackgroundColor;
+  static Color? howCanWinOrderColor;
+  static Color? softBorderColor;
   static Color? coreBackgroundColor;
   static Color? backgroundColor;
+  static Color? stopButtonColor;
   ///
   /// Base Color
   ///
@@ -128,8 +131,17 @@ class MainColors {
   static const Color _l_liderboard_light_color = const Color(0xFFE3E4FA);
   static const Color _d_liderboard_dark_color = const Color(0xFFE3E4FA);
 
+  static const Color _lHowCanWinOrderColor = const Color(0xFFE3E4FA);
+  static const Color _dHowCanWinOrderColor = const Color(0xFFE3E4FA);
+
+  static const Color _lSoftBorderColor = const Color(0xFFF7F7F8);
+  static const Color _dSoftBorderColor = const Color(0xFFF7F7F8);
+
   static const Color _l_background_light_color = const Color(0xFFF7F7F8);
   static const Color _d_background_dark_color = const Color(0xFFF7F7F8);
+
+  static const Color _lStopButtonColor = const Color(0xFFF7F7F8);
+  static const Color _dStopButtonColor = const Color(0xFFF7F7F8);
 
   static const Color _d_text_primary_color = const Color(0xFFFFFFFF);
   static const Color _d_text_primary_light_color = const Color(0xFFFFFFFF);
@@ -235,7 +247,10 @@ class MainColors {
     ///
     coreBackgroundColor = _d_base_color;
     backgroundColor = _d_background_dark_color;
+    stopButtonColor = _dStopButtonColor;
     liderboardBackgroundColor = _d_liderboard_dark_color;
+    howCanWinOrderColor = _dHowCanWinOrderColor;
+    softBorderColor = _dSoftBorderColor;
 
     ///
     /// General
@@ -292,7 +307,10 @@ class MainColors {
     ///
     coreBackgroundColor = _l_base_color;
     backgroundColor = _l_background_light_color;
+    stopButtonColor = _lStopButtonColor;
     liderboardBackgroundColor = _l_liderboard_light_color;
+    howCanWinOrderColor = _lHowCanWinOrderColor;
+    softBorderColor = _lSoftBorderColor;
 
     ///
     /// General

@@ -219,13 +219,13 @@ class OtpNumpadButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     Widget label = icon != null ? SvgPicture.asset("assets/svgs/keyboard/delete.svg")
         : Text(text ?? '', style: MainStyles.semiBoldTextStyle.copyWith(fontSize: 22));
 
     return Expanded(
       child: InkWell(
-        onTap: onPressed ?? null,
+        onTap: onPressed,
         child: SizedBox(height: (height - 120) / 4 ,child: Center(child: label)),
       ),
     );

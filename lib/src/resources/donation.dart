@@ -5,77 +5,73 @@ import 'package:lifestep/src/tools/config/main_config.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 import 'package:sprintf/sprintf.dart';
 
-class DonationRepository {
+abstract class IDonationRepository {
 
-  final donationProvider = DonationProvider();
-
-  // Future<List> getCharities() => donationProvider.getCharities();
-
-  Future<List> getUserDonations({required String searchText, required int pageValue, required CancelToken token}) => donationProvider.getUserDonations(searchText, pageValue, token);
-  Future<List> getCharities({required String searchText, required int pageValue, required CancelToken token}) => donationProvider.getCharities(searchText, pageValue, token);
-  Future<List> getFonds({required String searchText, required int pageValue, required CancelToken token}) => donationProvider.getFonds(searchText, pageValue, token);
-  Future<List> getCharityDonors({required String requestUrl, required CancelToken token}) => donationProvider.getCharityDonors(requestUrl, token);
-  Future<List> donateStepCharity({required Map<String, dynamic> data, required CancelToken token}) => donationProvider.donateStepCharity(data, token);
-  Future<List> donateStepFond({required Map<String, dynamic> data, required CancelToken token}) => donationProvider.donateStepFond(data, token);
-  Future<List> getFondDonors({required String requestUrl, required CancelToken token}) => donationProvider.getFondDonors(requestUrl, token);
-  Future<List> homeCharities() => donationProvider.homeCharities();
+  Future<List> getUserDonations({required String searchText, required int pageValue, required CancelToken token});
+  Future<List> getCharities({required String searchText, required int pageValue, required CancelToken token});
+  Future<List> getFonds({required String searchText, required int pageValue, required CancelToken token});
+  Future<List> getCharityDonors({required String requestUrl, required CancelToken token});
+  Future<List> donateStepCharity({required Map<String, dynamic> data, required CancelToken token});
+  Future<List> donateStepFond({required Map<String, dynamic> data, required CancelToken token});
+  Future<List> getFondDonors({required String requestUrl, required CancelToken token});
+  Future<List> homeCharities();
 }
 
 
-class DonationProvider {
-
-
-  Future<List> getUserDonations(String searchText, int pageValue, CancelToken token) async {
+class DonationRepository implements IDonationRepository{
+  
+  @override
+  Future<List> getUserDonations({required String searchText, required int pageValue, required CancelToken token}) async {
 
     String requestUrl = sprintf(EndpointConfig.userDonations, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count, searchText]);
-    List data = await WebService.getCall(url: requestUrl,);
-    return data;
+    List listData = await WebService.getCall(url: requestUrl,);
+    return listData ;
   }
 
 
-  Future<List> getCharities(String searchText, int pageValue, CancelToken token) async {
+  Future<List> getCharities({required String searchText, required int pageValue, required CancelToken token}) async {
 
     String requestUrl = sprintf(EndpointConfig.charities, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count, searchText]);
-    List data = await WebService.getCall(url: requestUrl);
-    return data;
+    List listData = await WebService.getCall(url: requestUrl);
+    return listData ;
   }
 
-  Future<List> getFonds(String searchText, int pageValue, CancelToken token) async {
+  Future<List> getFonds({required String searchText, required int pageValue, required CancelToken token}) async {
 
     String requestUrl = sprintf(EndpointConfig.funds, [MainConfig.main_app_data_count * (pageValue - 1), MainConfig.main_app_data_count, searchText]);
-    List data = await WebService.getCall(url: requestUrl);
-    return data;
+    List listData = await WebService.getCall(url: requestUrl);
+    return listData ;
   }
 
-  Future<List> getCharityDonors(String requestUrl, CancelToken token) async {
+  Future<List> getCharityDonors({required String requestUrl, required CancelToken token}) async {
 
-    List data = await WebService.getCall(url: requestUrl);
-    return data;
+    List listData = await WebService.getCall(url: requestUrl);
+    return listData ;
   }
 
-  Future<List> donateStepCharity(Map<String, dynamic> dataMap, CancelToken token) async {
+  Future<List> donateStepCharity({required Map<String, dynamic> data, required CancelToken token}) async {
     String requestUrl = EndpointConfig.charityDonation;
-    List data = await WebService.postCall(url: requestUrl, data: dataMap);
-    return data;
+    List listData = await WebService.postCall(url: requestUrl, data: data);
+    return listData ;
   }
 
-
-  Future<List> donateStepFond(Map<String, dynamic> dataMap, CancelToken token) async {
+  @override
+  Future<List> donateStepFond({required Map<String, dynamic> data, required CancelToken token}) async {
     String requestUrl = EndpointConfig.fundDonation;
-    List data = await WebService.postCall(url: requestUrl, data: dataMap);
-    return data;
+    List listData = await WebService.postCall(url: requestUrl, data: data);
+    return listData ;
   }
 
-  Future<List> getFondDonors(String requestUrl, CancelToken token) async {
+  Future<List> getFondDonors({required String requestUrl, required CancelToken token}) async {
 
-    List data = await WebService.getCall(url: requestUrl);
-    return data;
+    List listData = await WebService.getCall(url: requestUrl);
+    return listData ;
   }
 
   Future<List> homeCharities() async {
     String requestUrl = HOME_CHARITIES_URL;
-    List data = await WebService.getCall(url: requestUrl);
-    return data;
+    List listData = await WebService.getCall(url: requestUrl);
+    return listData ;
   }
 
 }

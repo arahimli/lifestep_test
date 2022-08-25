@@ -9,8 +9,8 @@ import 'package:health/health.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/cubits/global/session/cubit.dart';
 import 'package:lifestep/src/cubits/global/step/step-calculation/state.dart';
-import 'package:lifestep/src/models/step/balance-step.dart';
-import 'package:lifestep/src/models/step/daily-step.dart';
+import 'package:lifestep/src/models/step/balance_step.dart';
+import 'package:lifestep/src/models/step/daily_step.dart';
 import 'package:lifestep/src/tools/constants/health/element.dart';
 import 'package:lifestep/src/ui/user/repositories/auth.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
@@ -95,15 +95,16 @@ class GeneralStepCalculationCubit extends Cubit<GeneralStepCalculationState>{
                     DateTime(locDateEnd.year, locDateEnd.month, locDateEnd.day, locDateEnd.hour, 0, 0, 0),
                     types);
                 _healthDataList.forEach((x) {
-                  if( x.type == HealthDataType.STEPS )
+                  if( x.type == HealthDataType.STEPS ) {
                     sourceIdList.add(x.sourceId.toString());
+                  }
                     stepMapList.add(
                       {
                         "steps": x.value,
                         "source_id": x.sourceId.toString(),
                         "os": x.platform == PlatformType.IOS ? "1": "2",
-                        "date_from": x.dateFrom != null ? x.dateFrom.toString() : null,
-                        "date_to": x.dateTo != null ? x.dateTo.toString() : null,
+                        "date_from": x.dateFrom.toString(),
+                        "date_to": x.dateTo.toString(),
                       }
                     );
                     // print(x.sourceId.toString());

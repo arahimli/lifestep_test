@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/page-messages/list-message.dart';
+import 'package:lifestep/src/tools/components/page_messages/list-message.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton-list.dart';
 import 'package:lifestep/src/tools/components/shimmers/step/step-list-item.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
@@ -24,8 +24,6 @@ class LeaderBoardStepViewState extends State<LeaderBoardStepView>  with TickerPr
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    // return ;
     return BlocBuilder<LeaderBoardStepCubit, LeaderBoardStepState>(
         builder: (context, leaderBoardStepState) {
           //////// print("LeaderBoardStepCubit_LeaderBoardStepCubit_");
@@ -53,7 +51,7 @@ class LeaderBoardStepViewState extends State<LeaderBoardStepView>  with TickerPr
           }
           else if(leaderBoardStepState is LeaderBoardStepLoading){
             return Expanded(
-              child: SkeletonListWidget(
+              child: const SkeletonListWidget(
                   itemCount: 10,
                   child: LeadderDataItemShimmerWidget(
                     owner: false,

@@ -8,9 +8,9 @@ import 'package:lifestep/src/resources/donation.dart';
 
 class FondDetailsBloc extends  Cubit<FondDetailsState> {
 
-  final DonationRepository donationRepository;
+  final IDonationRepository donationRepository;
   final FondModel fondModel;
-  FondDetailsBloc({required this.fondModel, required this.donationRepository}) : assert(donationRepository != null), super(FondDetailsState(fondModel: fondModel));
+  FondDetailsBloc({required this.fondModel, required this.donationRepository}) : super(FondDetailsState(fondModel: fondModel));
 
   setFond(FondModel fondModel) async{
     fondChanged = true;

@@ -3,22 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/appbar/auth-notification.dart';
+import 'package:lifestep/src/tools/components/appbar/auth_notification.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:lifestep/src/tools/components/page-messages/list-message.dart';
+import 'package:lifestep/src/tools/components/page_messages/list-message.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton-list.dart';
 import 'package:lifestep/src/tools/components/shimmers/user/history.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
 import 'package:lifestep/src/tools/config/scroll_behavior.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
-import 'package:lifestep/src/models/donation/donation-history.dart';
+import 'package:lifestep/src/models/donation/donation_history.dart';
 import 'package:lifestep/src/ui/user/history/logic/cubit.dart';
 import 'package:lifestep/src/ui/user/history/logic/state.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 class DonationHistoryView extends StatefulWidget {
   const DonationHistoryView({Key? key}) : super(key: key);
+  static const routeName = '/donation-history';
 
   @override
   _DonationHistoryViewState createState() => _DonationHistoryViewState();
@@ -139,7 +140,7 @@ class _DonationHistoryViewState extends State<DonationHistoryView> with TickerPr
                           },
                           text: Utils.getString(context, "general__list__empty_message"),
                         );
-                    else if(state is DonationHistoryListError)
+                    else if(state is DonationHistoryListError) {
                       return ListErrorMessageWidget(
                         errorCode: state.errorCode,
                         refresh: () {
@@ -147,11 +148,14 @@ class _DonationHistoryViewState extends State<DonationHistoryView> with TickerPr
                         },
                         text: Utils.getString(context, state.errorText),
                       );
-                    else
+                    }
+                    else {
                       return SkeletonListWidget(
-                        itemCount: ((size.height - 200)  / (size.width * 0.8 / 6 + 16)).round(),
-                        child: HistoryListItemShimmerWidget(),
+                        itemCount: ((size.height - 200) / (size.width * 0.8 /
+                            6 + 16)).round(),
+                        child: const HistoryListItemShimmerWidget(),
                       );
+                    }
                   }
               ),
             ),
@@ -176,7 +180,7 @@ class _DataItemWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
       child: GestureDetector(
         onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
+          Utils.focusClose(context);;
 //          focusNode.unfocus();
         },
         child: Container(
@@ -215,12 +219,12 @@ class _DataItemWidget extends StatelessWidget {
                         height: size.width * 0.8 / 6,
                         decoration: BoxDecoration(
                           // color: Colors.blue,
-                          image: DecorationImage(
+                          image: const DecorationImage(
                             image: AssetImage("assets/images/general/gray-shimmer.gif", ),
                             fit: BoxFit.fill,
                           ),
                           borderRadius:
-                          BorderRadius.all(
+                          const BorderRadius.all(
                             Radius.circular(500.0),
                           ),
                         ),

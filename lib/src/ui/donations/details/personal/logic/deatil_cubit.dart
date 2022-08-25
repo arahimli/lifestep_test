@@ -8,9 +8,9 @@ import 'package:lifestep/src/resources/donation.dart';
 
 class CharityDetailsBloc extends  Cubit<CharityDetailsState> {
 
-  final DonationRepository donationRepository;
+  final IDonationRepository donationRepository;
   final CharityModel charityModel;
-  CharityDetailsBloc({required this.charityModel, required this.donationRepository}) : assert(donationRepository != null), super(CharityDetailsState(charityModel: charityModel));
+  CharityDetailsBloc({required this.charityModel, required this.donationRepository}) : super(CharityDetailsState(charityModel: charityModel));
 
   setCharity(CharityModel charityModel) async{
     //////// print("setCharity________________________________________");

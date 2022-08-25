@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/config/exception.dart';
-import 'package:lifestep/src/models/step/user-order.dart';
+import 'package:lifestep/src/models/step/user_order.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 import 'package:lifestep/src/resources/step.dart';
 
@@ -12,7 +12,7 @@ import 'state.dart';
 class GeneralUserLeaderBoardMonthStepCubit extends  Cubit<GeneralUserLeaderBoardMonthStepState> {
 
   final StepRepository stepRepository;
-  GeneralUserLeaderBoardMonthStepCubit({required this.stepRepository}) : assert(stepRepository != null), super(GeneralUserLeaderBoardMonthStepLoading()){
+  GeneralUserLeaderBoardMonthStepCubit({required this.stepRepository}) : super(GeneralUserLeaderBoardMonthStepLoading()){
     search(reset:true);
   }
 

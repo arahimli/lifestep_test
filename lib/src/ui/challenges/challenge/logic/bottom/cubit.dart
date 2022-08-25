@@ -6,7 +6,7 @@ import 'package:lifestep/src/resources/challenge.dart';
 
 
 class BottomSectionCubit extends Cubit<BottomSectionState> {
-  final ChallengeRepository challengeRepository;
+  final IChallengeRepository challengeRepository;
   final ChallengeModel challengeModel;
   final double height;
   CancelToken dioToken = CancelToken();

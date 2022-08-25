@@ -11,7 +11,7 @@ import 'package:jiffy/jiffy.dart';
 
 
 class StepSectionCubit extends Cubit<StepSectionState> {
-  final ChallengeRepository challengeRepository;
+  final IChallengeRepository challengeRepository;
   final ChallengeModel challengeModel;
   final int step;
   int stepLocal = 0;

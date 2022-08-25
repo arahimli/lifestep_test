@@ -14,7 +14,7 @@ class HomeDailyStepSuccess extends HomeDailyStepState {
   final int stepCountDay;
   final DateTime selectedDate;
 
-  const HomeDailyStepSuccess({ this.stepCountDay:0, required this.selectedDate});
+  const HomeDailyStepSuccess({ this.stepCountDay=0, required this.selectedDate});
 
   HomeDailyStepSuccess copyWith({
     int? stepCountDay,
@@ -38,7 +38,7 @@ class HomeDailyStepSuccessLoading extends HomeDailyStepState {
   final int stepCountDay;
   final DateTime selectedDate;
 
-  const HomeDailyStepSuccessLoading({ this.stepCountDay:0 ,required this.selectedDate});
+  const HomeDailyStepSuccessLoading({ this.stepCountDay=0 ,required this.selectedDate});
 
   HomeDailyStepSuccess copyWith({
     int? stepCountDay,
@@ -70,7 +70,7 @@ class HomeDailyStepNotGranted extends HomeDailyStepState {
   final int stepCountDay;
   final DateTime selectedDate;
 
-  const HomeDailyStepNotGranted({ this.stepCountDay:0 ,required this.selectedDate});
+  const HomeDailyStepNotGranted({ this.stepCountDay=0 ,required this.selectedDate});
 
   @override
   List<Object> get props => [];

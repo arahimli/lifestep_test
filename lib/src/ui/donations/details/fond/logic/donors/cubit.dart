@@ -12,9 +12,9 @@ import 'package:sprintf/sprintf.dart';
 
 class FondDonorListCubit extends  Cubit<FondDonorListState> {
 
-  final DonationRepository donationRepository;
+  final IDonationRepository donationRepository;
   final FondModel fondModel;
-  FondDonorListCubit({required this.donationRepository, required this.fondModel}) : assert(donationRepository != null), super(FondDonorListLoading()){
+  FondDonorListCubit({required this.donationRepository, required this.fondModel}) : super(FondDonorListLoading()){
     search();
   }
 
@@ -22,7 +22,7 @@ class FondDonorListCubit extends  Cubit<FondDonorListState> {
   CancelToken dioToken = CancelToken();
 
 
-  search({bool reset: true}) async {
+  search({bool reset= true}) async {
     var currentState = state;
     if(reset){
       currentState = FondDonorListLoading();

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lifestep/src/tools/config/endpoint_config.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
-import 'package:lifestep/src/models/challenge/challenge-user.dart';
+import 'package:lifestep/src/models/challenge/challenge_user.dart';
 import 'package:lifestep/src/models/challenge/challenges.dart';
 import 'package:lifestep/src/models/general/address_info.dart';
 import 'package:lifestep/src/ui/challenges/challenge/logic/main/state.dart';
@@ -13,7 +13,7 @@ import 'package:sprintf/sprintf.dart';
 
 
 class MainMapChallengeCubit extends Cubit<MainMapChallengeState> {
-  final ChallengeRepository challengeRepository;
+  final IChallengeRepository challengeRepository;
   final ChallengeModel challengeModel;
   final ChallengeUserModel challengeUserModel;
   CancelToken dioToken = CancelToken();

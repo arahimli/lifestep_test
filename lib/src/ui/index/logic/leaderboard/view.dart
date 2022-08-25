@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/error/general-widget.dart';
+import 'package:lifestep/src/tools/components/error/general_widget.dart';
 import 'package:lifestep/src/tools/components/shimmers/step/step-list-item.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
 import 'package:lifestep/src/cubits/global/session/cubit.dart';
 import 'package:lifestep/src/cubits/global/step/donation/month/view.dart';
 import 'package:lifestep/src/cubits/global/step/step/month/view.dart';
-import 'package:lifestep/src/models/step/user-item.dart';
+import 'package:lifestep/src/models/step/user_item.dart';
 import 'package:lifestep/src/ui/home/components/liderboard_item.dart';
 import 'package:lifestep/src/ui/index/logic/leaderboard/logic/cubit.dart';
 import 'package:lifestep/src/ui/index/logic/leaderboard/logic/state.dart';
@@ -50,10 +50,10 @@ class _HomeLeaderBoardWidgetState extends State<HomeLeaderBoardWidget> {
                     children: [
                       Expanded(
                           child: GestureDetector(
-                            onTap: () => context.read<LeaderBoardHomeCubit>().onChangeValue(LeaderBoardTypeEnum.LeaderBoardTypeStep),
+                            onTap: () => context.read<LeaderBoardHomeCubit>().onChangeValue(LeaderBoardTypeEnum.leaderBoardTypeStep),
                             child: Container(
                                 decoration: BoxDecoration(
-                                    color: leaderBoardHomeState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeStep ? MainColors.white : null,
+                                    color: leaderBoardHomeState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeStep ? MainColors.white : null,
                                     borderRadius: BorderRadius.circular(64)
                                 ),
                                 padding: const EdgeInsets.symmetric(
@@ -72,10 +72,10 @@ class _HomeLeaderBoardWidgetState extends State<HomeLeaderBoardWidget> {
                       const SizedBox(width: 8,),
                       Expanded(
                           child: GestureDetector(
-                            onTap: () => context.read<LeaderBoardHomeCubit>().onChangeValue(LeaderBoardTypeEnum.LeaderBoardTypeDonation),
+                            onTap: () => context.read<LeaderBoardHomeCubit>().onChangeValue(LeaderBoardTypeEnum.leaderBoardTypeDonation),
                             child: Container(
                                 decoration: BoxDecoration(
-                                    color: leaderBoardHomeState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeDonation ? MainColors.white : null,
+                                    color: leaderBoardHomeState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeDonation ? MainColors.white : null,
                                     borderRadius: BorderRadius.circular(64)
                                 ),
                                 padding: const EdgeInsets.symmetric(
@@ -105,18 +105,23 @@ class _HomeLeaderBoardWidgetState extends State<HomeLeaderBoardWidget> {
               ),
               child: Column(
                 children: [
-                  leaderBoardHomeState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeStep?
+                  leaderBoardHomeState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeStep?
                   BlocBuilder<HomeLeaderBoardStepCubit, HomeLeaderBoardStepState>(
                       builder: (context, state) {
                        ///////// print("BlocBuilder<HomeLeaderBoardStepCubit = ${state.toString()}");
-                        if(state is HomeLeaderBoardStepSuccess )
-
-                          return Container(
-
-                            child: Container(
-                              child: Column(
-                                  children: state.mainData.asMap().entries.map((entry) => HomeLiderDataItem(
-                                    owner: BlocProvider.of<SessionCubit>(context).currentUser != null ? BlocProvider.of<SessionCubit>(context).currentUser!.id == entry.value.userId : false,
+                        if(state is HomeLeaderBoardStepSuccess ) {
+                          return Column(
+                              children: state.mainData
+                                  .asMap()
+                                  .entries
+                                  .map((entry) =>
+                                  HomeLiderDataItem(
+                                    owner: BlocProvider
+                                        .of<SessionCubit>(context)
+                                        .currentUser != null ? BlocProvider
+                                        .of<SessionCubit>(context)
+                                        .currentUser!
+                                        .id == entry.value.userId : false,
                                     index: entry.key,
                                     userStepOrderModel: UserStepOrderModel(
                                         id: entry.value.userId,
@@ -125,88 +130,101 @@ class _HomeLeaderBoardWidgetState extends State<HomeLeaderBoardWidget> {
                                         step: entry.value.steps ?? 0
                                     ),
                                   )).toList()
-                              ),
-                            ),
                           );
-                        else if(state is HomeLeaderBoardStepLoading )
+                        }
+                        else if(state is HomeLeaderBoardStepLoading ) {
                           return Column(
-                            children:List.generate(5, (index) => LeadderDataItemShimmerWidget(
-                              owner: false,
-                            )).toList(),
+                            children: List.generate(5, (index) =>
+                                const LeadderDataItemShimmerWidget(
+                                  owner: false,
+                                )).toList(),
                           );
-                        else if(state is HomeLeaderBoardStepError )
+                        }
+                        else if(state is HomeLeaderBoardStepError ) {
                           return GeneralErrorLoadAgainWidget(
-                            onTap: (){
-                              context.read<HomeLeaderBoardStepCubit>().refresh();
+                            onTap: () {
+                              context.read<HomeLeaderBoardStepCubit>()
+                                  .refresh();
                             },
                           );
-                        else
-                          return SizedBox();
+                        }
+                        else {
+                          return const SizedBox();
+                        }
                       }
                   ):
                   BlocBuilder<HomeLeaderBoardDonationCubit, HomeLeaderBoardDonationState>(
                       builder: (context, state) {
                        ///////// print("BlocBuilder<HomeLeaderBoardDonationCubit = ${state.toString()}");
                         if(state is HomeLeaderBoardDonationSuccess ) {
-                          return Container(
-                            child: Column(
-                                children: state.mainData.asMap().entries.map((entry) =>
-                                    HomeLiderDataItem(
-                                      owner: BlocProvider
-                                          .of<SessionCubit>(context)
-                                          .currentUser != null ? BlocProvider
-                                          .of<SessionCubit>(context)
-                                          .currentUser!
-                                          .id == entry.value.userId : false,
-                                      index: entry.key,
-                                      userStepOrderModel: UserStepOrderModel(
-                                          id: entry.value.userId,
-                                          fullName: entry.value.name ?? '',
-                                          genderType: entry.value.genderType,
-                                          step: entry.value.steps ?? 0
-                                      ),
-                                    )).toList()
-                            ),
+                          return Column(
+                              children: state.mainData.asMap().entries.map((entry) =>
+                                  HomeLiderDataItem(
+                                    owner: BlocProvider
+                                        .of<SessionCubit>(context)
+                                        .currentUser != null ? BlocProvider
+                                        .of<SessionCubit>(context)
+                                        .currentUser!
+                                        .id == entry.value.userId : false,
+                                    index: entry.key,
+                                    userStepOrderModel: UserStepOrderModel(
+                                        id: entry.value.userId,
+                                        fullName: entry.value.name ?? '',
+                                        genderType: entry.value.genderType,
+                                        step: entry.value.steps ?? 0
+                                    ),
+                                  )).toList()
                           );
                         }
-                        else if(state is HomeLeaderBoardDonationLoading )
-                          return Container(
-                              child: Center(
-                                child: CircularProgressIndicator(),
-                              )
+                        else if(state is HomeLeaderBoardDonationLoading ){
+                          return  const Center(
+                            child: CircularProgressIndicator(),
                           );
-                        else if(state is HomeLeaderBoardDonationError )
+                        }
+                        else if(state is HomeLeaderBoardDonationError ){
                           return GeneralErrorLoadAgainWidget(
                             onTap: (){
                               context.read<HomeLeaderBoardDonationCubit>().refresh();
                             },
-                          );
-                        else
-                          return SizedBox();
+                          );}
+                        else{
+                          return const SizedBox();
+                        }
+
                       }
                   ),
 
-                  leaderBoardHomeState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeStep?
+                  leaderBoardHomeState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeStep?
                   BlocBuilder<HomeLeaderBoardStepCubit, HomeLeaderBoardStepState>(
                       builder: (context, state) {
                        ///////// print("BlocBuilder<HomeLeaderBoardStepCubit = ${state.toString()}");
-                        if(state is HomeLeaderBoardStepSuccess )
-
+                        if(state is HomeLeaderBoardStepSuccess ) {
                           return MonthStepUserOrderView(
-                            display: BlocProvider.of<SessionCubit>(context).currentUser != null && !state.mainData.map((element) => element.userId).contains(BlocProvider.of<SessionCubit>(context).currentUser!.id),
+                            display: BlocProvider
+                                .of<SessionCubit>(context)
+                                .currentUser != null &&
+                                !state.mainData.map((element) => element.userId)
+                                    .contains(BlocProvider
+                                    .of<SessionCubit>(context)
+                                    .currentUser!
+                                    .id),
                           );
-                        else if(state is HomeLeaderBoardStepLoading )
-                          return LeadderDataItemShimmerWidget(
+                        } else if(state is HomeLeaderBoardStepLoading ){
+                          return const LeadderDataItemShimmerWidget(
                             owner: true,
                           );
-                        else if(state is HomeLeaderBoardStepError )
+                        }
+                        else if(state is HomeLeaderBoardStepError ) {
                           return GeneralErrorLoadAgainWidget(
-                            onTap: (){
-                              context.read<HomeLeaderBoardStepCubit>().refresh();
+                            onTap: () {
+                              context.read<HomeLeaderBoardStepCubit>()
+                                  .refresh();
                             },
                           );
-                        else
-                          return SizedBox();
+                        }
+                        else {
+                          return const SizedBox();
+                        }
                       }
                   ):
                   BlocBuilder<HomeLeaderBoardDonationCubit, HomeLeaderBoardDonationState>(
@@ -217,12 +235,13 @@ class _HomeLeaderBoardWidgetState extends State<HomeLeaderBoardWidget> {
                             display: BlocProvider.of<SessionCubit>(context).currentUser != null && !state.mainData.map((element) => element.userId).contains(BlocProvider.of<SessionCubit>(context).currentUser!.id),
                           );
                         }
-                        else if(state is HomeLeaderBoardDonationLoading )
-                          return LeadderDataItemShimmerWidget(
+                        else if(state is HomeLeaderBoardDonationLoading ) {
+                          return const LeadderDataItemShimmerWidget(
                             owner: true,
                           );
-                        else
-                          return SizedBox();
+                        } else {
+                          return const SizedBox();
+                        }
                       }
                   ),
 

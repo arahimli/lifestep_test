@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lifestep/src/models/general/achievement-list.dart';
+import 'package:lifestep/src/models/general/achievement_list.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 abstract class GeneralStepCalculationState extends Equatable {
@@ -74,7 +74,7 @@ class GeneralStepCalculationNotGranted extends GeneralStepCalculationState {
   final int stepCountDay;
   final DateTime selectedDate;
 
-  const GeneralStepCalculationNotGranted({ this.stepCountDay:0 ,required this.selectedDate});
+  const GeneralStepCalculationNotGranted({ this.stepCountDay=0 ,required this.selectedDate});
 
   @override
   List<Object> get props => [];

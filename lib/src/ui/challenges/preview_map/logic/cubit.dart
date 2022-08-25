@@ -9,7 +9,7 @@ import 'package:lifestep/src/resources/challenge.dart';
 
 
 class PreviewPolylineMapCubit extends Cubit<PreviewPolylineMapState> {
-  final ChallengeRepository challengeRepository;
+  final IChallengeRepository challengeRepository;
   final ChallengeModel challengeModel;
 
 

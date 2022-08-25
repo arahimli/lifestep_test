@@ -17,7 +17,7 @@ class FondDonorListSuccess extends FondDonorListState {
   final List<DonorModel> dataList;
   final int dataCount;
 
-  const FondDonorListSuccess({this.dataList = const [], this.dataCount: 0, });
+  const FondDonorListSuccess({this.dataList = const [], this.dataCount= 0, });
 
   FondDonorListSuccess copyWith({
     required List<DonorModel> dataList,
@@ -34,7 +34,7 @@ class FondDonorListSuccess extends FondDonorListState {
 
   @override
   String toString() =>
-      'FondDonorListSuccess { mainData: ${dataList != null ? dataList.length : 0} }';
+      'FondDonorListSuccess { mainData: ${dataList.length } }';
 }
 
 class FondDonorListError extends FondDonorListState {

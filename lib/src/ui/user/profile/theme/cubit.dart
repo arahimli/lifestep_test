@@ -11,7 +11,7 @@ class ThemeCubit extends Cubit<ThemeState> {
   applyTheme(int themeId) async{
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setInt('themeId', themeId);
-      emit(ThemeState(dark: themeId == AppThemes.DarkBlue));
+      emit(ThemeState(dark: themeId == AppThemes.darkBlue));
   }
 
   ThemeCubit() : super(ThemeState(dark: false)) {
@@ -20,6 +20,6 @@ class ThemeCubit extends Cubit<ThemeState> {
 
   Future<void> initialize() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    emit(ThemeState(dark: !prefs.containsKey('themeId') ? false : prefs.getInt("themeId") == AppThemes.DarkBlue));
+    emit(ThemeState(dark: !prefs.containsKey('themeId') ? false : prefs.getInt("themeId") == AppThemes.darkBlue));
   }
 }

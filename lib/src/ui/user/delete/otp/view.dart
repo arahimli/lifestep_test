@@ -10,7 +10,7 @@ import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/appbar/general.dart';
 import 'package:lifestep/src/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/src/tools/components/dialog/loading.dart';
-import 'package:lifestep/src/tools/components/error/general-widget.dart';
+import 'package:lifestep/src/tools/components/error/general_widget.dart';
 import 'package:lifestep/src/tools/components/static/html.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
@@ -19,7 +19,7 @@ import 'package:lifestep/src/tools/config/styles.dart';
 import 'package:lifestep/src/cubits/global/session/cubit.dart';
 import 'package:lifestep/src/cubits/global/term_privacy/cubit.dart';
 import 'package:lifestep/src/cubits/global/term_privacy/state.dart';
-import 'package:lifestep/src/ui/user/components/otp-number.dart';
+import 'package:lifestep/src/ui/user/components/otp_number.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sprintf/sprintf.dart';
@@ -145,7 +145,7 @@ class _OtpRemoveViewState extends State<OtpRemoveView> {
                     }
                   },
                   borderRadius: 100,
-                  text: "${Utils.getString(context, "otp_button_text")}",
+                  text: Utils.getString(context, "otp_button_text"),
                   vertical: 12,
                 );
               }),

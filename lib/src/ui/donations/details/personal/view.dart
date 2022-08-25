@@ -11,7 +11,7 @@ import 'package:get_it/get_it.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/src/tools/components/dialog/loading.dart';
-import 'package:lifestep/src/tools/components/error/general-widget.dart';
+import 'package:lifestep/src/tools/components/error/general_widget.dart';
 import 'package:lifestep/src/tools/components/form/textfield/general.dart';
 import 'package:lifestep/src/tools/components/shimmers/donations/donor.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton-list-no-scrolling.dart';
@@ -28,7 +28,7 @@ import 'package:lifestep/src/cubits/global/step/donation/week/cubit.dart';
 import 'package:lifestep/src/models/donation/charities.dart';
 import 'package:lifestep/src/models/donation/charity_donation.dart';
 import 'package:lifestep/src/models/donation/donors.dart';
-import 'package:lifestep/src/models/general/achievement-list.dart';
+import 'package:lifestep/src/models/general/achievement_list.dart';
 import 'package:lifestep/src/ui/donations/details/personal/logic/deatil_cubit.dart';
 import 'package:lifestep/src/ui/donations/details/personal/logic/details_state.dart';
 import 'package:lifestep/src/ui/donations/details/personal/logic/donate/cubit.dart';
@@ -44,14 +44,16 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:sprintf/sprintf.dart';
 
-class DonationPersonalDetailView extends StatefulWidget {
-  const DonationPersonalDetailView({Key? key}) : super(key: key);
+class CharityDetailView extends StatefulWidget {
+  const CharityDetailView({Key? key}) : super(key: key);
+
+  static const routeName = "/charity-detail";
 
   @override
-  _DonationPersonalDetailViewState createState() => _DonationPersonalDetailViewState();
+  _CharityDetailViewState createState() => _CharityDetailViewState();
 }
 
-class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView> {
+class _CharityDetailViewState extends State<CharityDetailView> {
   late ConfettiController _controllerTopCenter;
 
   @override
@@ -66,7 +68,7 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
     super.didChangeDependencies();
   }
   @override
-  void didUpdateWidget(covariant DonationPersonalDetailView oldWidget) {
+  void didUpdateWidget(covariant CharityDetailView oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
   }
@@ -79,10 +81,12 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
         double realPercent = (state.charityModel.requiredSteps == 0 ? 0 : state.charityModel.presentSteps / state.charityModel.requiredSteps);
         return WillPopScope(
           onWillPop: ()async{
-            if(context.read<CharityDetailsBloc>().charityChanged)
+            if(context.read<CharityDetailsBloc>().charityChanged) {
               Navigator.pop(context, state.charityModel);
-            else
+            }
+            else {
               Navigator.pop(context);
+            }
             return Future(() => false);
           },
           child: Scaffold(
@@ -120,7 +124,7 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
                           //   height: 30,
                           //   color: Colors.red,
                           // ),
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(24.0),
                               topRight: Radius.circular(24.0)
                           ),
@@ -144,7 +148,7 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
                                 decoration: BoxDecoration(
                                     color: MainColors.white,
 
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(24.0),
                                         topRight: Radius.circular(24.0))
                                 ),
@@ -235,7 +239,7 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
                                                                 child: Column(
                                                                   children: [
                                                                     Text(
-                                                                      "${Utils.humanizeInteger(context, state.charityModel.presentSteps)}",
+                                                                      Utils.humanizeInteger(context, state.charityModel.presentSteps),
                                                                       style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24, color: MainColors.darkPink500),
                                                                       textAlign: TextAlign.left,
                                                                       maxLines: 1,
@@ -257,7 +261,7 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
                                                                 children: [
 
                                                                   Text(
-                                                                    "${Utils.humanizeInteger(context, state.charityModel.requiredSteps)}",
+                                                                    Utils.humanizeInteger(context, state.charityModel.requiredSteps),
                                                                     style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 24),
                                                                     textAlign: TextAlign.left,
                                                                     maxLines: 1,
@@ -296,27 +300,25 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
                                                 ),
 
                                                 const SizedBox(height: 12,),
-                                                Text("${sprintf(Utils.getString(context, "challenges_view___end_date_text"), [Utils.stringToDatetoString(value: state.charityModel.endDate ?? '', formatFrom : "yyyy-MM-dd", formatTo : "dd.MM.yyyy")])}", style: MainStyles.boldTextStyle.copyWith(fontSize: 14),),
+                                                Text(sprintf(Utils.getString(context, "challenges_view___end_date_text"), [Utils.stringToDatetoString(value: state.charityModel.endDate ?? '', formatFrom : "yyyy-MM-dd", formatTo : "dd.MM.yyyy")]), style: MainStyles.boldTextStyle.copyWith(fontSize: 14),),
                                                 const SizedBox(
                                                   height: 24,
                                                 ),
 
 
-                                                Container(
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                                      children: [
-                                                        AutoSizeText(Utils.getString(context, "general__donations"), style: MainStyles.boldTextStyle.copyWith(fontSize: 20),),
-                                                        BlocBuilder<DonorListCubit, DonorListState>(
-                                                            builder: (context, stateDonor) {
-                                                              return stateDonor is DonorListSuccess ?
-                                                              AutoSizeText("${Utils.humanizeInteger(context, stateDonor.dataCount)} ${Utils.getString(context, "general__person__count")}", style: MainStyles.boldTextStyle.copyWith(fontSize: 16, color: MainColors.generalSubtitleColor),)
-                                                                  : Container(child: Text(" "),);
-                                                            }
-                                                        ),
-                                                      ],
-                                                    )
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    AutoSizeText(Utils.getString(context, "general__donations"), style: MainStyles.boldTextStyle.copyWith(fontSize: 20),),
+                                                    BlocBuilder<DonorListCubit, DonorListState>(
+                                                        builder: (context, stateDonor) {
+                                                          return stateDonor is DonorListSuccess ?
+                                                          AutoSizeText("${stateDonor.dataCount >= 100000 ? Utils.humanizeInteger(context, stateDonor.dataCount) : stateDonor.dataCount} ${Utils.getString(context, "general__person__count")}", style: MainStyles.boldTextStyle.copyWith(fontSize: 16, color: MainColors.generalSubtitleColor),)
+                                                              : const Text(" ");
+                                                        }
+                                                    ),
+                                                  ],
                                                 ),
                                                 const SizedBox(height: 4,),
                                                 BlocBuilder<DonorListCubit, DonorListState>(
@@ -338,7 +340,7 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
                                                           context.read<DonorListCubit>().search();
                                                         },
                                                       )
-                                                          : SkeletonNoScrollingListWidget(
+                                                          : const SkeletonNoScrollingListWidget(
                                                         child: DonorListItemShimmerWidget(),
                                                       );
                                                     }
@@ -499,22 +501,34 @@ class _DonationPersonalDetailViewState extends State<DonationPersonalDetailView>
                           14,
                           // 0,
                         ),
+                        // decoration: BoxDecoration(
+                        //   borderRadius: BorderRadius.circular(
+                        //       100),
+                        //   color: MainColors.white,
+                        //
+                        //   boxShadow: [
+                        //     BoxShadow(
+                        //       blurRadius: 8.0,
+                        //       color: Color.fromRGBO(0, 0, 0, 0.25),
+                        //     ),
+                        //   ],
+                        // ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(
                               100),
-                          color: MainColors.white,
+                          // color: MainColors.white,
 
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 8.0,
-                              color: Color.fromRGBO(0, 0, 0, 0.25),
-                            ),
-                          ],
+                          // boxShadow: [
+                          //     BoxShadow(
+                          //     blurRadius: 8.0,
+                          //     color: Color.fromRGBO(0, 0, 0, 0.25),
+                          //   ),
+                          // ],
                         ),
                         child: SvgPicture.asset(
                           "assets/svgs/menu/back.svg",
-                          color: MainColors.black,
-                          height: 20,
+                          color: MainColors.white,
+                          height: 24,
                         ),
                       ),
 
@@ -547,7 +561,7 @@ class _DonationModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ConfettiController _controllerTopCenter = ConfettiController(duration: const Duration(seconds: 5));
+    // ConfettiController _controllerTopCenter = ConfettiController(duration: const Duration(seconds: 5));
     final size = MediaQuery.of(context).size;
     SessionCubit sessionCubit = BlocProvider.of<SessionCubit>(context);
     return Material(
@@ -755,7 +769,7 @@ class _DonationModal extends StatelessWidget {
                                             BlocProvider.of<GeneralUserLeaderBoardMonthDonationCubit>(context).refresh();
                                             BlocProvider.of<GeneralUserLeaderBoardAllDonationCubit>(context).refresh();
                                             Utils.showSuccessModal(context, size, title: Utils.getString(context, "page_donation_list___donation_success_mesage"), image: "assets/svgs/donations/success-dialog.svg");
-                                            bool firstTime = false;
+                                            // bool firstTime = false;
                                             // controllerTopCenter = ConfettiController(duration: const Duration(seconds: 5));
 
                                             onAchievement(donationResponse.data!.userAchievementsModels!);
@@ -814,7 +828,7 @@ class _DonorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: MainColors.mainBorderColor)),
@@ -823,7 +837,7 @@ class _DonorWidget extends StatelessWidget {
       padding: const EdgeInsets.all(2),
       child: GestureDetector(
         onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
+          Utils.focusClose(context);;
 //          focusNode.unfocus();
         },
         child: Container(

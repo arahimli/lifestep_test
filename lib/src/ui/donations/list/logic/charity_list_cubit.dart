@@ -11,8 +11,8 @@ import 'package:lifestep/src/resources/service/web_service.dart';
 
 class CharityListCubit extends  Cubit<CharityListState> {
 
-  final DonationRepository donationRepository;
-  CharityListCubit({required this.donationRepository}) : assert(donationRepository != null), super(CharityListLoading()){
+  final IDonationRepository donationRepository;
+  CharityListCubit({required this.donationRepository}) : super(CharityListLoading()){
     search('');
     // //////// print("CharityListCubit--------");
   }
@@ -45,7 +45,7 @@ class CharityListCubit extends  Cubit<CharityListState> {
       try {
         if (currentState is CharityListLoading) {
           emit(CharityListFetching());
-          searchText = searchValue != null ? searchValue : searchText;
+          searchText = searchValue ?? searchText;
           List listData = await donationRepository.getCharities(searchText: searchText, pageValue: pageValue, token: dioToken);
           //////// print("listData__listData__listData__listData__listData__listData__");
           //////// print(listData);
@@ -125,8 +125,8 @@ class CharityListCubit extends  Cubit<CharityListState> {
         hasReachedMax: boolValue));
   }
 
-  List<CharityModel> updateData(List<CharityModel> listValue, CharityModel value){
-    listValue[listValue.indexWhere((element) => element.id == value.id)] = value;
-    return listValue;
-  }
+  // List<CharityModel> updateData(List<CharityModel> listValue, CharityModel value){
+  //   listValue[listValue.indexWhere((element) => element.id == value.id)] = value;
+  //   return listValue;
+  // }
 }

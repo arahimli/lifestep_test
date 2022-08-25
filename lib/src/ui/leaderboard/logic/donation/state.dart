@@ -31,7 +31,7 @@ class LeaderBoardDonationSuccess extends LeaderBoardDonationState {
 
   @override
   String toString() =>
-      'LeaderBoardDonationSuccess { mainData: ${mainData != null ? mainData.usersAllRating!.length : 0}}';
+      'LeaderBoardDonationSuccess { mainData: ${mainData.usersAllRating != null ? mainData.usersAllRating!.length : 0}}';
 }
 
 class LeaderBoardDonationError extends LeaderBoardDonationState {

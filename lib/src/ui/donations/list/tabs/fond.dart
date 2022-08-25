@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/page-messages/list-message.dart';
+import 'package:lifestep/src/tools/components/page_messages/list-message.dart';
 import 'package:lifestep/src/tools/components/shimmers/donations/fond.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton-list.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';

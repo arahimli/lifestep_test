@@ -40,7 +40,7 @@ class GoalStepCubit extends Cubit<GoalStepState> {
           "target_steps": state.amount,
         },
         header: {
-          'Authorization': "Bearer ${TOKEN}",
+          'Authorization': "Bearer $TOKEN",
           'Accept-Language': LANGUAGE,
           'Accept': 'application/json'
         }

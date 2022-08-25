@@ -107,5 +107,6 @@ Widget readLess = Container(
   child: SvgPicture.asset("assets/svgs/general/less.svg"),
 );
 Widget readMore = Container(
+  margin: const EdgeInsets.only(top: 8),
   child: SvgPicture.asset("assets/svgs/general/more.svg"),
 );

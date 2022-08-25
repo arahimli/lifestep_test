@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/page-messages/list-message.dart';
+import 'package:lifestep/src/tools/components/page_messages/list-message.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/scroll_behavior.dart';
 import 'package:lifestep/src/tools/config/styles.dart';

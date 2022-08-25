@@ -32,15 +32,15 @@ class RegistrationBloc extends Cubit<RegistrationState> {
 
   initialize(){
     // state.copyWith(phone: authCubit.phone);
-    if(authCubit.authType == AuthType.OTP) {
+    if(authCubit.authType == AuthType.otp) {
       phoneController.text = authCubit.phone;
       emit(state.copyWith(phone: authCubit.phone,isValidPhone: formValidator.validPhone(authCubit.phone, req: false)));
     }
-    if(authCubit.authType == AuthType.FACEBOOK) {
-      if(formValidator.validFullName(authCubit.fullName))
-      fullNameController.text = authCubit.fullName;
-      if(formValidator.validEmail(authCubit.email))
-      emailController.text = authCubit.email;
+    if(authCubit.authType == AuthType.facebook) {
+      if(formValidator.validFullName(authCubit.fullName)){
+      fullNameController.text = authCubit.fullName;}
+      if(formValidator.validEmail(authCubit.email)){
+      emailController.text = authCubit.email;}
       emit(state.copyWith(fullName: authCubit.fullName, isValidFullName: formValidator.validFullName(authCubit.fullName), email: authCubit.email, isValidEmail: formValidator.validEmail(authCubit.email), ));
     }
   }
@@ -103,8 +103,8 @@ class RegistrationBloc extends Cubit<RegistrationState> {
   void genderChanged(String value, {bool req=false}){
     //////// print("void genderChanged");
     //////// print(value);
-    //////// print(formValidator.validGender(value, MainConst.GENDER_DATA_MAP));
-    emit(state.copyWith(gender: formValidator.validGender(value, MainConst.GENDER_DATA_MAP) ? value : '', isValidGender: formValidator.validGender(value, MainConst.GENDER_DATA_MAP)));
+    //////// print(formValidator.validGender(value, MainConst.genderDataMap));
+    emit(state.copyWith(gender: formValidator.validGender(value, MainConst.genderDataMap) ? value : '', isValidGender: formValidator.validGender(value, MainConst.genderDataMap)));
   }
 
   Future<List> registerSubmit() async{

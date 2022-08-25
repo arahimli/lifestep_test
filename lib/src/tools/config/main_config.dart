@@ -142,7 +142,7 @@ class MainConfig {
   /// - If you set "false", it will load full image directly and for the
   ///   placeholder image it will use default placeholder Image.
   ///
-  static const bool USE_THUMBNAIL_AS_PLACEHOLDER = true;
+  // static const bool USE_THUMBNAIL_AS_PLACEHOLDER = true;
 
   ///
   /// Image Size
@@ -162,13 +162,13 @@ class MainConfig {
   ///
   /// Default Limit
   ///
-  static const int DEFAULT_LOADING_LIMIT = 30;
-  static const int CATEGORY_LOADING_LIMIT = 10;
-  static const int COLLECTION_PRODUCT_LOADING_LIMIT = 10;
-  static const int DISCOUNT_PRODUCT_LOADING_LIMIT = 10;
-  static const int FEATURE_PRODUCT_LOADING_LIMIT = 10;
-  static const int LATEST_PRODUCT_LOADING_LIMIT = 10;
-  static const int TRENDING_PRODUCT_LOADING_LIMIT = 10;
+  static const int defaultLoadingLimit = 30;
+  static const int categoryLoadingLimit = 10;
+  static const int collectionProductLoadingLimit = 10;
+  static const int discountProductLoadingLimit = 10;
+  static const int featureProductLoadingLimit = 10;
+  static const int latestProductLoadingLimit = 10;
+  static const int trendingProductLoadingLimit = 10;
 
   ///
   ///Login Setting

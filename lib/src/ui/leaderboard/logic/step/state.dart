@@ -31,7 +31,7 @@ class LeaderBoardStepSuccess extends LeaderBoardStepState {
 
   @override
   String toString() =>
-      'LeaderBoardStepSuccess { mainData: ${mainData != null ? mainData.usersAllRating!.length : 0}}';
+      'LeaderBoardStepSuccess { mainData: ${mainData.usersAllRating != null ? mainData.usersAllRating!.length : 0}}';
 }
 
 class LeaderBoardStepError extends LeaderBoardStepState {

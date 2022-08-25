@@ -321,7 +321,7 @@ class _GeneralDateFieldState extends State<GeneralDateField> {
                           ],
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         height: 0,
                         thickness: 1,
                       ),

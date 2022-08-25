@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:lifestep/src/resources/challenge.dart';
 import 'package:lifestep/src/tools/components/error/internet_error.dart';
 import 'package:lifestep/src/tools/components/error/maintenance.dart';
 import 'package:lifestep/src/tools/components/error/server_error.dart';
 import 'package:lifestep/src/tools/components/error/standard_error.dart';
-import 'package:lifestep/src/tools/components/error/update-warning.dart';
+import 'package:lifestep/src/tools/components/error/update_warning.dart';
 import 'package:lifestep/src/ui/apploading/logic/cubit.dart';
 import 'package:lifestep/src/ui/apploading/logic/state.dart';
-import 'package:lifestep/src/ui/splash/splash-screen.dart';
+import 'package:lifestep/src/ui/index/logic/challenge/cubit.dart';
+import 'package:lifestep/src/ui/splash/view.dart';
 import 'package:lifestep/src/ui/index/logic/main/cubit.dart';
 import 'package:lifestep/src/ui/index/logic/charity/cubit.dart';
 import 'package:lifestep/src/ui/index/logic/dailystep/cubit.dart';
@@ -79,6 +81,8 @@ class _AppLoadingViewState extends State<AppLoadingView> {
                                       sessionCubit: BlocProvider.of<
                                           SessionCubit>(context))),
                           BlocProvider<HomeCharityListCubit>(create: (BuildContext context) => HomeCharityListCubit(donationRepository: GetIt.instance<DonationRepository>())),
+                          BlocProvider<HomeChallengeListCubit>(create: (BuildContext context) => HomeChallengeListCubit(challengeRepository: GetIt.instance<ChallengeRepository>())),
+
                           BlocProvider<IndexCubit>(
                               create: (BuildContext context) =>
                                   IndexCubit(

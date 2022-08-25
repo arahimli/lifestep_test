@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/config/exception.dart';
-import 'package:lifestep/src/models/general/achievement-list.dart';
+import 'package:lifestep/src/models/general/achievement_list.dart';
 // import 'package:lifestep/src/models/auth/achievements.dart';
 import 'package:lifestep/src/ui/user/profile/achievement/state.dart';
 import 'package:lifestep/src/ui/user/repositories/auth.dart';
@@ -48,7 +48,7 @@ class AchievementListCubit extends  Cubit<AchievementListState> {
     await search(reset: true);
   }
 
-  search({bool reset: false}) async {
+  search({bool reset= false}) async {
     var currentState = state;
     if(reset){
       currentState = AchievementListLoading();

@@ -56,11 +56,11 @@ class CarouselWidget extends StatelessWidget {
                           }else if(item.linkType == SLIDER_LINK_TYPE.MODULE){
                             // 1-fund,2-charity,3-challenge,4-notification
                             if(item.value == '1'){
-                              navigationBloc.changeNavigationIndex(Navigation.DONATIONS);
+                              navigationBloc.changeNavigationIndex(Navigation.donations);
                             }else if(item.value == '2'){
-                              navigationBloc.changeNavigationIndex(Navigation.DONATIONS);
+                              navigationBloc.changeNavigationIndex(Navigation.donations);
                             }else if(item.value == '3'){
-                              navigationBloc.changeNavigationIndex(Navigation.CHALLENGES);
+                              navigationBloc.changeNavigationIndex(Navigation.challenges);
                             }else if(item.value == '4'){
                               Navigator.pushNamed(context, "notification-list");
                             }

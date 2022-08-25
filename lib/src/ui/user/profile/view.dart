@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/appbar/auth-notification.dart';
+import 'package:lifestep/src/tools/components/appbar/auth_notification.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/scroll_behavior.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
@@ -16,7 +16,7 @@ import 'package:lifestep/src/ui/user/profile/settings/view.dart';
 
 class ProfileView extends StatefulWidget {
   final bool backPermit;
-  const ProfileView({Key? key, this.backPermit: true}) : super(key: key);
+  const ProfileView({Key? key, this.backPermit= true}) : super(key: key);
 
   @override
   _ProfileViewState createState() => _ProfileViewState();
@@ -37,11 +37,11 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
   }
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () {
-        if(!widget.backPermit)
-          navigationBloc.changeNavigationIndex(Navigation.HOME);
+        if(!widget.backPermit) {
+          navigationBloc.changeNavigationIndex(Navigation.home);
+        }
         return Future.value(widget.backPermit);
       },
       child: Scaffold(
@@ -56,14 +56,14 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
               ),
               const SizedBox(height: 4,),
 
-              GeneralBalanceOverView(),
+              const GeneralBalanceOverView(),
 
               const SizedBox(height: 4,),
               TabBar(
                 padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                 indicatorWeight: 4,
-                indicatorPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-                labelPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 9),
+                indicatorPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+                labelPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 9),
                 indicatorColor: MainColors.darkPink500,
                 unselectedLabelColor: MainColors.middleGrey400,
                 labelColor: MainColors.middleGrey900,
@@ -93,7 +93,7 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
                       color: MainColors.backgroundColor,
                       child: TabBarView(
                         controller: tabController,
-                        children: [
+                        children: const [
                           InformationWidget(),
                           AchievementListWidget(),
                           SettingsWidget(),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lifestep/src/tools/components/error/general-widget.dart';
+import 'package:lifestep/src/tools/components/error/general_widget.dart';
 import 'package:lifestep/src/tools/components/shimmers/step/step-list-item.dart';
 import 'package:lifestep/src/tools/constants/enum.dart';
 import 'package:lifestep/src/cubits/global/session/cubit.dart';
-import 'package:lifestep/src/models/step/user-item.dart';
+import 'package:lifestep/src/models/step/user_item.dart';
 import 'package:lifestep/src/ui/home/components/liderboard_item.dart';
 import 'cubit.dart';
 import 'state.dart';
@@ -13,7 +13,7 @@ import 'package:lifestep/src/tools/general/padding/page-padding.dart';
 class AllStepUserOrderView extends StatelessWidget {
   final bool display;
   final double? horizontalPadding;
-  const AllStepUserOrderView({Key? key, this.display : true, this.horizontalPadding}) : super(key: key);
+  const AllStepUserOrderView({Key? key, this.display = true, this.horizontalPadding}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

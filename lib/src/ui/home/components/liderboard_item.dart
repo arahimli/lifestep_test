@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
-import 'package:lifestep/src/models/step/user-item.dart';
+import 'package:lifestep/src/models/step/user_item.dart';
 
 class HomeLiderDataItem extends StatelessWidget {
   final int index;
@@ -26,7 +26,7 @@ class HomeLiderDataItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom:0),
       child: GestureDetector(
         onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
+          Utils.focusClose(context);;
 //          focusNode.unfocus();
         },
         child: Container(

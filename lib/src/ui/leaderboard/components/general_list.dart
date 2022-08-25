@@ -11,7 +11,7 @@ import 'package:lifestep/src/cubits/global/step/step/all/view.dart';
 import 'package:lifestep/src/cubits/global/step/step/month/view.dart';
 import 'package:lifestep/src/cubits/global/step/step/week/view.dart';
 import 'package:lifestep/src/models/leaderboard/list.dart';
-import 'package:lifestep/src/models/step/user-item.dart';
+import 'package:lifestep/src/models/step/user_item.dart';
 import 'package:lifestep/src/ui/home/components/liderboard_item.dart';
 
 class GeneralListItem extends StatelessWidget {
@@ -44,20 +44,17 @@ class GeneralListItem extends StatelessWidget {
                               minHeight: constraints.maxHeight
                           ),
                           // padding: PagePadding.leftRight16(),
-                          child: Container(
-                            // padding: PagePadding.all16(),
-                            child: Column(
-                              children: ratingList.asMap().entries.map((entry) => HomeLiderDataItem(
-                                owner: BlocProvider.of<SessionCubit>(context).currentUser != null ? BlocProvider.of<SessionCubit>(context).currentUser!.id == entry.value.userId : false,
-                                index: entry.key,
-                                userStepOrderModel: UserStepOrderModel(
-                                    id: entry.value.userId,
-                                    fullName: entry.value.name ?? '',
-                                    genderType: entry.value.genderType,
-                                    step: entry.value.steps ?? 0
-                                ),
-                              )).toList(),
-                            ),
+                          child: Column(
+                            children: ratingList.asMap().entries.map((entry) => HomeLiderDataItem(
+                              owner: BlocProvider.of<SessionCubit>(context).currentUser != null ? BlocProvider.of<SessionCubit>(context).currentUser!.id == entry.value.userId : false,
+                              index: entry.key,
+                              userStepOrderModel: UserStepOrderModel(
+                                  id: entry.value.userId,
+                                  fullName: entry.value.name ?? '',
+                                  genderType: entry.value.genderType,
+                                  step: entry.value.steps ?? 0
+                              ),
+                            )).toList(),
                           ),
                         )
                     ),

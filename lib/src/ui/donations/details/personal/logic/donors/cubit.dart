@@ -12,9 +12,9 @@ import 'package:sprintf/sprintf.dart';
 
 class DonorListCubit extends  Cubit<DonorListState> {
 
-  final DonationRepository donationRepository;
+  final IDonationRepository donationRepository;
   final CharityModel charityModel;
-  DonorListCubit({required this.donationRepository, required this.charityModel}) : assert(donationRepository != null), super(DonorListLoading()){
+  DonorListCubit({required this.donationRepository, required this.charityModel}) : super(DonorListLoading()){
     search();
     // //////// print("DonorListCubit--------");
   }
@@ -23,7 +23,7 @@ class DonorListCubit extends  Cubit<DonorListState> {
   CancelToken dioToken = CancelToken();
 
 
-  search({bool reset: true}) async {
+  search({bool reset= true}) async {
     var currentState = state;
     if(reset){
       currentState = DonorListLoading();
@@ -83,7 +83,7 @@ class DonorListCubit extends  Cubit<DonorListState> {
       } catch (exception) {
         //////// print('DonorListCubit mapEventToState exception: $exception');
         if (exception is HTTPException) {
-          emit(DonorListError(errorCode: WEB_SERVICE_ENUM.UNEXCEPTED_ERROR));
+          emit(const DonorListError(errorCode: WEB_SERVICE_ENUM.UNEXCEPTED_ERROR));
         }
       }
   }

@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:lifestep/src/models/challenge/challenges.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
+import 'package:lifestep/src/tools/common/utlis.dart';
 
 abstract class ChallengeListState extends Equatable {
   const ChallengeListState();
@@ -16,21 +18,24 @@ class ChallengeListFetching extends ChallengeListState {}
 class ChallengeListSuccess extends ChallengeListState {
   final List<ChallengeModel>? dataList;
   final bool hasReachedMax;
+  final String hash;
 
-  const ChallengeListSuccess({this.dataList = const [], this.hasReachedMax = false});
+  const ChallengeListSuccess({this.dataList = const [], this.hasReachedMax = false, required this.hash});
 
   ChallengeListSuccess copyWith({
     List<ChallengeModel>? dataList,
     required bool hasReachedMax,
+    String? hash,
   }) {
     return ChallengeListSuccess(
       dataList: dataList ?? this.dataList,
       hasReachedMax: hasReachedMax,
+      hash: hash ?? Utils.generateRandomString(10),
     );
   }
 
   @override
-  List<Object> get props => [dataList ?? [], hasReachedMax];
+  List<Object> get props => [dataList ?? [], hasReachedMax, hash];
 
   @override
   String toString() =>

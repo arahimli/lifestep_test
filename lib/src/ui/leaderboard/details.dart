@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/appbar/auth-notification.dart';
+import 'package:lifestep/src/tools/components/appbar/auth_notification.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
 import 'package:lifestep/src/tools/constants/page_key.dart';
@@ -48,7 +48,7 @@ class _LeaderBoardDetailViewState extends State<LeaderBoardDetailView> with Tick
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: MainColors.white,
       body: SafeArea(
@@ -77,10 +77,10 @@ class _LeaderBoardDetailViewState extends State<LeaderBoardDetailView> with Tick
                         children: [
                           Expanded(
                               child: GestureDetector(
-                                onTap: () => context.read<LeaderBoardDetailCubit>().onChangeValue(LeaderBoardTypeEnum.LeaderBoardTypeStep),
+                                onTap: () => context.read<LeaderBoardDetailCubit>().onChangeValue(LeaderBoardTypeEnum.leaderBoardTypeStep),
                                 child: Container(
                                     decoration: BoxDecoration(
-                                        color: leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeStep ? MainColors.white : null,
+                                        color: leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeStep ? MainColors.white : null,
                                         borderRadius: BorderRadius.circular(64)
                                     ),
                                     padding: const EdgeInsets.symmetric(
@@ -99,10 +99,10 @@ class _LeaderBoardDetailViewState extends State<LeaderBoardDetailView> with Tick
                           const SizedBox(width: 8,),
                           Expanded(
                               child: GestureDetector(
-                                onTap: () => context.read<LeaderBoardDetailCubit>().onChangeValue(LeaderBoardTypeEnum.LeaderBoardTypeDonation),
+                                onTap: () => context.read<LeaderBoardDetailCubit>().onChangeValue(LeaderBoardTypeEnum.leaderBoardTypeDonation),
                                 child: Container(
                                     decoration: BoxDecoration(
-                                        color: leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeDonation ? MainColors.white : null,
+                                        color: leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeDonation ? MainColors.white : null,
                                         borderRadius: BorderRadius.circular(64)
                                     ),
                                     padding: const EdgeInsets.symmetric(
@@ -123,15 +123,15 @@ class _LeaderBoardDetailViewState extends State<LeaderBoardDetailView> with Tick
                 ),
                 const SizedBox(height: 4,),
 
-                if(leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeStep)
+                if(leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeStep)
                   BlocBuilder<LeaderBoardStepCubit, LeaderBoardStepState>(
                       builder: (context, leaderBoardStepState) {
                         if(leaderBoardStepState is LeaderBoardStepSuccess) {
                           return TabBar(
                             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                             indicatorWeight: 4,
-                            indicatorPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-                            labelPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 9),
+                            indicatorPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+                            labelPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 9),
                             indicatorColor: MainColors.darkPink500,
                             unselectedLabelColor: MainColors.middleGrey400,
                             labelColor: MainColors.middleGrey900,
@@ -159,11 +159,11 @@ class _LeaderBoardDetailViewState extends State<LeaderBoardDetailView> with Tick
                         }
                       }
                   ),
-                if(leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeStep)
+                if(leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeStep)
                   LeaderBoardStepView(tabController: stepTabController,),
 
 
-                if(leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeDonation)
+                if(leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeDonation)
                   BlocBuilder<LeaderBoardDonationCubit, LeaderBoardDonationState>(
                       builder: (context, leaderBoardDonationState) {
 
@@ -172,7 +172,7 @@ class _LeaderBoardDetailViewState extends State<LeaderBoardDetailView> with Tick
                             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                             indicatorWeight: 4,
                             indicatorPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-                            labelPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 9),
+                            labelPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 9),
                             indicatorColor: MainColors.darkPink500,
                             unselectedLabelColor: MainColors.middleGrey400,
                             labelColor: MainColors.middleGrey900,
@@ -200,7 +200,7 @@ class _LeaderBoardDetailViewState extends State<LeaderBoardDetailView> with Tick
                         }
                       }
                   ),
-                if(leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.LeaderBoardTypeDonation)
+                if(leaderBoardDetailState.leaderBoardTypeEnum == LeaderBoardTypeEnum.leaderBoardTypeDonation)
                   LeaderBoardDonationView(tabController: donationTabController, ),
               ],
             );

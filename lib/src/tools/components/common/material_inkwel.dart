@@ -26,7 +26,7 @@ class MaterialInkWell extends StatelessWidget {
       child: InkWell(
         borderRadius: borderRadiusWidget ?? BorderRadius.circular(borderRadius ?? 6),
         splashColor: Colors.transparent,
-        splashFactory: CustomSplashFactory(),
+        splashFactory: const CustomSplashFactory(),
         highlightColor: highlightColor!.withOpacity(opacity ?? 0.10),
         onTap: onTap,
         child: child,
@@ -43,22 +43,17 @@ const durationMultiplier = 1;
 const Duration _kUnconfirmedSplashDuration = Duration(seconds: 1);
 const Duration _kSplashFadeInDuration = Duration(milliseconds: 200);
 
-const double _kSplashInitialSize = 0.0; // logical pixels
-const double _kSplashConfirmedVelocity = 1.0;
+// const double _kSplashInitialSize = 0.0; // logical pixels
+// const double _kSplashConfirmedVelocity = 1.0;
 
 RectCallback? _getClipCallback(RenderBox referenceBox, bool containedInkWell, RectCallback rectCallback) {
-  if (rectCallback != null) {
     assert(containedInkWell);
     return rectCallback;
-  }
-  if (containedInkWell)
-    return () => Offset.zero & referenceBox.size;
-  return null;
 }
 
 double _getTargetRadius(RenderBox referenceBox, bool containedInkWell, RectCallback rectCallback, Offset position) {
   if (containedInkWell) {
-    final Size size = rectCallback != null ? rectCallback().size : referenceBox.size;
+    final Size size = rectCallback().size;
     return _getSplashRadiusForPositionInSize(size, position);
   }
   return Material.defaultSplashRadius;
@@ -73,7 +68,7 @@ double _getSplashRadiusForPositionInSize(Size bounds, Offset position) {
 }
 
 double _getInitialSplashRadius(RenderBox referenceBox, RectCallback rectCallback,) {
-  final Size bounds = rectCallback != null ? rectCallback().size : referenceBox.size;
+  final Size bounds = rectCallback().size;
   final double multiplier = 0.15;
   final double d1 = bounds.topLeft(Offset.zero).distance * multiplier;
   final double d2 = bounds.topRight(Offset.zero).distance * multiplier;

@@ -9,10 +9,10 @@ import 'package:http/http.dart' as http;
 
 abstract class IStaticRepository {
 
-  Future<List> getTermsPrivacy(); // => staticProvider.getTermsPrivacy();
-  Future<List> getSettings();// => staticProvider.getSettings();
-  Future<List> checkUpdate(); // => staticProvider.checkUpdate();
-  Future<Album> fetchAlbum(http.Client client); // => staticProvider.fetchAlbum(client);
+  Future<List> getTermsPrivacy();
+  Future<List> getSettings();
+  Future<List> checkUpdate();
+  Future<Album> fetchAlbum(http.Client client);
 
 }
 

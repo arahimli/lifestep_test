@@ -1,5 +1,5 @@
 import 'package:lifestep/src/models/auth/profile.dart';
-import 'package:lifestep/src/models/general/achievement-list.dart';
+import 'package:lifestep/src/models/general/achievement_list.dart';
 
 class BalanceStepResponse {
   bool? status;

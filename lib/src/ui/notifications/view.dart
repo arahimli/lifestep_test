@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/appbar/auth-notification.dart';
-import 'package:lifestep/src/tools/components/page-messages/list-message.dart';
+import 'package:lifestep/src/tools/components/appbar/auth_notification.dart';
+import 'package:lifestep/src/tools/components/page_messages/list-message.dart';
 import 'package:lifestep/src/tools/components/shimmers/notification_list_item.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton-list.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
@@ -19,6 +19,7 @@ import 'package:lifestep/src/resources/service/web_service.dart';
 
 class NotificationListView extends StatefulWidget {
   const NotificationListView({Key? key}) : super(key: key);
+  static const String routeName = '/notification-list';
 
   @override
   _NotificationListViewState createState() => _NotificationListViewState();
@@ -38,7 +39,6 @@ class _NotificationListViewState extends State<NotificationListView> with Ticker
   }
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return StreamBuilder<Object>(
         stream: null,
         builder: (context, snapshot) {
@@ -74,7 +74,7 @@ class _NotificationListViewState extends State<NotificationListView> with Ticker
                   //   ],
                   // ),
 
-                  Divider(),
+                  const Divider(),
                   Expanded(
                       // flex: 1,
                       child: _NotificationListWidget(),
@@ -164,7 +164,7 @@ class _NotificationListWidgetState extends State<_NotificationListWidget> {
                                 for(int i = 0; i<state.dataList!.length; i++)
                                   _NotifWidget(dataItem: state.dataList![i],),
                                 if(!state.hasReachedMax)
-                                  Container(child: Text("Loading"))
+                                  Text("Loading")
                               ],
                             ),
                           )

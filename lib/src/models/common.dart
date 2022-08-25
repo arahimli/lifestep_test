@@ -4,12 +4,10 @@ class ResponseData {
   ResponseData({this.data});
 
   ResponseData.fromJson(List<dynamic> json) {
-    if (json != null) {
       data = <DataModel>[];
       json.forEach((v) {
         data!.add(DataModel.fromJson(v));
       });
-    }
   }
 
   Map<String, dynamic> toJson() {

@@ -35,7 +35,7 @@ import 'package:lifestep/src/resources/step.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/config/router.dart' as router;
 
-import 'tools/app/app-builder.dart';
+import 'tools/app/app_builder.dart';
 
 
 class MainApp extends StatefulWidget {
@@ -69,7 +69,7 @@ class _MainAppState extends State<MainApp> {
             notification.title,
             notification.body,
             NotificationDetails(
-              iOS: IOSNotificationDetails(),
+              iOS: const IOSNotificationDetails(),
               android: AndroidNotificationDetails(
 
                   channel!.id,
@@ -124,8 +124,8 @@ class _MainAppState extends State<MainApp> {
 
     final themeCollection = ThemeCollection(
         themes: {
-          AppThemes.LightBlue: ThemeData(primarySwatch: Colors.blue),
-          AppThemes.DarkBlue: dark.copyWith(
+          AppThemes.lightBlue: ThemeData(primarySwatch: Colors.blue),
+          AppThemes.darkBlue: dark.copyWith(
               accentColor: Colors.blue,
               buttonTheme: darkButtonTheme,
               floatingActionButtonTheme: darkFABTheme.copyWith(backgroundColor: Colors.blue)),
@@ -134,7 +134,7 @@ class _MainAppState extends State<MainApp> {
 
     return DynamicTheme(
         themeCollection: themeCollection,
-        defaultThemeId: AppThemes.LightBlue,
+        defaultThemeId: AppThemes.lightBlue,
         // defaultBrightness: Brightness.light,
         // data: (Brightness brightness) {
         //   if (brightness == Brightness.light) {

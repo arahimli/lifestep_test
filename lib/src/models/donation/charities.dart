@@ -90,5 +90,5 @@ class CharityModel {
     data['sponsor_name'] = sponsorName;
     return data;
   }
-  bool isCompleted() => presentSteps > requiredSteps;
+  bool isCompleted() => presentSteps >= requiredSteps;
 }

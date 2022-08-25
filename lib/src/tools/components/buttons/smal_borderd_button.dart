@@ -31,7 +31,7 @@ class SmallBorderedButton extends StatelessWidget {
             borderRadius: borderRadius != null ? BorderRadius.circular(borderRadius!) : BorderRadius.circular(4),
           ),
           child: Center(child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(text, textAlign: TextAlign.center, style: textStyle ?? MainStyles.boldTextStyle.copyWith(color: textColor ?? MainColors.generalColor!),),
           )),
         ),

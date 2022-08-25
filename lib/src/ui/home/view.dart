@@ -6,8 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/appbar/logo.dart';
-import 'package:lifestep/src/tools/components/error/general-widget.dart';
+import 'package:lifestep/src/tools/components/error/general_widget.dart';
 import 'package:lifestep/src/tools/components/shimmers/home-daily.dart';
+import 'package:lifestep/src/tools/components/shimmers/skeleton.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/scroll_behavior.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
@@ -23,6 +24,7 @@ import 'package:lifestep/src/cubits/global/step/step/month/cubit.dart';
 import 'package:lifestep/src/cubits/global/step/step/week/cubit.dart';
 import 'package:lifestep/src/models/donation/charities.dart';
 import 'package:lifestep/src/ui/home/components/charities.dart';
+import 'package:lifestep/src/ui/index/logic/challenge/cubit.dart';
 import 'package:lifestep/src/ui/index/logic/main/cubit.dart';
 import 'package:lifestep/src/ui/index/logic/charity/cubit.dart';
 import 'package:lifestep/src/ui/index/logic/charity/state.dart';
@@ -88,6 +90,7 @@ class _HomeViewState extends State<HomeView> {
                     await BlocProvider.of<HomeLeaderBoardStepCubit>(context).refresh();
                     await BlocProvider.of<IndexCubit>(context).refresh();
                     context.read<HomeCharityListCubit>().refresh();
+                    context.read<HomeChallengeListCubit>().refresh();
                     context.read<HomeDailyStepCubit>().refresh();
 
                     context.read<GeneralUserLeaderBoardWeekDonationCubit>().refresh();
@@ -185,7 +188,7 @@ class _HomeViewState extends State<HomeView> {
                                             Text("${formatter.format(currentDate)}", style: MainStyles.boldTextStyle.copyWith(color: selectedDate.day == currentDate.day ? MainColors.white :MainColors.middleGrey400),
                                             ),
                                             Text(
-                                              "${currentDate.day}", style: MainStyles.boldTextStyle.copyWith(color: selectedDate.day == currentDate.day ? MainColors.white : MainColors.black),
+                                              currentDate.day.toString(), style: MainStyles.boldTextStyle.copyWith(color: selectedDate.day == currentDate.day ? MainColors.white : MainColors.black),
                                             ),
                                           ],
                                         ),
@@ -309,7 +312,12 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                               );
                             }else if(homeDailyStepState is HomeDailyStepLoading || homeDailyStepState is HomeDailyStepSuccessLoading){
-                              return HomeDailyShimmerWidget();
+                              return SkeltonWidget(
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                height: size.width * 0.9 / 6 + 36,
+                                borderRadius: 8,
+                                // width: 16,
+                              );
                             }else if(homeDailyStepState is HomeDailyStepNotGranted){
                               return GeneralErrorLoadAgainWidget(
                                 onTap: (){
@@ -325,28 +333,7 @@ class _HomeViewState extends State<HomeView> {
 
                           const SizedBox(height: 24,),
 
-                          Container(
-                              padding: PagePadding.leftRight16(),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  AutoSizeText(Utils.getString(context, "home__challenges_title"), style: MainStyles.boldTextStyle.copyWith(fontSize: 20),),
-                                  InkWell(
-                                      onTap: (){
-                                        navigationBloc.changeNavigationIndex(Navigation.CHALLENGES);
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-                                        child: AutoSizeText(Utils.getString(context, "general__all"), style: MainStyles.boldTextStyle.copyWith(fontSize: 16, color: MainColors.generalSubtitleColor),),
-                                      )
-                                  ),
-                                ],
-                              )
-                          ),
-                          const SizedBox(height: 16,),
-                          HomeChallengeWidget(),
-                          const SizedBox(height: 16,),
+                          const HomeChallengeWidget(),
 
                           Container(
                               padding: PagePadding.leftRight16(),
@@ -392,7 +379,7 @@ class _HomeViewState extends State<HomeView> {
                                           AutoSizeText(Utils.getString(context, "home__charities_title"), style: MainStyles.boldTextStyle.copyWith(fontSize: 20),),
                                           InkWell(
                                               onTap: (){
-                                                navigationBloc.changeNavigationIndex(Navigation.DONATIONS);
+                                                navigationBloc.changeNavigationIndex(Navigation.donations);
                                               },
                                               child: Padding(
                                                 padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
@@ -409,34 +396,11 @@ class _HomeViewState extends State<HomeView> {
 
                               }
                           ),
+
                           const SizedBox(height: 12,),
-                          HomeCharityListWidget(),
-//
-//                           BlocBuilder<IndexCubit,IndexState>(
-//                             builder: (context, state) {
-//                               return state is IndexLoaded ? GridView.builder(
-//                                 padding: PagePadding.leftRight16(),
-//                                 itemCount: state.indexPageModel.charityList.length,
-//                                 physics: ScrollPhysics(),
-//                                 shrinkWrap: true,
-//                                 gridDelegate:
-//                                 const SliverGridDelegateWithFixedCrossAxisCount(
-// //                                        maxCrossAxisExtent: 220,
-// //                                        childAspectRatio: 0.6
-//                                   crossAxisCount: 2,
-//                                   // childAspectRatio: 0.601,
-//                                   mainAxisSpacing: 4.0,
-//                                   crossAxisSpacing: 4.0,
-//                                 ),
-//                                 itemBuilder: (BuildContext context, int index) {
-//                                   return _DonationWidget(
-//                                     index: index,
-//                                     dataItem: state.indexPageModel.charityList[index],
-//                                   );
-//                                 },
-//                               ):SizedBox();
-//                             }
-//                           ),
+
+                          const HomeCharityListWidget(),
+
                           const SizedBox(height: 24,),
                         ],
                       ),

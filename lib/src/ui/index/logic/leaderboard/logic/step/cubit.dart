@@ -11,7 +11,7 @@ import 'package:lifestep/src/resources/step.dart';
 class HomeLeaderBoardStepCubit extends  Cubit<HomeLeaderBoardStepState> {
 
   final StepRepository stepRepository;
-  HomeLeaderBoardStepCubit({required this.stepRepository}) : assert(stepRepository != null), super(HomeLeaderBoardStepLoading()){
+  HomeLeaderBoardStepCubit({required this.stepRepository}) : super(HomeLeaderBoardStepLoading()){
     search(reset:true);
     // //////// print("HomeLeaderBoardStepCubit--------");
   }
@@ -87,7 +87,7 @@ class HomeLeaderBoardStepCubit extends  Cubit<HomeLeaderBoardStepState> {
       }
     } catch (exception) {
       if (exception is HTTPException) {
-        emit(HomeLeaderBoardStepError(errorCode: WEB_SERVICE_ENUM.UNEXCEPTED_ERROR, errorText: "error_went_wrong"));
+        emit(const HomeLeaderBoardStepError(errorCode: WEB_SERVICE_ENUM.UNEXCEPTED_ERROR, errorText: "error_went_wrong"));
       }
     }
   }

@@ -5,7 +5,7 @@ import 'dart:math' as math;
 
 class DecimalTextInputFormatter extends TextInputFormatter {
   DecimalTextInputFormatter({required this.decimalRange})
-      : assert(decimalRange == null || decimalRange > 0);
+      : assert(decimalRange > 0);
 
   final int decimalRange;
 
@@ -17,7 +17,6 @@ class DecimalTextInputFormatter extends TextInputFormatter {
     TextSelection newSelection = newValue.selection;
     String truncated = newValue.text;
 
-    if (decimalRange != null) {
       String value = newValue.text;
 
       if (value.contains(".") &&
@@ -38,7 +37,5 @@ class DecimalTextInputFormatter extends TextInputFormatter {
         selection: newSelection,
         composing: TextRange.empty,
       );
-    }
-    return newValue;
   }
 }

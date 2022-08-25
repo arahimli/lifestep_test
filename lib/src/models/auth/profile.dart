@@ -34,7 +34,7 @@ class UserModel {
   String? email;
   String? phone;
   String? role;
-  AuthType loginMethod = AuthType.OTP;
+  AuthType loginMethod = AuthType.otp;
   String? otp;
   int? confirmed;
   int? signed;
@@ -90,16 +90,16 @@ class UserModel {
     role = json['role'];
     switch(json['login_method']){
       case 'apple': {
-        loginMethod = AuthType.APPLE;
+        loginMethod = AuthType.apple;
       }break;
       case 'facebook': {
-        loginMethod = AuthType.FACEBOOK;
+        loginMethod = AuthType.facebook;
       }break;
       case 'google': {
-        loginMethod = AuthType.GOOGLE;
+        loginMethod = AuthType.google;
       }break;
       default:{
-        loginMethod = AuthType.OTP;
+        loginMethod = AuthType.otp;
       }break;
     }
     otp = json['otp'] != null ? json['otp'].toString() : '';

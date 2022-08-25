@@ -15,7 +15,7 @@ class DonorListSuccess extends DonorListState {
   final List<DonorModel> dataList;
   final int dataCount;
 
-  const DonorListSuccess({this.dataList = const [], this.dataCount: 0, });
+  const DonorListSuccess({this.dataList = const [], this.dataCount= 0, });
 
   DonorListSuccess copyWith({
     required List<DonorModel> dataList,
@@ -31,7 +31,7 @@ class DonorListSuccess extends DonorListState {
   List<Object> get props => [dataList, dataCount];
 
   @override
-  String toString() => 'DonorListSuccess { mainData: ${dataList != null ? dataList.length : 0} }';
+  String toString() => 'DonorListSuccess { mainData: ${dataList.length } }';
 }
 
 class DonorListError extends DonorListState {

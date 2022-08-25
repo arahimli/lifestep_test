@@ -59,7 +59,7 @@ class _OnboardPageViewState extends State<OnboardPageView> {
                           duration: Duration(seconds: 2),
 
                           onChange: (value){
-                            FocusScope.of(context).requestFocus(FocusNode());
+                            Utils.focusClose(context);;
                           },
                           itemCount: pages.length,
                           pageController: controller,

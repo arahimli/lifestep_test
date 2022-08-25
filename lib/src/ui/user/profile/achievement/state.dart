@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lifestep/src/models/general/achievement-list.dart';
+import 'package:lifestep/src/models/general/achievement_list.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 abstract class AchievementListState extends Equatable {
@@ -40,7 +40,7 @@ class AchievementListSuccess extends AchievementListState {
 
   @override
   String toString() =>
-      'AchievementListSuccess { mainData: ${dataList != null ? dataList.length : 0} }';
+      'AchievementListSuccess { mainData: ${dataList.length } }';
 }
 
 class AchievementListError extends AchievementListState {

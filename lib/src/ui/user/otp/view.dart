@@ -10,7 +10,7 @@ import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/appbar/general.dart';
 import 'package:lifestep/src/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/src/tools/components/dialog/loading.dart';
-import 'package:lifestep/src/tools/components/error/general-widget.dart';
+import 'package:lifestep/src/tools/components/error/general_widget.dart';
 import 'package:lifestep/src/tools/components/static/html.dart';
 import 'package:lifestep/src/tools/config/endpoints.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
@@ -24,7 +24,7 @@ import 'package:lifestep/src/models/auth/otp.dart';
 import 'package:lifestep/src/ui/user/logic/cubit.dart';
 import 'package:lifestep/src/ui/user/otp/cubit.dart';
 import 'package:lifestep/src/ui/user/otp/state.dart';
-import 'package:lifestep/src/ui/user/components/otp-number.dart';
+import 'package:lifestep/src/ui/user/components/otp_number.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sprintf/sprintf.dart';
@@ -95,10 +95,6 @@ class _OtpViewState extends State<OtpView> {
                               }else if(BlocProvider.of<AuthCubit>(context).userStatusCode == 211){
                                 OtpResponse otpResponse = OtpResponse.fromJson(data[1]);
                                 BlocProvider.of<SessionCubit>(context).setUser(otpResponse.data!.user);
-                                // Navigator.push(context, MaterialPageRoute(builder: (_) => IndexView()));
-                                // if(await Utils.checkPermissions())
-                                //   Navigator.pushReplacementNamed(context, "index");
-                                // else
                                   Navigator.pushReplacementNamed(context, "/permission-list-health");
                               }
                             }

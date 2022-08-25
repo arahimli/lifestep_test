@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lifestep/src/models/step/user-order.dart';
+import 'package:lifestep/src/models/step/user_order.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 abstract class GeneralUserLeaderBoardMonthDonationState extends Equatable {
@@ -30,7 +30,7 @@ class GeneralUserLeaderBoardMonthDonationSuccess extends GeneralUserLeaderBoardM
   List<Object> get props => [mainData, mainData.userRating!, mainData.userRating!.steps!];
 
   @override
-  String toString() => 'GeneralUserLeaderBoardMonthDonationSuccess { mainData: ${mainData.number}, steps: ${mainData != null && mainData.userRating != null && mainData.userRating!.steps != null ? mainData.userRating!.steps : 0}}';
+  String toString() => 'GeneralUserLeaderBoardMonthDonationSuccess { mainData: ${mainData.number}, steps: ${mainData.userRating != null && mainData.userRating!.steps != null ? mainData.userRating!.steps : 0}}';
 }
 
 class GeneralUserLeaderBoardMonthDonationError extends GeneralUserLeaderBoardMonthDonationState {

@@ -7,7 +7,7 @@ import 'package:lifestep/src/ui/user/repositories/auth.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 enum AuthState { login, signUp, confirmation }
-enum AuthType { OTP, APPLE, GOOGLE, FACEBOOK }
+enum AuthType { otp, apple, google, facebook }
 
 class AuthCubit extends Cubit<AuthState> {
   // final SessionCubit sessionCubit;
@@ -16,7 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthState.login);
 
   // AuthCredentials? credentials;
-  AuthType _authType = AuthType.OTP;
+  AuthType _authType = AuthType.otp;
 
   String? _token;
 

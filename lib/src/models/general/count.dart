@@ -16,12 +16,14 @@ class CountModel{
 
 extension CountModelExtension on CountModel {
 
-  String humanizeInteger(BuildContext context, {int length : 6}) {
+  String humanizeInteger(BuildContext context, {int length = 6}) {
     try{
-      if(value.toString().length > length)
+      if(value.toString().length > length) {
         return humanizeInt(context, value).toLowerCase();
-      else
+      }
+      else {
         return value.toString();
+      }
     }catch(_){
       return '0';
     }

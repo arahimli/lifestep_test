@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lifestep/src/tools/config/endpoint_config.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
-import 'package:lifestep/src/models/challenge/challenge-user.dart';
+import 'package:lifestep/src/models/challenge/challenge_user.dart';
 import 'package:lifestep/src/models/challenge/challenges.dart';
 import 'package:lifestep/src/models/challenge/map.dart';
 import 'package:lifestep/src/models/general/address_info.dart';
@@ -19,7 +19,7 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 
 class AddressInfoCubit extends Cubit<AddressInfoState> {
-  final ChallengeRepository challengeRepository;
+  final IChallengeRepository challengeRepository;
   final ChallengeModel challengeModel;
   final ChallengeUserModel challengeUserModel;
   CancelToken dioToken = CancelToken();

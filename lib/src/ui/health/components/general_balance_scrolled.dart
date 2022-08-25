@@ -310,7 +310,7 @@ class _InformationItemWidget extends StatelessWidget {
       padding: const EdgeInsets.all(2),
       child: GestureDetector(
         onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
+          Utils.focusClose(context);;
 //          focusNode.unfocus();
         },
         child: Container(

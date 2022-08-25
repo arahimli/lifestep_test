@@ -31,7 +31,7 @@ class HomeLeaderBoardStepSuccess extends HomeLeaderBoardStepState {
 
   @override
   String toString() =>
-      'HomeLeaderBoardStepSuccess { mainData: ${mainData != null ? mainData.length : 0}}';
+      'HomeLeaderBoardStepSuccess { mainData: ${mainData.length}}';
 }
 
 class HomeLeaderBoardStepError extends HomeLeaderBoardStepState {

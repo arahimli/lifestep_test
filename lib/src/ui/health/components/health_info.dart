@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 
 class HealthInfoItemWidget extends StatelessWidget {
@@ -22,7 +23,7 @@ class HealthInfoItemWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       child: GestureDetector(
         onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
+          Utils.focusClose(context);;
 //          focusNode.unfocus();
         },
         child: Container(

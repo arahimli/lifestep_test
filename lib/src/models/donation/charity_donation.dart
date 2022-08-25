@@ -1,7 +1,7 @@
 import 'package:lifestep/src/models/auth/profile.dart';
 import 'package:lifestep/src/models/donation/charities.dart';
 import 'package:lifestep/src/models/donation/donors.dart';
-import 'package:lifestep/src/models/general/achievement-list.dart';
+import 'package:lifestep/src/models/general/achievement_list.dart';
 
 class CharityDonationResponse {
   bool? status;

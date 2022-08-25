@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lifestep/src/models/donation/donation-history.dart';
+import 'package:lifestep/src/models/donation/donation_history.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 abstract class DonationHistoryListState extends Equatable {

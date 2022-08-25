@@ -1,7 +1,10 @@
 
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/config/exception.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
 import 'package:lifestep/src/models/challenge/challenges.dart';
@@ -11,7 +14,7 @@ import 'package:lifestep/src/resources/service/web_service.dart';
 
 class ChallengeListCubit extends  Cubit<ChallengeListState> {
 
-  final ChallengeRepository challengeRepository;
+  final IChallengeRepository challengeRepository;
   ChallengeListCubit({required this.challengeRepository}) : assert(challengeRepository != null), super(ChallengeListLoading()){
     search('');
     // //////// print("ChallengeListCubit--------");
@@ -38,14 +41,16 @@ class ChallengeListCubit extends  Cubit<ChallengeListState> {
       dioToken = CancelToken();
       pageValue = 1;
     }
+    dioToken.cancel();
     // await Future.delayed(Duration(seconds: 10));
     if (!_hasReachedMax(currentState)) {
+      log("getChallenges = " + (searchValue??''));
       //////// print(currentState);
       try {
         if (currentState is ChallengeListLoading) {
           // print('ChallengeListCubit mapEventToState ChallengeListLoading pageValue: $pageValue');
           emit(ChallengeListFetching());
-          searchText = searchValue != null ? searchValue : searchText;
+          searchText = searchValue ?? searchText;
           List listData = await challengeRepository.getChallenges(searchText: searchText, pageValue: pageValue, token: dioToken);
           //////// print("listData__listData__listData__listData__listData__listData__");
           //////// print(listData);
@@ -56,7 +61,9 @@ class ChallengeListCubit extends  Cubit<ChallengeListState> {
             emit(ChallengeListSuccess(
                 dataList: challengeListResponse.data,
                 hasReachedMax: challengeListResponse.data!.length <
-                    MainConfig.main_app_data_count ? true : false));
+                    MainConfig.main_app_data_count ? true : false,
+                hash: Utils.generateRandomString(10)
+            ));
             return;
           }else{
 
@@ -76,9 +83,8 @@ class ChallengeListCubit extends  Cubit<ChallengeListState> {
             isLoading = false;
             if (listData[2] == WEB_SERVICE_ENUM.SUCCESS) {
 
-              ChallengeListResponse challengeListResponse = ChallengeListResponse
-                  .fromJson(listData[1]);
-              emit(ChallengeListSuccess(
+              ChallengeListResponse challengeListResponse = ChallengeListResponse.fromJson(listData[1]);
+              emit(currentState.copyWith(
                   dataList: List.from(currentState.dataList!)
                     ..addAll(challengeListResponse.data!),
                   hasReachedMax: challengeListResponse.data!.length <
@@ -107,4 +113,22 @@ class ChallengeListCubit extends  Cubit<ChallengeListState> {
 
   bool _hasReachedMax(ChallengeListState state) =>
       state is ChallengeListSuccess && state.hasReachedMax;
+
+
+
+  changeChallenge({required List<ChallengeModel> listValue, required bool boolValue, required ChallengeModel value, required int index}) async {
+    List<ChallengeModel> returnValue = listValue;
+    returnValue[index] = value;
+    await Future.delayed(Duration(milliseconds: 1));
+
+    // emit(ChallengeListLoading());
+    emit(ChallengeListSuccess(
+        dataList: returnValue,
+        hasReachedMax: boolValue,
+        hash: Utils.generateRandomString(10)
+      
+    ));
+  }
+
+
 }

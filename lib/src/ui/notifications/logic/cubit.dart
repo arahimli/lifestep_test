@@ -38,11 +38,10 @@ class NotificationListCubit extends  Cubit<NotificationListState> {
       pageValue = 1;
     }
     if (!_hasReachedMax(currentState)) {
-      //////// print(currentState);
       try {
         if (currentState is NotificationListLoading) {
           emit(NotificationListFetching());
-          searchText = searchValue != null ? searchValue : searchText;
+          searchText = searchValue ?? searchText;
           List listData = await userRepository.getNotifications(pageValue: pageValue, token: dioToken);
           if(listData[2] == WEB_SERVICE_ENUM.SUCCESS) {
             pageValue = 2;

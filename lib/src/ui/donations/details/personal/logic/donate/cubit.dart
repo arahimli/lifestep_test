@@ -8,7 +8,7 @@ import 'package:lifestep/src/resources/donation.dart';
 
 
 class PersonalDonateCubit extends Cubit<PersonalDonateState> {
-  final DonationRepository donationRepository;
+  final IDonationRepository donationRepository;
   final CharityModel charityModel;
 
   String? amount = '0';

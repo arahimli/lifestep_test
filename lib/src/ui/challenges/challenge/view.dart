@@ -13,7 +13,7 @@ import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
 import 'package:lifestep/src/cubits/global/session/cubit.dart';
 import 'package:lifestep/src/models/auth/profile.dart';
-import 'package:lifestep/src/models/challenge/challenge-success.dart';
+import 'package:lifestep/src/models/challenge/challenge_success.dart';
 import 'package:lifestep/src/ui/challenges/challenge/logic/address/logic.dart';
 import 'package:lifestep/src/ui/challenges/challenge/logic/bottom/cubit.dart';
 import 'package:lifestep/src/ui/challenges/challenge/logic/bottom/state.dart';
@@ -400,39 +400,35 @@ class _ChallengeViewState extends State<ChallengeView>  with WidgetsBindingObser
                                                   )
                                               ),
                                               Expanded(
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                    ),
-                                                    child: Column(
-                                                      children: [
-                                                        SvgPicture.asset("assets/svgs/challenges/duration.svg"),
-                                                        const SizedBox(height: 8,),
-                                                        AutoSizeText(
-                                                          Utils.getString(context, "challenges_page_view___duration"),
-                                                          style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 12, color: MainColors.middleGrey400),
-                                                          textAlign: TextAlign.center,
-                                                          maxLines: 2,
-                                                          overflow: TextOverflow.ellipsis,
-                                                        ),
-                                                        const SizedBox(height: 8,),
-                                                        StreamBuilder<int>(
-                                                            stream: context.read<AddressInfoCubit>().stopWatchTimer.rawTime,
-                                                            initialData: context.read<AddressInfoCubit>().stopWatchTimer.rawTime.value,
-                                                          builder: (context, snapshot) {
-                                                            final value = snapshot.data!;
-                                                            final displayTime = "${StopWatchTimer.getDisplayTime(value, milliSecond: false)}";
-                                                            return AutoSizeText(
-                                                              displayTime,
-                                                              // "${state.challengeModel.endDate != null ? Utils.stringToDatetoString(value: state.challengeModel.endDate!, formatFrom: "yyyy-MM-dd", formatTo: "dd.MM.yyyy"): '-'}",
-                                                              style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 16),
-                                                              textAlign: TextAlign.center,
-                                                              maxLines: 2,
-                                                              overflow: TextOverflow.ellipsis,
-                                                            );
-                                                          }
-                                                        ),
-                                                      ],
-                                                    ),
+                                                  child: Column(
+                                                    children: [
+                                                      SvgPicture.asset("assets/svgs/challenges/duration.svg"),
+                                                      const SizedBox(height: 8,),
+                                                      AutoSizeText(
+                                                        Utils.getString(context, "challenges_page_view___duration"),
+                                                        style: MainStyles.semiBoldTextStyle.copyWith(height: 1.1, fontSize: 12, color: MainColors.middleGrey400),
+                                                        textAlign: TextAlign.center,
+                                                        maxLines: 2,
+                                                        overflow: TextOverflow.ellipsis,
+                                                      ),
+                                                      const SizedBox(height: 8,),
+                                                      StreamBuilder<int>(
+                                                          stream: context.read<AddressInfoCubit>().stopWatchTimer.rawTime,
+                                                          initialData: context.read<AddressInfoCubit>().stopWatchTimer.rawTime.value,
+                                                        builder: (context, snapshot) {
+                                                          final value = snapshot.data!;
+                                                          final displayTime = StopWatchTimer.getDisplayTime(value, milliSecond: false);
+                                                          return AutoSizeText(
+                                                            displayTime,
+                                                            // "${state.challengeModel.endDate != null ? Utils.stringToDatetoString(value: state.challengeModel.endDate!, formatFrom: "yyyy-MM-dd", formatTo: "dd.MM.yyyy"): '-'}",
+                                                            style: MainStyles.boldTextStyle.copyWith(height: 1.1, fontSize: 16),
+                                                            textAlign: TextAlign.center,
+                                                            maxLines: 2,
+                                                            overflow: TextOverflow.ellipsis,
+                                                          );
+                                                        }
+                                                      ),
+                                                    ],
                                                   )
                                               ),
                                             ],
@@ -461,11 +457,12 @@ class _ChallengeViewState extends State<ChallengeView>  with WidgetsBindingObser
                                             int completedMinute = (context.read<AddressInfoCubit>().completedSecond / 60).round();
                                             double calStep = calculateDistance(context.read<StepSectionCubit>().stepLocal);
                                             double booster = context.read<MainMapChallengeCubit>().challengeModel.booster ?? 0;
-                                            if(booster > 1)
+                                            if(booster > 1) {
                                               booster -= 1;
+                                            }
                                             int stepLocal = context.read<StepSectionCubit>().stepLocal;
                                             int bonusStep = (context.read<StepSectionCubit>().stepLocal * booster).round();
-                                            Utils.showChallengeResultModal(context, size, image: "assets/svgs/challenges/canceled-challenge.svg", calStep: calStep, step: stepLocal , bonusStep: bonusStep,calMinute: completedMinute , title: "${Utils.getString(context, "challenges_details_view___cancel_dialog_success_title")}", description: "${sprintf(Utils.getString(context, "challenges_details_view___cancel_dialog_success_message"), [context.read<MainMapChallengeCubit>().challengeModel.name ?? ''])}");
+                                            Utils.showChallengeResultModal(context, size, image: "assets/svgs/challenges/canceled-challenge.svg", calStep: calStep, step: stepLocal , bonusStep: bonusStep,calMinute: completedMinute , title: Utils.getString(context, "challenges_details_view___cancel_dialog_success_title"), description: sprintf(Utils.getString(context, "challenges_details_view___cancel_dialog_success_message"), [context.read<MainMapChallengeCubit>().challengeModel.name ?? '']));
                                           }
                                           else if (listData[2] == WEB_SERVICE_ENUM.UN_AUTH) {
                                             closeLoading(context);
@@ -557,8 +554,8 @@ class _ChallengeViewState extends State<ChallengeView>  with WidgetsBindingObser
                                     //     ),
                                     //     );
                                     // });
-                                        if(locationData == null)
-                                          locationData = await location.getLocation();
+                                    //     if(locationData == null)
+                                          locationData??= await location.getLocation();
                                         _controller!
                                             .animateCamera( CameraUpdate.newCameraPosition(
                                           CameraPosition(
@@ -586,9 +583,7 @@ class _ChallengeViewState extends State<ChallengeView>  with WidgetsBindingObser
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Container(
-                                            child: SvgPicture.asset("assets/svgs/challenges/current-location.svg"),
-                                          ),
+                                          SvgPicture.asset("assets/svgs/challenges/current-location.svg"),
                                         ],
                                       ),
                                     ),

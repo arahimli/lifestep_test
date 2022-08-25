@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/config/exception.dart';
-import 'package:lifestep/src/models/step/user-order.dart';
+import 'package:lifestep/src/models/step/user_order.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 import 'package:lifestep/src/resources/step.dart';
 
@@ -12,7 +12,9 @@ import 'state.dart';
 class GeneralUserLeaderBoardMonthDonationCubit extends  Cubit<GeneralUserLeaderBoardMonthDonationState> {
 
   final StepRepository stepRepository;
-  GeneralUserLeaderBoardMonthDonationCubit({required this.stepRepository}) : assert(stepRepository != null), super(GeneralUserLeaderBoardMonthDonationLoading()){
+  GeneralUserLeaderBoardMonthDonationCubit({required this.stepRepository}) :
+        // assert(stepRepository != null),
+        super(GeneralUserLeaderBoardMonthDonationLoading()){
     search(reset:true);
   }
 
@@ -78,7 +80,7 @@ class GeneralUserLeaderBoardMonthDonationCubit extends  Cubit<GeneralUserLeaderB
       }
     } catch (exception) {
       if (exception is HTTPException) {
-        emit(GeneralUserLeaderBoardMonthDonationError(errorCode: WEB_SERVICE_ENUM.UNEXCEPTED_ERROR, errorText: "error_went_wrong"));
+        emit(const GeneralUserLeaderBoardMonthDonationError(errorCode: WEB_SERVICE_ENUM.UNEXCEPTED_ERROR, errorText: "error_went_wrong"));
       }
     }
 

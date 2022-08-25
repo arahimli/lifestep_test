@@ -1,33 +1,33 @@
 
-import 'package:lifestep/src/models/challenge/challenges.dart';
 import 'package:lifestep/src/models/donation/charities.dart';
 import 'package:lifestep/src/models/donation/fonds.dart';
+import 'package:lifestep/src/models/home/challenge_list.dart';
 import 'package:lifestep/src/models/index/banner.dart';
 
 class IndexPageModel{
   final BannerResponseData? bannerData;
   final List<CharityModel> charityList;
   final List<FondModel> fondList;
-  final List<ChallengeModel> challengeList;
+  final HomeChallengeListResponseData? homeChallengeListData;
 
   IndexPageModel({
     this.bannerData,
     this.charityList = const [],
     this.fondList = const [],
-    this.challengeList = const [],
+    this.homeChallengeListData,
 });
 
   IndexPageModel copyWith({
     BannerResponseData? bannerData,
     List<CharityModel>? charityList,
     List<FondModel>? fondList,
-    List<ChallengeModel>? challengeList,
+    HomeChallengeListResponseData? homeChallengeListData,
   }) {
     return IndexPageModel(
       bannerData: bannerData ?? this.bannerData,
       charityList: charityList ?? this.charityList,
       fondList: fondList ?? this.fondList,
-      challengeList: challengeList ?? this.challengeList,
+      homeChallengeListData: homeChallengeListData ?? this.homeChallengeListData,
     );
   }
 }

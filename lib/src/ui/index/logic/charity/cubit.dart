@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/config/exception.dart';
 import 'package:lifestep/src/models/donation/charities.dart';
-import 'package:lifestep/src/models/home/charity-list.dart';
+import 'package:lifestep/src/models/home/charity_list.dart';
 import 'package:lifestep/src/ui/index/logic/charity/state.dart';
 import 'package:lifestep/src/resources/donation.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 class HomeCharityListCubit extends  Cubit<HomeCharityListState> {
 
-  final DonationRepository donationRepository;
-  HomeCharityListCubit({required this.donationRepository}) : assert(donationRepository != null), super(HomeCharityListLoading()){
+  final IDonationRepository donationRepository;
+  HomeCharityListCubit({required this.donationRepository}) : super(HomeCharityListLoading()){
     search();
     // //////// print("HomeCharityListCubit--------");
   }

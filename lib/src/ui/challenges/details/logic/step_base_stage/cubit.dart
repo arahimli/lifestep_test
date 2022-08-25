@@ -14,7 +14,7 @@ import 'package:sprintf/sprintf.dart';
 
 class StepBaseStageCubit extends Cubit<StepBaseStageState> {
 
-  final ChallengeRepository challengeRepository;
+  final IChallengeRepository challengeRepository;
   final ChallengeModel challengeModel;
   StepBaseStageCubit({required this.challengeRepository, required this.challengeModel}) : assert(challengeRepository != null), super(StepBaseStageLoading()){
     search();
@@ -25,7 +25,7 @@ class StepBaseStageCubit extends Cubit<StepBaseStageState> {
   CancelToken dioToken = CancelToken();
 
 
-  search({bool reset: true}) async {
+  search({bool reset= true}) async {
     var currentState = state;
     if(reset){
       currentState = StepBaseStageLoading();

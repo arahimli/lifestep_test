@@ -12,7 +12,7 @@ import 'package:lifestep/src/resources/step.dart';
 class LeaderBoardStepCubit extends  Cubit<LeaderBoardStepState> {
 
   final StepRepository stepRepository;
-  LeaderBoardStepCubit({required this.stepRepository}) : assert(stepRepository != null), super(LeaderBoardStepLoading()){
+  LeaderBoardStepCubit({required this.stepRepository}) : super(LeaderBoardStepLoading()){
     search(reset:true);
     // //////// print("LeaderBoardStepCubit--------");
   }
@@ -83,7 +83,7 @@ class LeaderBoardStepCubit extends  Cubit<LeaderBoardStepState> {
       }
     } catch (exception) {
       if (exception is HTTPException) {
-        emit(LeaderBoardStepError(errorCode: WEB_SERVICE_ENUM.UNEXCEPTED_ERROR, errorText: "error_went_wrong"));
+        emit(const LeaderBoardStepError(errorCode: WEB_SERVICE_ENUM.UNEXCEPTED_ERROR, errorText: "error_went_wrong"));
       }
     }
   }

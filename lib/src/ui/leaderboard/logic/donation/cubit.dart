@@ -12,7 +12,7 @@ import 'package:lifestep/src/resources/step.dart';
 class LeaderBoardDonationCubit extends  Cubit<LeaderBoardDonationState> {
 
   final StepRepository stepRepository;
-  LeaderBoardDonationCubit({required this.stepRepository}) : assert(stepRepository != null), super(LeaderBoardDonationLoading()){
+  LeaderBoardDonationCubit({required this.stepRepository}) : super(LeaderBoardDonationLoading()){
     search(reset:true);
     // //////// print("LeaderBoardDonationCubit--------");
   }

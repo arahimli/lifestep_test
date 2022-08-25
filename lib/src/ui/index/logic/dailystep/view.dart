@@ -18,7 +18,6 @@ class HomeDailyStepView extends StatefulWidget {
 class HomeDailyStepViewState extends State<HomeDailyStepView> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return BlocBuilder<HomeDailyStepCubit, HomeDailyStepState>(
         builder: (context, homeDailyStepState) {
 
@@ -52,20 +51,16 @@ class HomeDailyStepViewState extends State<HomeDailyStepView> {
               ],
             );
           }else if(homeDailyStepState is HomeDailyStepLoading){
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }else if(homeDailyStepState is HomeDailyStepNotGranted){
-            return Container(
-                child: Center(
-                  child: Text("grant again"),
-                )
+            return const Center(
+              child: Text("grant again"),
             );
           }else{
-            return Container(
-                child: Center(
-                  child: Text("error"),
-                )
+            return const Center(
+              child: Text("error"),
             );
           }
         }

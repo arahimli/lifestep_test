@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/appbar/auth-left.dart';
+import 'package:lifestep/src/tools/components/appbar/auth_left.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/scroll_behavior.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
@@ -37,7 +37,7 @@ class _DonationListViewState extends State<DonationListView> with TickerProvider
     final size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: ()async{
-        navigationBloc.changeNavigationIndex(Navigation.HOME);
+        navigationBloc.changeNavigationIndex(Navigation.home);
         return Future.value(false);
       },
       child: Scaffold(

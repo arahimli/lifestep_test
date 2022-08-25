@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:shimmer/shimmer.dart';
@@ -18,7 +19,7 @@ class AchievementListItemShimmerWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       child: GestureDetector(
         onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
+          Utils.focusClose(context);;
 //          focusNode.unfocus();
         },
         child: Container(

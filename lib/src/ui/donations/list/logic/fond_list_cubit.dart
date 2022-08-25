@@ -11,8 +11,8 @@ import 'package:lifestep/src/resources/service/web_service.dart';
 
 class FondListCubit extends  Cubit<FondListState> {
 
-  final DonationRepository donationRepository;
-  FondListCubit({required this.donationRepository}) : assert(donationRepository != null), super(FondListLoading()){
+  final IDonationRepository donationRepository;
+  FondListCubit({required this.donationRepository}) : super(FondListLoading()){
     search('');
     // //////// print("FondListCubit--------");
   }
@@ -45,7 +45,7 @@ class FondListCubit extends  Cubit<FondListState> {
       try {
         if (currentState is FondListLoading) {
           emit(FondListFetching());
-          searchText = searchValue != null ? searchValue : searchText;
+          searchText = searchValue ?? searchText;
           List listData = await donationRepository.getFonds(searchText: searchText, pageValue: pageValue, token: dioToken);
           //////// print("listData__listData__listData__listData__listData__listData__");
           //////// print(listData);

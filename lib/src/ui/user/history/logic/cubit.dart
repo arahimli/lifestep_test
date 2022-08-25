@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/config/exception.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
-import 'package:lifestep/src/models/donation/donation-history.dart';
+import 'package:lifestep/src/models/donation/donation_history.dart';
 import 'package:lifestep/src/ui/user/history/logic/state.dart';
 import 'package:lifestep/src/resources/donation.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 class DonationHistoryListBloc extends  Cubit<DonationHistoryListState> {
 
-  final DonationRepository donationRepository;
-  DonationHistoryListBloc({required this.donationRepository}) : assert(donationRepository != null), super(DonationHistoryListLoading()){
+  final IDonationRepository donationRepository;
+  DonationHistoryListBloc({required this.donationRepository}) : super(DonationHistoryListLoading()){
     search('');
   }
 
@@ -46,7 +46,7 @@ class DonationHistoryListBloc extends  Cubit<DonationHistoryListState> {
         if (currentState is DonationHistoryListLoading) {
           emit(DonationHistoryListFetching());
           // emit(DonationHistoryListLoading());
-          searchText = searchValue != null ? searchValue : searchText;
+          searchText = searchValue ?? searchText;
           List listData = await donationRepository.getUserDonations(searchText: searchText, pageValue: pageValue, token: dioToken);
           // print("listData__listData__listData__listData__listData__listData__DonationHistoryListLoading");
           //////// print(listData);

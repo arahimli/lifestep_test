@@ -16,7 +16,7 @@ class AuthNotificationAppbar extends StatelessWidget {
   final TextStyle? textStyle;
   final bool? hideNotificationIcon;
 
-  const AuthNotificationAppbar({Key? key, this.onTap, required this.title, this.textStyle, this.hideNotificationIcon = false, this.backPermit: true}) : super(key: key);
+  const AuthNotificationAppbar({Key? key, this.onTap, required this.title, this.textStyle, this.hideNotificationIcon = false, this.backPermit= true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class AuthNotificationAppbar extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100)
                   ),
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     8,
                     8,
                     8,
@@ -46,21 +46,20 @@ class AuthNotificationAppbar extends StatelessWidget {
                   child: SvgPicture.asset("assets/svgs/menu/back.svg", height: 24, color: backPermit ? null : MainColors.transparent ,),
                 ),
               ),
-              if(title != null)
-                Flexible(
-                    flex: 1,
-                    child:
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: 8,
-                        // bottom: 8,
-                        left: 8,
-                        right: 8,
-                      ),
-                      child: Text("${title}",
-                        style: textStyle ?? MainStyles.boldTextStyle.copyWith(fontSize: 20), textAlign: TextAlign.left,),
-                    )
-                ),
+              Flexible(
+                  flex: 1,
+                  child:
+                  Container(
+                    padding: const EdgeInsets.only(
+                      top: 8,
+                      // bottom: 8,
+                      left: 8,
+                      right: 8,
+                    ),
+                    child: Text(title,
+                      style: textStyle ?? MainStyles.boldTextStyle.copyWith(fontSize: 20), textAlign: TextAlign.left,),
+                  )
+              ),
               Row(
                 children: [
                   GestureDetector(
@@ -71,12 +70,12 @@ class AuthNotificationAppbar extends StatelessWidget {
                             userRepository: UserRepository(),
                           )),
                         ],
-                        child: NotificationListView()))),
+                        child: const NotificationListView()))),
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100)
                       ),
-                      padding: EdgeInsets.fromLTRB(
+                      padding: const EdgeInsets.fromLTRB(
                         8,
                         8,
                         8,

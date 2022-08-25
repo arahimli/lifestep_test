@@ -4,14 +4,14 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
-import 'package:lifestep/src/models/challenge/challenge-user.dart';
+import 'package:lifestep/src/models/challenge/challenge_user.dart';
 import 'package:lifestep/src/models/challenge/challenges.dart';
 import 'package:lifestep/src/ui/challenges/challenge/logic/polyline/state.dart';
 import 'package:lifestep/src/resources/challenge.dart';
 
 
 class PolylineMapCubit extends Cubit<PolylineMapState> {
-  final ChallengeRepository challengeRepository;
+  final IChallengeRepository challengeRepository;
   final ChallengeModel challengeModel;
   final ChallengeUserModel challengeUserModel;
   CancelToken dioToken = CancelToken();

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lifestep/src/models/home/challenge-list.dart';
-import 'package:lifestep/src/models/home/fond-list.dart';
+import 'package:lifestep/src/models/home/challenge_list.dart';
+import 'package:lifestep/src/models/home/fond_list.dart';
 import 'package:lifestep/src/models/index/banner.dart';
 import 'package:lifestep/src/models/index/page.dart';
 import 'package:lifestep/src/ui/index/logic/main/state.dart';
@@ -11,7 +11,7 @@ class IndexCubit extends Cubit<IndexState>{
   IndexCubit({required this.homeRepository}) : super(IndexLoading()) {
     initialize();
   }
-  final HomeRepository homeRepository;
+  final IHomeRepository homeRepository;
   Future<void> initialize() async{
 
     IndexPageModel indexPageModel = IndexPageModel();
@@ -89,27 +89,27 @@ class IndexCubit extends Cubit<IndexState>{
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    List challengeList = await homeChallenges()
-    ;
-    if(challengeList[2] != WEB_SERVICE_ENUM.SUCCESS){
-      if (challengeList[2] != WEB_SERVICE_ENUM.UN_AUTH){
-        emit(AuthError());
-        return;
-      }
-      else if (challengeList[2] != WEB_SERVICE_ENUM.INTERNET_ERROR) {
-        emit(InternetError());
-        return;
-      }
-      else{
-        emit(IndexError());
-        return;
-      }
-    }else{
-      HomeChallengeListResponse homeChallengeListResponse = HomeChallengeListResponse.fromJson(challengeList[1]);
-      indexPageModel = indexPageModel.copyWith(challengeList: homeChallengeListResponse.data);
-      //////// print(homeChallengeListResponse.data);
-      //////// print("Future<void> initialize() async{ else");
-    }
+    // List challengeList = await homeChallenges()
+    // ;
+    // if(challengeList[2] != WEB_SERVICE_ENUM.SUCCESS){
+    //   if (challengeList[2] != WEB_SERVICE_ENUM.UN_AUTH){
+    //     emit(AuthError());
+    //     return;
+    //   }
+    //   else if (challengeList[2] != WEB_SERVICE_ENUM.INTERNET_ERROR) {
+    //     emit(InternetError());
+    //     return;
+    //   }
+    //   else{
+    //     emit(IndexError());
+    //     return;
+    //   }
+    // }else{
+    //   HomeChallengeListResponse homeChallengeListResponse = HomeChallengeListResponse.fromJson(challengeList[1]);
+    //   indexPageModel = indexPageModel.copyWith(homeChallengeListData: homeChallengeListResponse.data);
+    //   //////// print(homeChallengeListResponse.data);
+    //   //////// print("Future<void> initialize() async{ else");
+    // }
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -200,8 +200,7 @@ class IndexCubit extends Cubit<IndexState>{
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    List challengeList = await homeChallenges()
-    ;
+    List challengeList = await homeChallenges();
     if(challengeList[2] != WEB_SERVICE_ENUM.SUCCESS){
       if (challengeList[2] != WEB_SERVICE_ENUM.UN_AUTH){
         emit(state);
@@ -217,7 +216,7 @@ class IndexCubit extends Cubit<IndexState>{
       }
     }else{
       HomeChallengeListResponse homeChallengeListResponse = HomeChallengeListResponse.fromJson(challengeList[1]);
-      indexPageModel = indexPageModel.copyWith(challengeList: homeChallengeListResponse.data);
+      indexPageModel = indexPageModel.copyWith(homeChallengeListData: homeChallengeListResponse.data);
       //////// print(homeChallengeListResponse.data);
       //////// print("Future<void> refresh() async{ else");
     }

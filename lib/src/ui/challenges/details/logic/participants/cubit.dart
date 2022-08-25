@@ -12,18 +12,19 @@ import 'package:sprintf/sprintf.dart';
 
 class ParticipantListCubit extends Cubit<ParticipantListState> {
 
-  final ChallengeRepository challengeRepository;
+  final IChallengeRepository challengeRepository;
   final ChallengeModel challengeModel;
-  ParticipantListCubit({required this.challengeRepository, required this.challengeModel}) : assert(challengeRepository != null), super(ParticipantListLoading()){
+  ParticipantListCubit({required this.challengeRepository, required this.challengeModel}) :
+        // assert(challengeRepository != null),
+        super(ParticipantListLoading()){
     search();
-    // //////// print("ParticipantListCubit--------");
   }
 
   bool isLoading = false;
   CancelToken dioToken = CancelToken();
 
 
-  search({bool reset: true}) async {
+  search({bool reset= true}) async {
     var currentState = state;
     if(reset){
       currentState = ParticipantListLoading();

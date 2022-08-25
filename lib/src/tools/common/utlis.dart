@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -47,6 +48,31 @@ class Utils {
     } else {
       return '';
     }
+  }
+
+// Define a reusable function
+  static String generateRandomString(int length) {
+    final _random = Random();
+    const _availableChars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    final randomString = List.generate(length,
+            (index) => _availableChars[_random.nextInt(_availableChars.length)])
+        .join();
+
+    return randomString;
+  }
+
+// Define a reusable function
+  static int findRangeIndex({required List<int> listData, required int value}) {
+    int returnVal = 0;
+    if(listData.length > 1){
+      for(int i = 0; i < [[0], listData].expand((x) => x).toList().length-2; i++){
+        if(listData[i] <= value && listData[i+1] > value ) {
+          returnVal = i+1;
+          break;
+        }
+      }
+    }
+    return returnVal;
   }
 
   static Future<String> getPlayerId() async{
@@ -118,7 +144,7 @@ class Utils {
         return Color(0xFFFFFFFF);
       }
     }catch(_){
-      return Color(0xFFFFFFFF);
+      return const Color(0xFFFFFFFF);
     }
   }
 
@@ -126,10 +152,10 @@ class Utils {
 
   static Color selectInputColor(Map<String, dynamic> dataMap, String key) {
     try{
-      return dataMap[key] ?? Color(0xFFE5EAF5);
+      return dataMap[key] ?? const Color(0xFFE5EAF5);
       // return dataMap[key] ?? MainColors.generalBackgorundColor;
     }catch(_){
-      return Color(0xFFE5EAF5);
+      return const Color(0xFFE5EAF5);
     }
   }
 
@@ -199,7 +225,7 @@ class Utils {
     try{
       return TimeOfDay(hour: int.parse(value!.split(":")[0]), minute: int.parse(value.split(":")[1]));
     }catch(_){
-      return TimeOfDay(hour: 00, minute: 00);
+      return const TimeOfDay(hour: 00, minute: 00);
     }
   }
   static double stringToDouble({String? value}) {
@@ -271,10 +297,12 @@ class Utils {
   static String generateLanguageHeader(String lang){
     String returnVal  = lang;
     if(lang.length == 2){
-      if(lang == 'en')
+      if(lang == 'en') {
         returnVal = "$returnVal-en";
-      else
+      }
+      else {
         returnVal = "$returnVal-$lang";
+      }
     }
     return returnVal;
   }
@@ -287,7 +315,7 @@ class Utils {
 
   static void launchPhone(String tel) {
     try{
-      launch("tel:${tel}");
+      launch("tel:$tel");
     }catch(_){
 
     }
@@ -297,7 +325,7 @@ class Utils {
 
   static void launchUrl(String value) {
     try{
-      launch(value.contains('http') ? value : "${SITE_URL}${value}");
+      launch(value.contains('http') ? value : sprintf("%s%s", [SITE_URL, value]));
     }catch(_){
     }
   }
@@ -324,13 +352,13 @@ class Utils {
     try{
 
       const double earthRadius = 6372.795477598;
-      const double M_PI = 3.1415926;
+      const double mPi = 3.1415926;
 
       // перевести координаты в радианы
-      double lat1 = fromCoordinate.latitude * M_PI / 180;
-      double lat2 = toCoordinate.latitude * M_PI / 180;
-      double long1 = fromCoordinate.longitude * M_PI / 180;
-      double long2 = toCoordinate.longitude * M_PI / 180;
+      double lat1 = fromCoordinate.latitude * mPi / 180;
+      double lat2 = toCoordinate.latitude * mPi / 180;
+      double long1 = fromCoordinate.longitude * mPi / 180;
+      double long2 = toCoordinate.longitude * mPi / 180;
 
       // косинусы и синусы широт и разницы долгот
       double cl1 = math.cos(lat1);
@@ -397,10 +425,12 @@ class Utils {
 
   static Future<bool> checkGoogleFitExist() async {
 
-    if(Platform.isAndroid)
+    if(Platform.isAndroid) {
       return await DeviceApps.isAppInstalled('com.google.android.apps.fitness');
-    else
+    }
+    else {
       return true;
+    }
   }
 
   static Future<bool> checkPermissions() async {
@@ -541,50 +571,76 @@ class Utils {
   // }
   //
 
-  static dynamic showInfoModal(BuildContext context, Size size, {String? title, String? image, String? buttonText, Function? onTap}) {
+  static dynamic showInfoModal(BuildContext context, Size size, {String? title, String? image, String? buttonText, Function? onTap, ConfettiController? controllerTopCenter, }) {
 
     return showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Dialog(
-            shape: RoundedRectangleBorder(
-                borderRadius:
-                BorderRadius.all(Radius.circular(12.0))),
-            child: Container(
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                // border: Border.all(color: Colors.blueAccent,width: 2),
-                  borderRadius:
-                  BorderRadius.all(Radius.circular(10.0))),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(height: 8,),
-                  Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
-                      child: SvgPicture.asset(image ?? "assets/svgs/dialog/success.svg"),
+        return Stack(
+          children: [
+            Dialog(
+                shape: const RoundedRectangleBorder(
+                    borderRadius:
+                    BorderRadius.all(
+                        Radius.circular(12.0)
+                    )
+                ),
+                child: Container(
+                  clipBehavior: Clip.antiAlias,
+                  decoration: const BoxDecoration(
+                    // border: Border.all(color: Colors.blueAccent,width: 2),
+                      borderRadius:
+                      BorderRadius.all(Radius.circular(10.0))),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(height: 8,),
+                      Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
+                          child: SvgPicture.asset(image ?? "assets/svgs/dialog/success.svg"),
+                      ),
+                      if(title!=null)
+                      Text(
+                        title,
+                        style: MainStyles.mediumTextStyle.copyWith(fontSize: 18),
+                      ),
+                      if(title!=null)
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                        child: SizedBox(height: 24,),
+                      ),
+                      Divider(color: MainColors.middleGrey200,height: 0,),
+                      BigUnBorderedButton(
+                        text: buttonText ?? Utils.getString(context, "general__close_button_text"),
+                        buttonColor: MainColors.middleGrey100,
+                        textColor: MainColors.darkBlue500,
+                        borderRadius: 0,
+                        onTap: () => onTap ?? Navigator.pop(context) ,
+                      )
+                    ],
                   ),
-                  if(title!=null)
-                  Text(
-                    title,
-                    style: MainStyles.mediumTextStyle.copyWith(fontSize: 18),
-                  ),
-                  if(title!=null)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: SizedBox(height: 24,),
-                  ),
-                  Divider(color: MainColors.middleGrey200,height: 0,),
-                  BigUnBorderedButton(
-                    text: buttonText ?? Utils.getString(context, "general__close_button_text"),
-                    buttonColor: MainColors.middleGrey100,
-                    textColor: MainColors.darkBlue500,
-                    borderRadius: 0,
-                    onTap: () => onTap ?? Navigator.pop(context) ,
-                  )
-                ],
+                )),
+            if(controllerTopCenter != null)
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConfettiWidget(
+                confettiController: controllerTopCenter,
+                blastDirectionality: BlastDirectionality
+                    .explosive, // don't specify a direction, blast randomly
+                shouldLoop:
+                true, // start again as soon as the animation is finished
+                colors: const [
+                  Colors.green,
+                  Colors.blue,
+                  Colors.pink,
+                  Colors.orange,
+                  Colors.purple
+                ], // manually specify the colors to be used
+                createParticlePath: drawStarPath,
               ),
-            ));
+            ),
+          ],
+        );
       },
     );
   }
@@ -596,12 +652,12 @@ class Utils {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius:
                 BorderRadius.all(Radius.circular(12.0))),
             child: Container(
               clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 // border: Border.all(color: Colors.blueAccent,width: 2),
                   borderRadius:
                   BorderRadius.all(Radius.circular(10.0))),
@@ -648,12 +704,12 @@ class Utils {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius:
                 BorderRadius.all(Radius.circular(12.0))),
             child: Container(
               clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 // border: Border.all(color: Colors.blueAccent,width: 2),
                   borderRadius:
                   BorderRadius.all(Radius.circular(10.0))),
@@ -700,7 +756,7 @@ class Utils {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(12.0))),
             child: Container(
               clipBehavior: Clip.antiAlias,
@@ -755,12 +811,12 @@ class Utils {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius:
                 BorderRadius.all(Radius.circular(12.0))),
             child: Container(
               clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 // border: Border.all(color: Colors.blueAccent,width: 2),
                   borderRadius:
                   BorderRadius.all(Radius.circular(10.0))),
@@ -809,12 +865,12 @@ class Utils {
         return Stack(
           children: [
             Dialog(
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius:
                     BorderRadius.all(Radius.circular(12.0))),
                 child: Container(
                   clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     // border: Border.all(color: Colors.blueAccent,width: 2),
                       borderRadius:
                       BorderRadius.all(Radius.circular(10.0))),
@@ -914,12 +970,12 @@ class Utils {
         return Stack(
           children: [
             Dialog(
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius:
                     BorderRadius.all(Radius.circular(12.0))),
                 child: Container(
                   clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     // border: Border.all(color: Colors.blueAccent,width: 2),
                       borderRadius:
                       BorderRadius.all(Radius.circular(10.0))),
@@ -1272,7 +1328,7 @@ class Utils {
                       AutoSizeText(dateText ?? '', style: MainStyles.mediumTextStyle.copyWith(fontSize: 14),),
                     ],
                   ),
-                  Divider(),
+
                   BigUnBorderedButton(
                     text: buttonText ?? Utils.getString(context, "general__close_button_text"),
                     onTap: (){
@@ -1323,7 +1379,7 @@ class Utils {
                     child: Container(
                         width: 64,
                         height: 4,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: Colors.grey,
                             // borderRadius: BorderRadius.circular(10)
                         )
@@ -1334,7 +1390,7 @@ class Utils {
                   if(imageText != null)
                   SizedBox(height: size.height * 0.1 / 10,),
                   if(imageText != null)
-                  Divider(),
+                    const Divider(),
                   if(imageText != null)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -1362,7 +1418,7 @@ class Utils {
                   // Divider(),
                   SizedBox(height: size.height * 0.2 / 10,),
                   Center(child: Text(text ?? '', style: MainStyles.mediumTextStyle, textAlign: TextAlign.center,)),
-                  Divider(),
+                  const Divider(),
                   BigUnBorderedButton(
                     text: buttonText ?? Utils.getString(context, "general__close_button_text"),
                     onTap: (){
@@ -1391,16 +1447,16 @@ class Utils {
 
   static int getTabIndex(Navigation navigation) {
     switch (navigation){
-      case Navigation.HOME:{
+      case Navigation.home:{
         return 0;
       }
-      case Navigation.DONATIONS:{
+      case Navigation.donations:{
         return 1;
       }
-      case Navigation.CHALLENGES:{
+      case Navigation.challenges:{
         return 2;
       }
-      case Navigation.PROFILE:{
+      case Navigation.profile:{
         return 3;
       }
       default: {

@@ -7,9 +7,10 @@ import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_countdown_timer/index.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
+import 'package:lifestep/src/models/arguments/charity_detail_view.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/countdown/countdown_tag.dart';
-import 'package:lifestep/src/tools/components/page-messages/list-message.dart';
+import 'package:lifestep/src/tools/components/page_messages/list-message.dart';
 import 'package:lifestep/src/tools/components/shimmers/donations/personal.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton-list.dart';
 import 'package:lifestep/src/tools/config/cache_image_key.dart';
@@ -168,19 +169,14 @@ class _DataListItem0State extends State<_DataListItem0> {
       child: GestureDetector(
         onTap: () async{
           // Utils.focusClose(context);
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>MultiBlocProvider(
-              providers: [
-                BlocProvider<CharityDetailsBloc>(create: (context) => CharityDetailsBloc(
-                    charityModel: widget.dataItem,
-                    donationRepository: GetIt.instance<DonationRepository>()
-                )),
-                BlocProvider<DonorListCubit>(create: (context) => DonorListCubit(
-                    charityModel: widget.dataItem,
-                    donationRepository: GetIt.instance<DonationRepository>()
-                )),
-              ],
-              child: DonationPersonalDetailView()))).then((value){
-            if(value != null ){
+          Navigator.pushNamed(
+            context,
+            CharityDetailView.routeName,
+            arguments: CharityDetailViewArguments(
+                dataItem: widget.dataItem
+            ),
+          ).then((value){
+            if(value != null && value is CharityModel ){
               BlocProvider.of<CharityListCubit>(context).changeCharity(listValue: widget.dataList, boolValue: widget.hasReachedMax, value: value, index: widget.index);
             }
           });

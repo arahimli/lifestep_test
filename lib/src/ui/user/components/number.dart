@@ -45,7 +45,7 @@ class _NumpadState extends State<Numpad> {
   }
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return Flexible(
       flex: 1,
       child: Container(

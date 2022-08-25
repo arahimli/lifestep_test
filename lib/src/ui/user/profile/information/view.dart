@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:lifestep/src/tools/common/input-data.dart';
-import 'package:lifestep/src/tools/common/input-format.dart';
+import 'package:lifestep/src/tools/common/input_data.dart';
+import 'package:lifestep/src/tools/common/input_format.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/src/tools/components/dialog/loading.dart';
@@ -90,7 +90,7 @@ class InformationWidgetState extends State<InformationWidget> {
                             sessionCubit: BlocProvider.of<SessionCubit>(context),
                             authRepo: GetIt.instance<UserRepository>()
                           ),
-                              child: _GoalStepModal()
+                              child: const _GoalStepModal()
                           ),
                         );
 
@@ -138,7 +138,7 @@ class InformationWidgetState extends State<InformationWidget> {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 16),
                       child: GeneralTextField(
-                        enabled: !(BlocProvider.of<SessionCubit>(context).currentUser!.loginMethod == AuthType.OTP),
+                        enabled: !(BlocProvider.of<SessionCubit>(context).currentUser!.loginMethod == AuthType.otp),
                         size: size,
                         label: Utils.getString(context, "profile_view___tab_information___form_field__phone_label"),
                         hintText: Utils.getString(context, "profile_view___tab_information___form_field__phone_hint"),

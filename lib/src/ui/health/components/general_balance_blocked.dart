@@ -44,7 +44,7 @@ class _GeneralBalanceBlockedViewState extends State<GeneralBalanceBlockedView> {
                 children: [
                   _InformationItemWidget(
                     onTap: (){
-                      navigationBloc.changeNavigationIndex(Navigation.DONATIONS);
+                      navigationBloc.changeNavigationIndex(Navigation.donations);
                     },
                     backgroundColor: MainColors.darkPink500!,
                     steps: "${sessionState.currentUser!.balanceSteps.toString().length > 6 ? Utils.humanizeInteger(context, sessionState.currentUser!.balanceSteps ?? 0) : sessionState.currentUser!.balanceSteps ?? 0}  ${Utils.getString(context, "general__steps__count")}",
@@ -77,7 +77,7 @@ class _InformationItemWidget extends StatelessWidget {
       padding: const EdgeInsets.all(2),
       child: GestureDetector(
         onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
+          Utils.focusClose(context);;
           if(onTap != null)
             onTap!();
         },

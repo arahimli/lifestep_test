@@ -17,7 +17,7 @@ class ParticipantListSuccess extends ParticipantListState {
   final List<ParticipantModel> dataList;
   final int dataCount;
 
-  const ParticipantListSuccess({this.dataList = const [], this.dataCount: 0, });
+  const ParticipantListSuccess({this.dataList = const [], this.dataCount= 0, });
 
   ParticipantListSuccess copyWith({
     required List<ParticipantModel> dataList,
@@ -34,7 +34,7 @@ class ParticipantListSuccess extends ParticipantListState {
 
   @override
   String toString() =>
-      'ParticipantListSuccess { mainData: ${dataList != null ? dataList.length : 0} }';
+      'ParticipantListSuccess { mainData: ${dataList.length} }';
 }
 
 class ParticipantListError extends ParticipantListState {

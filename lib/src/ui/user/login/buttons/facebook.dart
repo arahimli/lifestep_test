@@ -41,7 +41,7 @@ class _FacebookLoginButtonState extends State<FacebookLoginButton> {
           width: size.height * 4 / 100,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              image: DecorationImage(
+              image: const DecorationImage(
                   image: AssetImage("assets/images/social/facebook.png")
               )
           ),
@@ -68,19 +68,19 @@ class _FacebookLoginButtonState extends State<FacebookLoginButton> {
       final token = await plugin.accessToken;
       FacebookUserProfile? profile;
       String? email;
-      String? imageUrl;
+      // String? imageUrl;
       if(facebookLoginResult.status == FacebookLoginStatus.success) {
         if (token != null) {
           profile = await plugin.getUserProfile();
           if (token.permissions.contains(FacebookPermission.email.name)) {
             email = await plugin.getUserEmail();
           }
-          imageUrl = await plugin.getProfileImageUrl(width: 100);
+          String? imageUrl = await plugin.getProfileImageUrl(width: 100);
         }
        ///////// print("profile__profile");
         if (profile != null) {
           widget.authCubit.fullName = sprintf("%s %s", [profile.firstName, profile.lastName]);
-          widget.authCubit.authType = AuthType.FACEBOOK;
+          widget.authCubit.authType = AuthType.facebook;
           widget.authCubit.email = email ?? '';
           widget.authCubit.socialToken = token!.token;
           showLoading(
@@ -147,7 +147,7 @@ class _FacebookLoginButtonState extends State<FacebookLoginButton> {
           CustomSnackBar.error(
             message: Utils.getString(context, "social_login_cancelled"),
             backgroundColor: MainColors.darkPink500!,
-            messagePadding: EdgeInsets.symmetric(horizontal: 24, vertical: 2,  ),
+            messagePadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 2,  ),
             textStyle: TextStyle(fontFamily: MainConfig.main_default_font_family,fontSize: 16, height: 1.1, fontWeight: FontWeight.w600, color: MainColors.white),
             icon: Container(),
             boxShadow: [],
@@ -193,7 +193,7 @@ class _FacebookLoginButtonState extends State<FacebookLoginButton> {
    ///////// print("profile__profile");
     if(profile != null){
       widget.authCubit.fullName = sprintf("%s %s", [profile.firstName, profile.lastName]);
-      widget.authCubit.authType = AuthType.FACEBOOK;
+      widget.authCubit.authType = AuthType.facebook;
       widget.authCubit.email = email ?? '';
       widget.authCubit.socialToken = token!.token;
       widget.authCubit.showSignUp();

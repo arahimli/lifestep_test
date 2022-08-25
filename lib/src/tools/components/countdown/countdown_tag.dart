@@ -21,19 +21,10 @@ class _CountdownTagWidgetState extends State<CountdownTagWidget> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(500),
         child: BackdropFilter(
-          filter: ImageFilter.compose(
-              inner: ImageFilter.blur(
-                sigmaX: 50,
-                sigmaY: 0,
-                // tileMode: TileMode.decal
-              ),
-              outer: ImageFilter.blur(
-                sigmaX: -double.infinity / 2,
-                sigmaY: 20,
-                // tileMode: TileMode.decal
-              )
-            // sigmaX: double.infinity / 2,
-            // sigmaY: 0.0,
+          blendMode: BlendMode.plus,
+          filter: ImageFilter.blur(
+            sigmaX: -double.infinity / 2,
+            sigmaY: 20,
             // tileMode: TileMode.decal
           ),
           child: Container(

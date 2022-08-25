@@ -23,12 +23,12 @@ class _CountdownTextState extends State<CountdownText> {
         if (time == null) {
           return Text(
             sprintf(
-                '%s %s %s%s %s%s %s%s',
+                '%s %s %s%s:%s%s:%s%s',
                 [
                   '0', Utils.getString(context, "general_days_long").toUpperCase(),
-                  '0', Utils.getString(context, "general_hours_short").toUpperCase(),
-                  '0', Utils.getString(context, "general_mins_short").toUpperCase(),
-                  '0', Utils.getString(context, "general_secs_short").toUpperCase(),
+                  '00', '',
+                  '00', '',
+                  '00', '',
                 ]
             ),
             style: MainStyles.boldTextStyle.copyWith(fontSize: 12),
@@ -36,12 +36,12 @@ class _CountdownTextState extends State<CountdownText> {
         }
         return Text(
           sprintf(
-              '%s %s %s%s %s%s %s%s',
+              '%s %s %s%s:%s%s:%s%s',
               [
                 time.days ?? '0', Utils.getString(context, "general_days_long").toUpperCase(),
-                time.hours ?? '0', Utils.getString(context, "general_hours_short").toUpperCase(),
-                time.min ?? '0', Utils.getString(context, "general_mins_short").toUpperCase(),
-                time.sec ?? '0', Utils.getString(context, "general_secs_short").toUpperCase(),
+                time.hours != null ? time.hours.toString().padLeft(2, '0') : '00', '',
+                time.min != null ? time.min.toString().padLeft(2, '0') : '00', '',
+                time.sec != null ? time.sec.toString().padLeft(2, '0') : '00', '',
               ]
           ),
           style: MainStyles.boldTextStyle.copyWith(fontSize: 12),

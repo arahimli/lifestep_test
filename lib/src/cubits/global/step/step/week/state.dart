@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lifestep/src/models/step/user-order.dart';
+import 'package:lifestep/src/models/step/user_order.dart';
 import 'package:lifestep/src/resources/service/web_service.dart';
 
 abstract class GeneralUserLeaderBoardWeekStepState extends Equatable {

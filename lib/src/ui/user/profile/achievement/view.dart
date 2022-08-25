@@ -3,13 +3,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
-import 'package:lifestep/src/tools/components/page-messages/list-message.dart';
+import 'package:lifestep/src/tools/components/page_messages/list-message.dart';
 import 'package:lifestep/src/tools/components/shimmers/achievement_list_item.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton-grid.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
 import 'package:lifestep/src/tools/config/styles.dart';
-import 'package:lifestep/src/models/general/achievement-list.dart';
+import 'package:lifestep/src/models/general/achievement_list.dart';
 import 'package:lifestep/src/ui/user/profile/achievement/cubit.dart';
 import 'package:lifestep/src/ui/user/profile/achievement/state.dart';
 import 'package:shimmer/shimmer.dart';
@@ -139,7 +139,7 @@ class _AchievementItemWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () async{
-        FocusScope.of(context).requestFocus(FocusNode());
+        Utils.focusClose(context);;
         Utils.showInfoByImageModal(context, size, title: titleText, text: descriptionText, buttonText: Utils.getString(context, "general__close_button_text"), imageText: iconAddress, onTap: (ctx){Navigator.pop(ctx);});
       },
       child: Container(
@@ -159,14 +159,10 @@ class _AchievementItemWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(4.0),
                   child: CachedNetworkImage(
                     placeholder: (context, key){
-                      return Container(
-                        // width: size.width * 0.95 / 6,
-                        // height: size.width * 0.95 / 6,
-                        child: Shimmer.fromColors(
-                            highlightColor: MainColors.middleGrey150!.withOpacity(0.2),
-                            baseColor: MainColors.middleGrey150!,
-                            child: Image.asset("assets/images/achievements/prize.png", color: MainColors.middleGrey150,)
-                        ),
+                      return Shimmer.fromColors(
+                          highlightColor: MainColors.middleGrey150!.withOpacity(0.2),
+                          baseColor: MainColors.middleGrey150!,
+                          child: Image.asset("assets/images/achievements/prize.png", color: MainColors.middleGrey150,)
                       );
                     },
                     // key: Key("${"vvvvv"}${1}"),

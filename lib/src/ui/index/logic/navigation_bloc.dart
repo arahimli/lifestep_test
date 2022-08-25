@@ -1,13 +1,13 @@
 import 'package:rxdart/rxdart.dart';
 
-enum Navigation { HOME, DONATIONS, CHALLENGES , PROFILE
+enum Navigation { home, donations, challenges , profile
   // , TEAMS, LEAGUES
 }
 
 class NavigationBloc {
   //BehaviorSubject is from rxdart package
   final BehaviorSubject<Navigation> _navigationController
-  = BehaviorSubject.seeded(Navigation.HOME);
+  = BehaviorSubject.seeded(Navigation.home);
   // seeded with inital page value. I'am assuming PAGE_ONE value as initial page.
 
   //exposing stream that notify us when navigation index has changed

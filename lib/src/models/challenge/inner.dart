@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'challenges.dart';
 
 class StepBaseStageResponse {
@@ -33,7 +35,7 @@ class StepBaseStageData {
 
   StepBaseStageData.fromJson(Map<String, dynamic> json) {
     challenge = json['challenge'] != null
-        ? new ChallengeModel.fromJson(json['challenge'])
+        ? ChallengeModel.fromJson(json['challenge'])
         : null;
     if (json['challenge_levels'] != null) {
       challengeLevels = <ChallengeLevelModel>[];
@@ -41,7 +43,9 @@ class StepBaseStageData {
         challengeLevels!.add(new ChallengeLevelModel.fromJson(v));
       });
     }
-    userSteps = json['user_steps'];
+    log("[LOG] user_steps " + json['user_steps'].toString());
+    log("[LOG] user_steps " + json['user_steps'].runtimeType.toString());
+    userSteps = json['user_steps'] != null ? int.parse(json['user_steps'].toString()) : 0;
   }
 
   Map<String, dynamic> toJson() {

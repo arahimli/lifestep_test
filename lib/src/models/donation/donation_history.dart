@@ -122,7 +122,7 @@ class DonatableModel {
     endDate = json['end_date'];
     requiredSteps = json['required_steps'];
     presentSteps = json['present_steps'];
-    sponsorImage = json['sponsor_image'];
+    sponsorImage = json['sponsor_image'] != null ? sprintf( IMAGE_URL , [json['sponsor_image']]) : null;
     sponsorName = json['sponsor_name'];
   }
 

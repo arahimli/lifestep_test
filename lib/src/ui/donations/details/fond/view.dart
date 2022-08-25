@@ -11,7 +11,7 @@ import 'package:get_it/get_it.dart';
 import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/buttons/big_unborderd_button.dart';
 import 'package:lifestep/src/tools/components/dialog/loading.dart';
-import 'package:lifestep/src/tools/components/error/general-widget.dart';
+import 'package:lifestep/src/tools/components/error/general_widget.dart';
 import 'package:lifestep/src/tools/components/form/textfield/general.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 import 'package:lifestep/src/tools/config/main_config.dart';
@@ -47,6 +47,8 @@ import 'package:lifestep/src/tools/general/padding/page-padding.dart';
 class DonationFondDetailView extends StatefulWidget {
   const DonationFondDetailView({Key? key}) : super(key: key);
 
+  static const routeName = "/fund-detail";
+
   @override
   _DonationFondDetailViewState createState() => _DonationFondDetailViewState();
 }
@@ -69,10 +71,11 @@ class _DonationFondDetailViewState extends State<DonationFondDetailView> {
       builder: (context, state) {
         return WillPopScope(
           onWillPop: ()async{
-            if(context.read<FondDetailsBloc>().fondChanged)
+            if(context.read<FondDetailsBloc>().fondChanged) {
               Navigator.pop(context, state.fondModel);
-            else
+            }else {
               Navigator.pop(context);
+            }
             return Future(() => false);
           },
           child: Scaffold(
@@ -228,21 +231,19 @@ class _DonationFondDetailViewState extends State<DonationFondDetailView> {
                                                 const SizedBox(
                                                   height: 24,
                                                 ),
-                                                Container(
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                                      children: [
-                                                        AutoSizeText(Utils.getString(context, "general__donations"), style: MainStyles.boldTextStyle.copyWith(fontSize: 20),),
-                                                        BlocBuilder<FondDonorListCubit, FondDonorListState>(
-                                                            builder: (context, stateDonor) {
-                                                              return stateDonor is FondDonorListSuccess ?
-                                                              AutoSizeText("${Utils.humanizeInteger(context, stateDonor.dataCount)} ${Utils.getString(context, "general__person__count")}", style: MainStyles.boldTextStyle.copyWith(fontSize: 16, color: MainColors.generalSubtitleColor),)
-                                                                  : Container(child: Text(" "),);
-                                                            }
-                                                        ),
-                                                      ],
-                                                    )
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    AutoSizeText(Utils.getString(context, "general__donations"), style: MainStyles.boldTextStyle.copyWith(fontSize: 20),),
+                                                    BlocBuilder<FondDonorListCubit, FondDonorListState>(
+                                                        builder: (context, stateDonor) {
+                                                          return stateDonor is FondDonorListSuccess ?
+                                                          AutoSizeText("${Utils.humanizeInteger(context, stateDonor.dataCount)} ${Utils.getString(context, "general__person__count")}", style: MainStyles.boldTextStyle.copyWith(fontSize: 16, color: MainColors.generalSubtitleColor),)
+                                                              : const Text(" ");
+                                                        }
+                                                    ),
+                                                  ],
                                                 ),
                                                 const SizedBox(height: 4,),
                                                 BlocBuilder<FondDonorListCubit, FondDonorListState>(
@@ -264,7 +265,7 @@ class _DonationFondDetailViewState extends State<DonationFondDetailView> {
                                                           context.read<FondDonorListCubit>().search();
                                                         },
                                                       )
-                                                          : SkeletonNoScrollingListWidget(
+                                                          : const SkeletonNoScrollingListWidget(
                                                         child: DonorListItemShimmerWidget(),
                                                       );
                                                     }
@@ -331,10 +332,11 @@ class _DonationFondDetailViewState extends State<DonationFondDetailView> {
                     top: 50.0,
                     child: GestureDetector(
                       onTap: () {
-                        if(context.read<FondDetailsBloc>().fondChanged)
+                        if(context.read<FondDetailsBloc>().fondChanged) {
                           Navigator.pop(context, state.fondModel);
-                        else
+                        }else {
                           Navigator.pop(context);
+                        }
 
                       },
                       child: Container(
@@ -351,7 +353,7 @@ class _DonationFondDetailViewState extends State<DonationFondDetailView> {
                               100),
                           color: MainColors.white,
 
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 8.0,
                               color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -388,7 +390,6 @@ class _DonorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: MainColors.mainBorderColor)),
@@ -397,7 +398,7 @@ class _DonorWidget extends StatelessWidget {
       padding: const EdgeInsets.all(2),
       child: GestureDetector(
         onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
+          Utils.focusClose(context);;
 //          focusNode.unfocus();
         },
         child: Container(
@@ -650,10 +651,6 @@ class _DonationModal extends StatelessWidget {
                             Container(
                               width: double.infinity,
                               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                              decoration: BoxDecoration(
-                                // color: MainColors.white,
-                                // borderRadius: BorderRadius.circular(16)
-                              ),
                               child: Wrap(
                                 alignment: WrapAlignment.start,
                                 crossAxisAlignment: WrapCrossAlignment.center,
@@ -710,7 +707,7 @@ class _DonationModal extends StatelessWidget {
                                             Utils.showSuccessModal(context, size, title: Utils.getString(context, "page_donation_list___donation_success_mesage"), image: "assets/svgs/donations/success-dialog.svg");
 
                                             for(var item in donationResponse.data!.userAchievementsModels!){
-                                              controllerTopCenter.duration = Duration(seconds: 5);
+                                              controllerTopCenter.duration = const Duration(seconds: 5);
                                               controllerTopCenter.play();
                                               await Utils.showAchievementModal(context, size, controllerTopCenter, title: item.description, image: item.imageUnlocked);
                                               controllerTopCenter.stop();
@@ -733,7 +730,7 @@ class _DonationModal extends StatelessWidget {
                               ],
                             )
                           ],
-                        ) : settingsState is  SettingsError ? Container(child: Text("Error"),) : Container(child: Text("loading"),),
+                        ) : settingsState is  SettingsError ? const Text("Error") : const Text("loading"),
                       ),
                     );
                 }

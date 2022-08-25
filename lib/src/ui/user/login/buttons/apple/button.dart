@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+// import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AppleLoginButton extends StatefulWidget {
   const AppleLoginButton({Key? key}) : super(key: key);
@@ -17,15 +17,15 @@ class _AppleLoginButtonState extends State<AppleLoginButton> {
     return Platform.isIOS ? InkWell(
       onTap: ()async{
         // UserRepository userRepository = GetIt.instance<UserRepository>();
-        AuthorizationCredentialAppleID result = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-        ],);
+        // AuthorizationCredentialAppleID result = await SignInWithApple.getAppleIDCredential(
+        // scopes: [
+        // AppleIDAuthorizationScopes.email,
+        // AppleIDAuthorizationScopes.fullName,
+        // ],);
         ////// print("UserCredential result = await signInWithApple()");
        ///////// print("getAppleIDCredential = ${result.toString()}");
-        String? acc_token = result.identityToken;
-        String? email = result.email;
+       //  String? accToken = result.identityToken;
+       //  String? email = result.email;
        ///////// print(result.givenName);
        ///////// print(result.familyName);
        ///////// print(result.email);
@@ -34,12 +34,12 @@ class _AppleLoginButtonState extends State<AppleLoginButton> {
        ///////// print(result.identityToken);
 
         //////// print(email);
-        //////// print(acc_token);
+        //////// print(accToken);
         //////// print(result.user!.displayName);
         //////// print(result.user!.phoneNumber);
         // //////// print(result.user.);
         // showLoading(context, Utils.getString(context, "general__loading_text"));
-        // LoginResponse submitData = await userRepository.loginSocial(acc_token, 'apple', email);
+        // LoginResponse submitData = await userRepository.loginSocial(accToken, 'apple', email);
         // closeLoading(context);
         //////// print("submitData.success == null || submitData.success == 0");
         //////// print(submitData.status);
@@ -50,7 +50,7 @@ class _AppleLoginButtonState extends State<AppleLoginButton> {
         //
         // } else {
           // drawer_bloc.setUser(submitData);
-          // storage.write(key: 'token', value: acc_token);
+          // storage.write(key: 'token', value: accToken);
           // storage.write(key: 'email', value: email);
           // storage.write(key: 'auth_type', value: "apple");
           // storage.write(key: 'usingBiometric', value: 'true');
@@ -68,7 +68,7 @@ class _AppleLoginButtonState extends State<AppleLoginButton> {
           width: size.height * 4 / 100,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              image: DecorationImage(
+              image: const DecorationImage(
                   image: AssetImage("assets/images/social/apple.png")
               )
           ),

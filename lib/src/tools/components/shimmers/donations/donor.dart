@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifestep/src/tools/common/utlis.dart';
 import 'package:lifestep/src/tools/components/shimmers/skeleton.dart';
 import 'package:lifestep/src/tools/config/main_colors.dart';
 
@@ -13,11 +14,11 @@ class DonorListItemShimmerWidget extends StatelessWidget {
       padding: EdgeInsets.all(2),
       child: GestureDetector(
         onTap: () async{
-          FocusScope.of(context).requestFocus(FocusNode());
+          Utils.focusClose(context);
 //          focusNode.unfocus();
         },
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 0),
+          padding: EdgeInsets.symmetric(horizontal: 8),
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: MainColors.backgroundColor,

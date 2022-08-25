@@ -1,2 +1,2 @@
 
-enum LeaderBoardTypeEnum { LeaderBoardTypeStep, LeaderBoardTypeDonation }
+enum LeaderBoardTypeEnum { leaderBoardTypeStep, leaderBoardTypeDonation }
