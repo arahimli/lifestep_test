@@ -5,20 +5,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:get_it/get_it.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lifestep/src/tools/config/get_it.dart';
+import 'package:lifestep/features/tools/config/get_it.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:lifestep/src/app.dart';
+import 'package:lifestep/features/main_app/app.dart';
 
-import 'src/tools/common/language.dart';
-import 'src/tools/config/main_config.dart';
 import 'package:loggy/loggy.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:flutter_uxcam/flutter_uxcam.dart';
+
+import 'features/main_app/data/models/config/settings.dart';
+import 'features/tools/common/language.dart';
+import 'features/tools/config/main_config.dart';
 
 
 
@@ -45,18 +46,16 @@ void requestIOSPermissions() {
   );
 }
 
-GetIt getIt = GetIt.instance;
 // AppMetricaConfig get _config => const AppMetricaConfig(dotenv.env['YANDEX_KEY']!.toString(), logs: true);
-AppMetricaConfig get _config => const AppMetricaConfig(MainConfig.app_metrica_config, logs: true);
+AppMetricaConfig get _config => const AppMetricaConfig(MainConfig.appMetricaConfig, logs: true);
 
 void main() async{
   AppMetrica.runZoneGuarded(() async{
-  // getIt.registerSingleton<AppModel>(AppModelImplementation(), signalsReady: true);
+  // sl.registerSingleton<AppModel>(AppModelImplementation(), signalsReady: true);
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-
   FlutterUxcam.optIntoSchematicRecordings();
-  FlutterUxcam.startWithKey(MainConfig.app_uxcam_config);
+  FlutterUxcam.startWithKey(MainConfig.appUxCamConfig);
 
   // await Permission.appTrackingTransparency.request();
   await AppTrackingTransparency.requestTrackingAuthorization();
@@ -65,10 +64,16 @@ void main() async{
   ]);
   await dotenv.load(fileName: "assets/config/.env");
   setupLocator();
+
+  final settings = Settings();
+  await settings.initializeStorage();
+  await settings.initializeFirebase();
+  sl.registerSingleton<Settings>(settings);
+
   Loggy.initLoggy(
     logPrinter: const PrettyPrinter(),
   );
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
@@ -109,7 +114,7 @@ void main() async{
     AppMetrica.activate(_config);
 
     runApp(EasyLocalization(
-        path: MainConfig.LANG_PATH,
+        path: MainConfig.langPath,
         startLocale: await MainConfig.defaultLanguage.startLocale(),
         supportedLocales: getSupportedLanguages(),
         child: MainApp(
